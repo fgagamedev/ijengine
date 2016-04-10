@@ -18,9 +18,9 @@ namespace ijengine {
         SDL2Game();
 
     private:
-        unique_ptr<LibSDL2> m_lib; 
-        unique_ptr<SDL2DVideo> m_video; 
-        shared_ptr<Window> m_window; 
+        unique_ptr<LibSDL2> m_lib;
+        unique_ptr<SDL2DVideo> m_video;
+        shared_ptr<Window> m_window;
     };
 
 }

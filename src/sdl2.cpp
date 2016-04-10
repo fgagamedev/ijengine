@@ -27,7 +27,7 @@ printf("Desligando a SDL2...\n");
         SDL_version v;
         SDL_GetVersion(&v);
 
-        char buffer[128]; 
+        char buffer[128];
         sprintf(buffer, "%d.%d.%d", v.major, v.minor, v.patch);
 
         return string(buffer);
