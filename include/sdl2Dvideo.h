@@ -9,7 +9,7 @@ namespace ijengine {
     public:
         SDL2DVideo();
         ~SDL2DVideo();
-        
+
         Window * create_window(int w, int h);
     };
 
