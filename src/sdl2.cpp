@@ -1,6 +1,7 @@
 #include "sdl2.h"
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <SDL2/SDL_version.h>
 
 #include <iostream>
@@ -11,8 +12,13 @@ namespace ijengine {
     LibSDL2::~LibSDL2()
     {
 printf("Desligando a SDL2...\n");
-        if (SDL_WasInit(SDL_INIT_VIDEO))
+        if (SDL_WasInit(IMG_INIT_PNG)) {
+            IMG_Quit();
+        }
+
+        if (SDL_WasInit(SDL_INIT_VIDEO)) {
             SDL_Quit();
+        }
     }
 
     string
@@ -46,6 +52,7 @@ printf("Desligando a SDL2...\n");
         if (rc)
             throw "Error on LibSDL2::init()";
 
+        IMG_Init(IMG_INIT_PNG);
 printf("nome = [%s], versao = [%s]\n", name().c_str(), version().c_str());
     }
 

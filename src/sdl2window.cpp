@@ -11,6 +11,10 @@ namespace ijengine {
 
     SDL2Window::~SDL2Window()
     {
+        /*
+        WARNING: destroying this window will also destroy its renderer..
+        */
+
         if (renderer != nullptr) {
             SDL_DestroyRenderer(renderer);
         }

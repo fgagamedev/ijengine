@@ -5,6 +5,7 @@
 #include "sdl2.h"
 #include "sdl2Dvideo.h"
 #include "window.h"
+#include "sdl2texture.h"
 
 #include <memory>
 

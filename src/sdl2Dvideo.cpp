@@ -21,7 +21,6 @@ namespace ijengine {
     SDL2DVideo::create_window(int w, int h)
     {
         SDL_Window *window;
-        SDL_Renderer *renderer;
 
         if (SDL_CreateWindowAndRenderer(w, h, 0, &window, &renderer))
             return nullptr;
