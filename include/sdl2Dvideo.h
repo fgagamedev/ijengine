@@ -2,6 +2,7 @@
 #define SDL2DVIDEO_H
 
 #include "video.h"
+#include <SDL2/SDL.h>
 
 namespace ijengine {
 
@@ -9,8 +10,9 @@ namespace ijengine {
     public:
         SDL2DVideo();
         ~SDL2DVideo();
-        
+
         Window * create_window(int w, int h);
+        SDL_Renderer * renderer;
     };
 
 }

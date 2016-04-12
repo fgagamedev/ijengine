@@ -10,7 +10,7 @@ namespace ijengine {
         virtual ~Video() = default;
         virtual Window * create_window(int w, int h) = 0;
     };
-    
+
 }
 
 #endif

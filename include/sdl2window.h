@@ -10,9 +10,12 @@ namespace ijengine {
     public:
         SDL2Window(SDL_Window *window, SDL_Renderer *renderer);
         ~SDL2Window();
-
         int w() const;
         int h() const;
+
+    private:
+        SDL_Window *sdl_window;
+        SDL_Renderer *renderer;
     };
 }
 

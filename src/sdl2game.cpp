@@ -1,4 +1,5 @@
 #include "sdl2game.h"
+#include <SDL2/SDL_image.h>
 
 #include <memory>
 using std::make_shared;
@@ -20,6 +21,7 @@ namespace ijengine {
 
         if (not m_window)
             throw "Error on SDL2Game::SDL2Game()";
+
     }
 
 }
