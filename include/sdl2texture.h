@@ -1,22 +1,33 @@
-#pragma once
-#include <iostream>
+#ifndef SDL2_TEXTURE_H
+#define SDL2_TEXTURE_H
+
 #include <SDL2/SDL.h>
+#include <string>
+
+#include "texture.h"
+#include "canvas.h"
+
+using std::string;
 
 namespace ijengine {
 
-    class SDL2Texture {
+    class SDL2Texture : public Texture {
     public:
-        SDL2Texture(std::string file_path, SDL_Renderer *actual_renderer);
-        int w;
-        int h;
-        bool valid_texture();
-        void load_texture_from_path();
+        SDL2Texture(SDL_Texture *texture, int w, int h);
         ~SDL2Texture();
-        void update();
+
+        static SDL2Texture * load_texture_from_path(const string& path, const Canvas *c);
+
+        SDL_Texture * texture() const;
+
+        int w() const { return m_w; }
+        int h() const { return m_h; }
 
     private:
-        std::string file_name;
-        SDL_Renderer *renderer;
-        SDL_Texture *sdl_texture;
+        SDL_Texture *m_texture;
+        int m_w;
+        int m_h;
     };
 }
+
+#endif

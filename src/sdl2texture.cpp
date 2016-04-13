@@ -1,69 +1,52 @@
 #include "sdl2texture.h"
-#include <iostream>
+#include "sdl2canvas.h"
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
 namespace ijengine {
 
-    SDL2Texture::SDL2Texture(std::string file_path, SDL_Renderer *actual_renderer) :
-        file_name(file_path),
-        renderer(actual_renderer)
+    SDL2Texture::SDL2Texture(SDL_Texture *t, int w, int h)
+        : m_texture(t), m_w(w), m_h(h)
     {
-        if (valid_texture()) {
-            load_texture_from_path();
-        }
     }
 
-    bool
-    SDL2Texture::valid_texture()
+    SDL2Texture *
+    SDL2Texture::load_texture_from_path(const string& path, const Canvas *c)
     {
-        bool valid = true;
-        if (file_name.empty()) {
-            valid = false;
-        }
+        SDL_Surface *surface_from_img = IMG_Load(path.c_str());
 
-        if (renderer == nullptr) {
-            valid = false;
-        }
+        if (not surface_from_img)
+            return nullptr;
 
-        return valid;
-    }
+        const SDL2Canvas *canvas = dynamic_cast<const SDL2Canvas *>(c);
+        SDL_Renderer *r = canvas->renderer();
 
-    void
-    SDL2Texture::load_texture_from_path()
-    {
-        SDL_Surface *surface_from_img = IMG_Load(file_name.c_str());
-        SDL_Texture *texture_from_surface = nullptr;
-
-        if (surface_from_img != nullptr) {
-            texture_from_surface = SDL_CreateTextureFromSurface(renderer, surface_from_img);
-            if (texture_from_surface != nullptr) {
-                w = surface_from_img->w;
-                h = surface_from_img->h;
-
-                sdl_texture = texture_from_surface;
-            } else {
-                std::cout << SDL_GetError() << std::endl;
-            }
-
+        SDL_Texture *texture_from_surface = SDL_CreateTextureFromSurface(r, surface_from_img);
+        if (not texture_from_surface)
+        {
             SDL_FreeSurface(surface_from_img);
-        } else {
-            std::cout << SDL_GetError() << std::endl;
+            return nullptr;
         }
+
+        int w = surface_from_img->w;
+        int h = surface_from_img->h;
+
+        SDL_FreeSurface(surface_from_img);
+
+        return new SDL2Texture(texture_from_surface, w, h);
     }
 
     SDL2Texture::~SDL2Texture()
     {
-        if (sdl_texture != nullptr) {
-            SDL_DestroyTexture(sdl_texture);
+        if (m_texture) {
+            SDL_DestroyTexture(m_texture);
         }
     }
 
-    void
-    SDL2Texture::update()
+    SDL_Texture *
+    SDL2Texture::texture() const
     {
-        if (renderer != nullptr) {
-            SDL_RenderCopy(renderer, sdl_texture, nullptr, nullptr);
-        }
+        return m_texture;
     }
 }

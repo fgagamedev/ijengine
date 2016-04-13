@@ -12,7 +12,6 @@ namespace ijengine {
         ~SDL2DVideo();
 
         Window * create_window(int w, int h);
-        SDL_Renderer * renderer;
     };
 
 }
