@@ -5,7 +5,7 @@
 namespace ijengine {
 
     SDL2Window::SDL2Window(SDL_Window *new_window, SDL_Renderer *actual_renderer) :
-        m_window(new_window), m_renderer(actual_renderer), m_w(0), m_h(0)
+        m_window(new_window), m_renderer(actual_renderer), m_canvas(new SDL2Canvas(actual_renderer)), m_w(0), m_h(0)
     {
         if (m_window)
         {
@@ -39,6 +39,6 @@ namespace ijengine {
     Canvas *
     SDL2Window::canvas() const
     {
-        return new SDL2Canvas(m_renderer);
+        return m_canvas;
     }
 }

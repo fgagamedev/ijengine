@@ -11,7 +11,7 @@ namespace ijengine {
         SDL2Canvas(SDL_Renderer *renderer);
         void draw(const Texture *texture, int x, int y);
 
-        SDL_Renderer * renderer() const { return m_renderer; }
+        SDL_Renderer * renderer() const;
         void update();
     private:
         SDL_Renderer *m_renderer;
