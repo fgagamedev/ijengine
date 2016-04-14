@@ -3,6 +3,7 @@
 
 #include "window.h"
 #include <SDL2/SDL.h>
+#include "canvas.h"
 
 namespace ijengine {
 
@@ -18,6 +19,7 @@ namespace ijengine {
     private:
         SDL_Window *m_window;
         SDL_Renderer *m_renderer;
+        Canvas *m_canvas;
 
         int m_w;
         int m_h;
