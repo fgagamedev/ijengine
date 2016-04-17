@@ -24,7 +24,7 @@ CFLAGS = -pedantic -std=c++11 -MMD -g3 -g\
 		 -Wsign-promo -Wstrict-null-sentinel -Wswitch-default -Wundef\
 		 -Wzero-as-null-pointer-constant -Wuseless-cast -Wnon-virtual-dtor
 INCLUDES = -Iinclude -Itest `sdl2-config --cflags`
-LIBS = `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lSDL2_mixer
+LIBS = `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lGLEW -lGL -lGLU
 
 TARGET = $(LIB_DIR)/lib$(NAME).a
 
