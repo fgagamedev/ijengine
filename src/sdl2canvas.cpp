@@ -15,12 +15,30 @@ namespace ijengine {
     {
         const SDL2Texture *text = dynamic_cast<const SDL2Texture *>(texture);
 
-        SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 0);
+        set_color(255, 255, 255, 0);
         SDL_RenderClear(m_renderer);
 
         SDL_Rect rect { x, y, text->w(), text->h() };
         SDL_RenderCopy(m_renderer, text->texture(), nullptr, &rect);
         SDL_RenderPresent(m_renderer);
+    }
+
+    void
+    SDL2Canvas::draw_from_rectangle(const Texture *texture, SDL_Rect source, SDL_Rect destiny)
+    {
+        const SDL2Texture *text = dynamic_cast<const SDL2Texture *>(texture);
+
+        set_color(255, 255, 255, 0);
+        SDL_RenderClear(m_renderer);
+
+        SDL_RenderCopy(m_renderer, text->texture(), &source, &destiny);
+        SDL_RenderPresent(m_renderer);
+    }
+
+    void
+    SDL2Canvas::set_color(const unsigned char red, const unsigned char green, const unsigned char blue, const unsigned char alpha)
+    {
+        SDL_SetRenderDrawColor(m_renderer, red, green, blue, alpha);
     }
 
     SDL_Renderer *

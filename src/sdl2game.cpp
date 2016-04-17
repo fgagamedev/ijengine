@@ -23,12 +23,12 @@ namespace ijengine {
         if (not m_window)
             throw "Error on SDL2Game::SDL2Game()";
 
-        
+
         SDL2Texture *tex = SDL2Texture::load_texture_from_path("test/img-test.png", m_window->canvas());
 
         m_window->canvas()->draw(tex, 0, 0);
         m_window->canvas()->update();
-        
+
         SDL_Delay(3000);
     }
 
