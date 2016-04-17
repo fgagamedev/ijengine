@@ -39,9 +39,8 @@ namespace ijengine {
 
     SDL2Texture::~SDL2Texture()
     {
-        if (m_texture) {
+        if (m_texture)
             SDL_DestroyTexture(m_texture);
-        }
     }
 
     SDL_Texture *

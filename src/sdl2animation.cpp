@@ -6,19 +6,19 @@
 
 namespace ijengine {
 
-    SDL2Animation::SDL2Animation(Texture *text, SDL2Animation::RenderStyle rstyle, int f_per_state, int t_states) :
-        m_texture(text),
-        render_style(rstyle),
-        frames_per_state(f_per_state),
-        total_states(t_states)
+    SDL2Animation::SDL2Animation(Texture *text, SDL2Animation::RenderStyle rstyle, int f_per_state, int t_states)
+        : m_texture(text), render_style(rstyle), frames_per_state(f_per_state), total_states(t_states)
     {
         actual_frame = 0;
         actual_state = 0;
 
-        if (render_style == STATE_PER_ROW) {
+        if (render_style == STATE_PER_ROW)
+        {
             width_per_frame = m_texture->w() / frames_per_state;
             height_per_frame = m_texture->h() / total_states;
-        } else if (render_style == STATE_PER_COLUMN) {
+        }
+        else if (render_style == STATE_PER_COLUMN)
+        {
             width_per_frame = m_texture->w() / total_states;
             height_per_frame = m_texture->h() / frames_per_state;
         }
@@ -29,26 +29,27 @@ namespace ijengine {
 
     SDL2Animation::~SDL2Animation()
     {
-        if (m_source) {
+        if (m_source)
             delete m_source;
-        }
     }
 
     void
     SDL2Animation::update()
     {
-        if (actual_frame == frames_per_state-1) {
+        if (actual_frame == frames_per_state-1)
             actual_frame = 0;
-        } else {
+        else
             ++actual_frame;
-        }
 
-        if (render_style == STATE_PER_ROW) {
+        if (render_style == STATE_PER_ROW)
+        {
             m_source->x = actual_frame * width_per_frame;
             m_source->y = actual_state * height_per_frame;
             m_source->h = height_per_frame;
             m_source->w = width_per_frame;
-        } else if (render_style == STATE_PER_COLUMN) {
+        }
+        else if (render_style == STATE_PER_COLUMN)
+        {
             m_source->x = actual_state * width_per_frame;
             m_source->y = actual_frame * height_per_frame;
             m_source->h = height_per_frame;

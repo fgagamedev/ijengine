@@ -15,13 +15,11 @@ namespace ijengine {
 
     SDL2Window::~SDL2Window()
     {
-        if (m_renderer) {
+        if (m_renderer)
             SDL_DestroyRenderer(m_renderer);
-        }
 
-        if (m_window) {
+        if (m_window)
             SDL_DestroyWindow(m_window);
-        }
     }
 
     int

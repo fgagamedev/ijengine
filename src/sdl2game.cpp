@@ -39,7 +39,8 @@ namespace ijengine {
         SDL_Rect final_dest {200, 200, anim.texture()->w(), anim.texture()->h()};
         SDL_Rect other_dest {400, 400, anim.texture()->w(), anim.texture()->h()};
 
-        for (int i=0; i < 30; ++i) {
+        for (int i=0; i < 30; ++i)
+        {
             anim.update();
             anim2.update();
 
