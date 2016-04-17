@@ -1,5 +1,6 @@
 #include "sdl2canvas.h"
 #include "sdl2texture.h"
+#include <iostream>
 
 #include <SDL2/SDL_image.h>
 
@@ -15,21 +16,23 @@ namespace ijengine {
     {
         const SDL2Texture *text = dynamic_cast<const SDL2Texture *>(texture);
 
+        SDL_Rect source {x, y, texture->w(), texture->h() };
+
+        SDL_RenderCopy(m_renderer, text->texture(), nullptr, &source);
+        SDL_RenderPresent(m_renderer);
+    }
+
+    void
+    SDL2Canvas::clear_renderer()
+    {
         set_color(255, 255, 255, 0);
         SDL_RenderClear(m_renderer);
-
-        SDL_Rect rect { x, y, text->w(), text->h() };
-        SDL_RenderCopy(m_renderer, text->texture(), nullptr, &rect);
-        SDL_RenderPresent(m_renderer);
     }
 
     void
     SDL2Canvas::draw_from_rectangle(const Texture *texture, SDL_Rect source, SDL_Rect destiny)
     {
         const SDL2Texture *text = dynamic_cast<const SDL2Texture *>(texture);
-
-        set_color(255, 255, 255, 0);
-        SDL_RenderClear(m_renderer);
 
         SDL_RenderCopy(m_renderer, text->texture(), &source, &destiny);
         SDL_RenderPresent(m_renderer);
