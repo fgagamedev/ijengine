@@ -12,13 +12,11 @@ namespace ijengine {
     LibSDL2::~LibSDL2()
     {
 printf("Desligando a SDL2...\n");
-        if (SDL_WasInit(IMG_INIT_PNG)) {
+        if (SDL_WasInit(IMG_INIT_PNG))
             IMG_Quit();
-        }
 
-        if (SDL_WasInit(SDL_INIT_VIDEO)) {
+        if (SDL_WasInit(SDL_INIT_VIDEO))
             SDL_Quit();
-        }
     }
 
     string
