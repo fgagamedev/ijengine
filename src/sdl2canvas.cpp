@@ -23,7 +23,7 @@ namespace ijengine {
     }
 
     void
-    SDL2Canvas::clear_renderer()
+    SDL2Canvas::clear()
     {
         set_color(255, 255, 255, 0);
         SDL_RenderClear(m_renderer);

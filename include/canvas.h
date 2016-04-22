@@ -10,6 +10,7 @@ namespace ijengine {
         virtual ~Canvas() = default;
         virtual void draw(const Texture *texture, int x, int y) = 0;
         virtual void update() = 0;
+        virtual void clear() = 0;
     };
 }
 

@@ -20,6 +20,9 @@ namespace ijengine {
     public:
         SDL2Game(const string& title, int w, int h);
 
+    protected:
+        Canvas * canvas() const;
+
     private:
         unique_ptr<LibSDL2> m_lib;
         unique_ptr<SDL2DVideo> m_video;

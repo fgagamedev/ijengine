@@ -8,6 +8,5 @@ int main()
 {
     SDL2Game game("Teste", 800, 600);
 
-//    return game.run();
-    return 0;
+    return game.run();
 }

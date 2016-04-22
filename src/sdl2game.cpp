@@ -26,7 +26,7 @@ namespace ijengine {
             throw "Error on SDL2Game::SDL2Game()";
 
         /* Test of textures and animations starts below */
-        SDL2Texture *textu = SDL2Texture::load_texture_from_path("test/animation-test.png", m_window->canvas());
+/*        SDL2Texture *textu = SDL2Texture::load_texture_from_path("test/animation-test.png", m_window->canvas());
 
         SDL2Animation anim(textu, SDL2Animation::RenderStyle::STATE_PER_ROW, 4, 2);
         SDL2Animation anim2(textu, SDL2Animation::RenderStyle::STATE_PER_ROW, 4, 2);
@@ -53,7 +53,13 @@ namespace ijengine {
 
             SDL_Delay(100);
         }
+        */
         /* Test of textures and animations and here */
     }
 
+    Canvas *
+    SDL2Game::canvas() const
+    {
+        return m_window->canvas();
+    }
 }

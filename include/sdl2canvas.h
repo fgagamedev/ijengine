@@ -11,8 +11,9 @@ namespace ijengine {
         SDL2Canvas(SDL_Renderer *renderer);
         void draw(const Texture *texture, int x, int y);
         void draw_from_rectangle(const Texture *texture, const SDL_Rect source, const SDL_Rect destiny);
-        void clear_renderer();
         void set_color(const unsigned char red, const unsigned char green, const unsigned char blue, const unsigned char alpha);
+
+        void clear();
         void update();
 
         SDL_Renderer * renderer() const;
