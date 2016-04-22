@@ -1,6 +1,10 @@
 #ifndef VIDEO_H
 #define VIDEO_H
 
+#include <string>
+
+using std::string;
+
 namespace ijengine {
 
     class Window;
@@ -8,7 +12,7 @@ namespace ijengine {
     class Video {
     public:
         virtual ~Video() = default;
-        virtual Window * create_window(int w, int h) = 0;
+        virtual Window * create_window(const string& title, int w, int h) = 0;
     };
 
 }

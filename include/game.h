@@ -5,7 +5,6 @@ namespace ijengine {
 
     class Game {
     public:
-        Game();
         virtual ~Game();
 
         int run();

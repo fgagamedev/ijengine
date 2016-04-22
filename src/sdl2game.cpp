@@ -9,7 +9,7 @@ using std::make_shared;
 
 namespace ijengine {
 
-    SDL2Game::SDL2Game()
+    SDL2Game::SDL2Game(const string& title, int w, int h)
         : m_lib(new LibSDL2())
     {
         if (m_lib)
@@ -20,7 +20,7 @@ namespace ijengine {
         if (not m_video)
             throw "Error on SDL2Game::SDL2Game()";
 
-        m_window = shared_ptr<Window>(m_video->create_window(800, 600));
+        m_window = shared_ptr<Window>(m_video->create_window(title, w, h));
 
         if (not m_window)
             throw "Error on SDL2Game::SDL2Game()";

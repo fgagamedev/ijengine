@@ -6,7 +6,8 @@ using namespace ijengine;
 
 int main()
 {
-    SDL2Game game;
+    SDL2Game game("Teste", 800, 600);
 
+//    return game.run();
     return 0;
 }

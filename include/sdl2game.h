@@ -8,7 +8,9 @@
 #include "sdl2texture.h"
 
 #include <memory>
+#include <string>
 
+using std::string;
 using std::unique_ptr;
 using std::shared_ptr;
 
@@ -16,7 +18,7 @@ namespace ijengine {
 
     class SDL2Game : public Game {
     public:
-        SDL2Game();
+        SDL2Game(const string& title, int w, int h);
 
     private:
         unique_ptr<LibSDL2> m_lib;

@@ -18,13 +18,15 @@ namespace ijengine {
     }
 
     Window *
-    SDL2DVideo::create_window(int w, int h)
+    SDL2DVideo::create_window(const string& title, int w, int h)
     {
         SDL_Window *window;
         SDL_Renderer *renderer;
 
         if (SDL_CreateWindowAndRenderer(w, h, 0, &window, &renderer))
             return nullptr;
+
+        SDL_SetWindowTitle(window, title.c_str());
 
         return new SDL2Window(window, renderer);
     }

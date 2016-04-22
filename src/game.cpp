@@ -5,14 +5,8 @@ using namespace std;
 
 namespace ijengine {
 
-    Game::Game()
-    {
-        cout << "Initializing...\n";
-    }
-
     Game::~Game()
     {
-        cout << "Shutting down...\n";
     }
 
     int
