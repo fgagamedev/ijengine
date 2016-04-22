@@ -54,4 +54,13 @@ namespace ijengine {
     {
         SDL_RenderPresent(m_renderer);
     }
+
+    void
+    SDL2Canvas::drawRect(int x, int y, int w, int h, int r, int g, int b)
+    {
+        SDL_Rect rect { x, y, w, h };
+        SDL_SetRenderDrawColor(m_renderer, r, g, b, 255);
+
+        SDL_RenderFillRect(m_renderer, &rect);
+    }
 }

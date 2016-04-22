@@ -1,4 +1,5 @@
 #include "game.h"
+#include "level.h"
 #include "canvas.h"
 
 #include <SDL2/SDL.h>
@@ -10,30 +11,38 @@ namespace ijengine {
     }
 
     int
-    Game::run()
+    Game::run(const string& level_id)
     {
-        int counter = 0;
-
+        Level *level = Level::load(level_id);
         Uint32 last = SDL_GetTicks();
 
-        while (counter++ < 1000)
+        while (level)
         {
             Uint32 now = SDL_GetTicks();
 
-//            update(now, last);
+            level->update(now, last);
 
-            draw(now, last);
+            draw(level, now, last);
+
+            if (level->done())
+            {
+                string next = level->next();
+                delete level;
+                level = Level::load(next);
+            }
+
+            last = now;
         }
 
         return 0;
     }
 
     void
-    Game::draw(int now, int last)
+    Game::draw(Level *level, int now, int last)
     {
         Canvas *c = canvas();
         c->clear();
-        // draw(c, now, last);
+        level->draw(c, now, last);
         c->update();
     }
 }

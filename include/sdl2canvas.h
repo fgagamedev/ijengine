@@ -13,6 +13,8 @@ namespace ijengine {
         void draw_from_rectangle(const Texture *texture, const SDL_Rect source, const SDL_Rect destiny);
         void set_color(const unsigned char red, const unsigned char green, const unsigned char blue, const unsigned char alpha);
 
+        void drawRect(int x, int y, int w, int h, int r, int g, int b);
+
         void clear();
         void update();
 
