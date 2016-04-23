@@ -1,0 +1,23 @@
+{
+	// See http://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "0.1.0",
+	"command": "bash",
+	"isShellCommand": true,
+	"args": ["-c"],
+	"showOutput": "always"
+	
+	"tasks": [
+		{
+			"taskName": "Compile",
+			"suppressTaskName": true,
+			"isBuildCommand": true,
+			"args": ["make test/test"],
+		}	
+		{
+			"taskName": "Test",
+			"suppressTaskName": true,
+			"isTestCommand": true,
+			"args": ["test/test"],
+		}		]
+}

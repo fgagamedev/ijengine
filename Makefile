@@ -48,6 +48,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 $(TST_DIR)/%.o: $(TST_DIR)/%.cpp
 	@echo Building $@
 	@$(CC) -c $(CFLAGS) $(INCLUDES) $< -o $@
+	@echo Done.
 
 $(TARGET): $(OBJ)
 	@echo Building $@
