@@ -29,7 +29,8 @@ all:
 
 $(TARGET): $(OBJ)
 	@echo Building $@
-	@$(CC) -shared $(CFLAGS) $(INCLUDES) $(OBJ) -o $@
+	@echo $(CC) -shared -rdynamic $(CFLAGS) $(INCLUDES) $(OBJ) -o $@
+	@$(CC) -shared -rdynamic $(CFLAGS) $(INCLUDES) $(OBJ) -o $@ $(LIBS)
 	@echo Done.
 
 clean:

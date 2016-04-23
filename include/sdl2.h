@@ -7,13 +7,14 @@ namespace ijengine {
 
     class LibSDL2 : public Lib {
     public:
-        ~LibSDL2();
+        LibSDL2() {} 
+        ~LibSDL2() {}
 
-        string name() const;
-        string version() const;
+        string name() const { return ""; }
+        string version() const { return ""; }
 
-        void config(const string& param, const string& value);
-        void init();
+        void config(const string& param, const string& value) {}
+        void init() {}
     };
 
 }

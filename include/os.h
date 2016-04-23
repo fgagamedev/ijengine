@@ -2,8 +2,10 @@
 #define IJENGINE_OS_H
 
 #include <string>
+#include <list>
 
 using std::string;
+using std::list;
 
 namespace ijengine
 {
@@ -12,7 +14,8 @@ namespace ijengine
     namespace os
     {
         Lib * load_lib(const string& path);
-    }    
+        list<string> list_files(const string& dirpath);
+    }
 }
 
 #endif
