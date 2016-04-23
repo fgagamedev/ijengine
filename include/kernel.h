@@ -11,7 +11,8 @@ namespace ijengine {
     
     class Kernel {
     public:
-        Window * create_window(const string& title, int w, int h);
+        virtual ~Kernel() {}
+        virtual Window * create_window(const string& title, int w, int h) = 0;
     };
 }
 
