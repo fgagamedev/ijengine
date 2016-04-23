@@ -12,7 +12,7 @@
 			"taskName": "Compile",
 			"suppressTaskName": true,
 			"isBuildCommand": true,
-			"args": ["make test/test"],
+			"args": ["make -j test/test"],
 		}	
 		{
 			"taskName": "Test",
