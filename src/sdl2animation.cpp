@@ -1,4 +1,4 @@
-#include "sdl2texture.h"
+/*#include "sdl2texture.h"
 #include "sdl2animation.h"
 #include <iostream>
 
@@ -81,4 +81,4 @@ namespace ijengine {
         return m_destiny;
     }
 
-}
+}*/

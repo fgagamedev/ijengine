@@ -1,4 +1,4 @@
-#include "sdl2texture.h"
+/*#include "sdl2texture.h"
 #include "sdl2canvas.h"
 
 #include <SDL2/SDL.h>
@@ -48,4 +48,4 @@ namespace ijengine {
     {
         return m_texture;
     }
-}
+}*/

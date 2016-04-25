@@ -1,4 +1,5 @@
 #include "sdl2kernel.h"
+#include "sdl2window.h"
 #include "exception.h"
 
 #include <SDL2/SDL.h>
@@ -7,16 +8,16 @@
 using namespace ijengine;
 
 
-SDL2_Kernel::SDL2_Kernel()
+SDL2Kernel::SDL2Kernel()
 {
     printf("Initializing kernel...\n");
     int rc = SDL_Init(SDL_INIT_VIDEO);
 
     if (rc)
-        throw Exception("Error on SDL2_Kernel()");
+        throw Exception("Error on SDL2Kernel()");
 }
 
-SDL2_Kernel::~SDL2_Kernel()
+SDL2Kernel::~SDL2Kernel()
 {
     printf("Destroying kernel...\n");
     if (SDL_WasInit(SDL_INIT_VIDEO))
@@ -24,7 +25,15 @@ SDL2_Kernel::~SDL2_Kernel()
 }
 
 Window *
-SDL2_Kernel::create_window(const string& title, int w, int h)
+SDL2Kernel::create_window(const string& title, int w, int h)
 {
-    return nullptr;
+    SDL_Window *window;
+    SDL_Renderer *renderer;
+
+    if (SDL_CreateWindowAndRenderer(w, h, 0, &window, &renderer))
+        return nullptr;
+
+    SDL_SetWindowTitle(window, title.c_str());
+
+    return new SDL2Window(window, renderer);
 }

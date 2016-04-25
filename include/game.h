@@ -1,24 +1,23 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef IJENGINE_GAME_H
+#define IJENGINE_GAME_H
 
 #include <string>
+
 using std::string;
 
 namespace ijengine {
 
-    class Canvas;
     class Level;
 
     class Game {
     public:
-        virtual ~Game();
+        Game(const string& title, int w = 800, int h = 600);
 
         int run(const string& level_id);
 
-    protected:
-        virtual Canvas * canvas() const = 0;
-
-        void draw(Level *level, int now, int last);
+    private:
+        string m_title;
+        int m_w, m_h;
     };
 
 }

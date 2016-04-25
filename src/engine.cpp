@@ -59,9 +59,10 @@ namespace ijengine
     
     namespace video 
     {
-        void make_video()
+        Window *
+        create_window(const string& title, int w, int h)
         {
-            printf("make_video");
+            return kernel->create_window(title, w, h);
         }
     }
 }

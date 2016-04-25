@@ -5,10 +5,10 @@
 
 using namespace ijengine;
 
-class SDL2_Kernel : public Kernel {
+class SDL2Kernel : public Kernel {
 public:
-    SDL2_Kernel();
-    ~SDL2_Kernel();
+    SDL2Kernel();
+    ~SDL2Kernel();
     
     Window * create_window(const string& title, int w, int h);
 };

@@ -1,13 +1,16 @@
 #ifndef IJENGINE_ENGINE_H
 #define IJENGINE_ENGINE_H
 
+#include <string>
 #include <memory>
 
+using std::string;
 using std::unique_ptr;
 
 namespace ijengine {
     
     class Lib;
+    class Window;
     
     class Engine {
     public:
@@ -20,7 +23,7 @@ namespace ijengine {
     
     namespace video {
         
-        void make_video();
+        Window * create_window(const string& title, int w, int h);
     }
 }
 

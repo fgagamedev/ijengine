@@ -1,4 +1,4 @@
-#ifndef SDL2_ANIMATION_H
+/*#ifndef SDL2_ANIMATION_H
 #define SDL2_ANIMATION_H
 
 #include "animation.h"
@@ -36,4 +36,4 @@ namespace ijengine {
     };
 }
 
-#endif
+#endif*/
