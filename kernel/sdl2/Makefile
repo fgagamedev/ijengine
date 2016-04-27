@@ -12,7 +12,7 @@ CFLAGS = -std=c++11 -W -Wall -Wextra -Wshadow -Wcast-align -Wcast-qual -Wctor-dt
 		 -fPIC
 		 
 INCLUDES = -I../../include `sdl2-config --cflags`
-LIBS = `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lSDL2_mixer
+LIBS = -L../../lib  -lijengine `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lSDL2_mixer
 
 
 SRC = ${wildcard *.cpp}

@@ -65,4 +65,13 @@ namespace ijengine
             return kernel->create_window(title, w, h);
         }
     }
+
+    namespace input
+    {
+        vector<Input *>
+        pending_inputs(unsigned now)
+        {
+            return kernel->pending_inputs(now);
+        }
+    }
 }

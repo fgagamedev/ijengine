@@ -17,7 +17,7 @@ CC = g++
 AR = ar
 
 ARFLAGS = rcs
-CFLAGS = -pedantic -std=c++11 -MMD -g3 -g\
+CFLAGS = -pedantic -std=c++11 -MMD -g3 -g -fPIC\
 		 -W -Wall -Wextra -Wshadow -Wcast-align -Wcast-qual -Wctor-dtor-privacy\
 		 -Wdisabled-optimization -Wformat=2 -Wlogical-op -Wmissing-declarations\
 		 -Wmissing-include-dirs -Wnoexcept -Woverloaded-virtual -Wredundant-decls\

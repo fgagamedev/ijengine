@@ -11,6 +11,8 @@ public:
     ~SDL2Kernel();
     
     Window * create_window(const string& title, int w, int h);
+
+    vector<Input *> pending_inputs(unsigned now);
 };
 
 #endif
