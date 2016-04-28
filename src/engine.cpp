@@ -68,7 +68,7 @@ namespace ijengine
 
     namespace input
     {
-        vector<Input *>
+        list<Input>
         pending_inputs(unsigned now)
         {
             return kernel->pending_inputs(now);

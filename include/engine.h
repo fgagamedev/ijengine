@@ -1,19 +1,20 @@
 #ifndef IJENGINE_ENGINE_H
 #define IJENGINE_ENGINE_H
 
+#include <list>
 #include <string>
 #include <memory>
-#include <vector>
 
+using std::list;
 using std::string;
-using std::vector;
 using std::unique_ptr;
+
+#include "input.h"
 
 namespace ijengine {
     
     class Lib;
     class Window;
-    class Input;
     
     class Engine {
     public:
@@ -29,7 +30,7 @@ namespace ijengine {
     }
 
     namespace input {
-        vector<Input *> pending_inputs(unsigned now);
+        list<Input> pending_inputs(unsigned now);
     }
 }
 

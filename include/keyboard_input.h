@@ -1,13 +1,12 @@
-#ifndef IJENGINE_KEYBOARDEVENT_H
-#define IJENGINE_KEYBOARDEVENT_H
-
-#include "input.h"
+#ifndef IJENGINE_KEYBOARD_INPUT_H
+#define IJENGINE_KEYBOARD_INPUT_H
 
 namespace ijengine {
 
-    class KeyboardInput : public Input
+    static const unsigned char KEYBOARD_INPUT = 0x02;
+
+    struct _KeyboardInput
     {
-    public:
         typedef enum {PRESSED, RELEASED} State;
 
         typedef
@@ -24,21 +23,16 @@ namespace ijengine {
 
         typedef enum {NONE, SHIFT, CONTROL, ALT, CAPS} Modifier;
 
-        KeyboardInput(State state, Key key, Modifier modifier, unsigned timestamp);
+        _KeyboardInput(State s, Key k, Modifier m) :
+            type(KEYBOARD_INPUT), state(s), key(k), modifier(m) {}
 
-        State state() const;
-        Key key() const;
-        Modifier modifier() const;
-        unsigned timestamp() const;
-
-//        static KeyboardInput from_SDL(const SDL_Input& event);
-
-    private:
-        State m_state;
-        Key m_key;
-        Modifier m_modifier;
-        unsigned m_timestamp;
+        unsigned char type;
+        unsigned char state;
+        unsigned char key;
+        unsigned char modifier;
     };
+
+    typedef struct _KeyboardInput KeyboardInput;
 }
 
 #endif

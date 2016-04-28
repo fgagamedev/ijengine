@@ -38,7 +38,10 @@ namespace ijengine {
             auto inputs = input::pending_inputs(now);
 
             for (auto i : inputs)
-                printf("input on %u\n", i->timestamp());
+                if (i.type == SYSTEM_INPUT)
+                    printf("system input on %u\n", i.timestamp);
+                else if (i.type == KEYBOARD_INPUT)
+                    printf("keyboard input on %u\n", i.timestamp);
 
             level->update(now, last);
 

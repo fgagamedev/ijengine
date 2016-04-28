@@ -1,22 +1,22 @@
 #ifndef IJENGINE_SYSTEM_INPUT_H
 #define IJENGINE_SYSTEM_INPUT_H
 
-#include "input.h"
-
 namespace ijengine {
 
-    class SystemInput : public Input
+    static const unsigned char SYSTEM_INPUT = 0x01;
+
+    struct _SystemInput
     {
-    public:
         typedef enum {QUIT} Action;
 
-        SystemInput(Action action);
+        _SystemInput(Action a) : 
+            type(SYSTEM_INPUT), action(a) {}
 
-        Action action() const;
-
-    private:
-        Action m_action;
+        unsigned char type;
+        unsigned char action;
     };
+
+    typedef struct _SystemInput SystemInput;
 }
 
 #endif

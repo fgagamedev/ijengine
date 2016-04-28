@@ -11,7 +11,6 @@ using namespace ijengine;
 
 SDL2Kernel::SDL2Kernel()
 {
-    printf("Initializing kernel...\n");
     int rc = SDL_Init(SDL_INIT_VIDEO);
 
     if (rc)
@@ -20,7 +19,6 @@ SDL2Kernel::SDL2Kernel()
 
 SDL2Kernel::~SDL2Kernel()
 {
-    printf("Destroying kernel...\n");
     if (SDL_WasInit(SDL_INIT_VIDEO))
         SDL_Quit();
 }
@@ -39,27 +37,42 @@ SDL2Kernel::create_window(const string& title, int w, int h)
     return new SDL2Window(window, renderer);
 }
 
-vector<Input *>
+list<Input>
 SDL2Kernel::pending_inputs(unsigned now)
 {
     SDL_Event event;
-    vector<Input *> inputs;
+    list<Input> inputs;
 
     SDL_PumpEvents();
 
     while (SDL_PeepEvents(&event, 1, SDL_PEEKEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT) > 0)
     {
         unsigned timestamp = event.quit.timestamp;
-printf("timestamp lido = %u\n", timestamp);
 
         if (timestamp > now)
             break;
 
         SDL_PollEvent(&event);
         
-        inputs.push_back(new KeyboardInput(KeyboardInput::State::PRESSED, KeyboardInput::Key::ESCAPE,
-            KeyboardInput::Modifier::NONE, timestamp));
+        Input input(timestamp);
 
+        switch (event.type) {
+        case SDL_QUIT:
+            input.system = SystemInput(SystemInput::Action::QUIT);
+            break;
+
+        case SDL_KEYDOWN:
+        case SDL_KEYUP:
+        input.keyboard = KeyboardInput(KeyboardInput::State::PRESSED,
+            KeyboardInput::Key::ESCAPE, KeyboardInput::Modifier::NONE);
+            break;
+
+        default:
+            input.type = UNKNOWN_INPUT;
+            break;
+        }
+
+        inputs.push_back(input);
         SDL_PumpEvents();
     }
 

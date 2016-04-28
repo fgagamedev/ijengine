@@ -2,22 +2,23 @@
 #define IJENGINE_KERNEL_H
 
 #include <string>
-#include <vector>
+#include <list>
 
+using std::list;
 using std::string;
-using std::vector;
+
+#include "input.h"
 
 namespace ijengine {
 
     class Window;
-    class Input;
     
     class Kernel {
     public:
         virtual ~Kernel() {}
         virtual Window * create_window(const string& title, int w, int h) = 0;
 
-        virtual vector<Input *> pending_inputs(unsigned now) = 0;
+        virtual list<Input> pending_inputs(unsigned now) = 0;
     };
 }
 

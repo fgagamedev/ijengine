@@ -1,19 +1,26 @@
 #ifndef IJENGINE_INPUT_H
 #define IJENGINE_INPUT_H
 
-#include <string>
-
-using std::string;
+#include "system_input.h"
+#include "keyboard_input.h"
 
 namespace ijengine {
 
-    class Input {
-    public:
-        virtual ~Input() = default;
+    static const unsigned char UNKNOWN_INPUT = 0x00;
 
-        virtual unsigned timestamp() const = 0;
+    struct _Input {
+        unsigned timestamp;
+
+        union {
+            unsigned char type;
+            SystemInput system;
+            KeyboardInput keyboard;
+        }; 
+
+        _Input(unsigned t) : timestamp(t) {}
     };
 
+    typedef struct _Input Input;
 }
 
 #endif
