@@ -1,15 +1,11 @@
 #ifndef IJENGINE_ENGINE_H
 #define IJENGINE_ENGINE_H
 
-#include <list>
 #include <string>
 #include <memory>
 
-using std::list;
 using std::string;
 using std::unique_ptr;
-
-#include "input.h"
 
 namespace ijengine {
     
@@ -29,8 +25,8 @@ namespace ijengine {
         Window * create_window(const string& title, int w, int h);
     }
 
-    namespace input {
-        list<Input> pending_inputs(unsigned now);
+    namespace event {
+        void dispatch_pending_events(unsigned now);
     }
 }
 

@@ -1,11 +1,14 @@
 #ifndef IJENGINE_GAME_EVENT_H
 #define IJENGINE_GAME_EVENT_H
 
+#include "exception.h"
+
 #include <map>
 #include <string>
 #include <sstream>
 
 using std::map;
+using std::pair;
 using std::string;
 using std::istringstream;
 using std::ostringstream;
@@ -15,7 +18,7 @@ namespace ijengine
     class GameEvent
     {
     public:
-        GameEvent(unsigned type);
+        GameEvent(unsigned type = 0);
 
         unsigned type() const;
 
@@ -32,7 +35,7 @@ namespace ijengine
         T get_property(const string& property) const
         {
             if (m_properties.find(property) == m_properties.end())
-                throw Exception("Invalid GameEvent property: " + property);
+                throw Exception("Invalid GameEvent property" + property);
 
             istringstream is(m_properties.at(property));
 
@@ -49,6 +52,7 @@ namespace ijengine
         bool validate(unsigned type);
     };
 
+    using event_t = pair<unsigned, GameEvent>;
 }
 
 #endif

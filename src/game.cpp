@@ -1,6 +1,5 @@
 #include "game.h"
 #include "level.h"
-#include "input.h"
 #include "window.h"
 #include "canvas.h"
 #include "engine.h"
@@ -34,14 +33,7 @@ namespace ijengine {
         while (level)
         {
             Uint32 now = SDL_GetTicks();
-
-            auto inputs = input::pending_inputs(now);
-
-            for (auto i : inputs)
-                if (i.type == SYSTEM_INPUT)
-                    printf("system input on %u\n", i.timestamp);
-                else if (i.type == KEYBOARD_INPUT)
-                    printf("keyboard input on %u\n", i.timestamp);
+            event::dispatch_pending_events(now);
 
             level->update(now, last);
 

@@ -1,7 +1,9 @@
 #include "sdl2kernel.h"
 #include "sdl2window.h"
 #include "exception.h"
-#include "keyboard_input.h"
+#include "event.h"
+#include "system_event.h"
+#include "keyboard_event.h"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -37,11 +39,11 @@ SDL2Kernel::create_window(const string& title, int w, int h)
     return new SDL2Window(window, renderer);
 }
 
-list<Input>
-SDL2Kernel::pending_inputs(unsigned now)
+list<Event *>
+SDL2Kernel::pending_events(unsigned now)
 {
     SDL_Event event;
-    list<Input> inputs;
+    list<Event *> events;
 
     SDL_PumpEvents();
 
@@ -54,28 +56,43 @@ SDL2Kernel::pending_inputs(unsigned now)
 
         SDL_PollEvent(&event);
         
-        Input input(timestamp);
-
         switch (event.type) {
         case SDL_QUIT:
-            input.system = SystemInput(SystemInput::Action::QUIT);
+            {
+                auto p = new SystemEvent(timestamp, SystemEvent::Action::QUIT);
+
+                if (p)
+                {
+                    events.push_back(p);
+printf("SystemEvent added on %u\n", timestamp);
+                }
+            }
+
             break;
 
         case SDL_KEYDOWN:
         case SDL_KEYUP:
-        input.keyboard = KeyboardInput(KeyboardInput::State::PRESSED,
-            KeyboardInput::Key::ESCAPE, KeyboardInput::Modifier::NONE);
+            {
+                auto p = new KeyboardEvent(timestamp,
+                    KeyboardEvent::State::PRESSED,
+                    KeyboardEvent::Key::ESCAPE,
+                    KeyboardEvent::Modifier::NONE);
+
+                if (p)
+                {
+                    events.push_back(p);
+printf("KeyboardEvent added on %u\n", timestamp);
+                }
+            }
             break;
 
         default:
-            input.type = UNKNOWN_INPUT;
             break;
         }
 
-        inputs.push_back(input);
         SDL_PumpEvents();
     }
 
-    return inputs;
+    return events;
 }
 

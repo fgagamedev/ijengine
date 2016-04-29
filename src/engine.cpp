@@ -3,6 +3,7 @@
 #include "kernel.h"
 #include "lib.h"
 #include "os.h"
+#include "event.h"
 
 #include <stdio.h>
 
@@ -66,12 +67,15 @@ namespace ijengine
         }
     }
 
-    namespace input
+    namespace event
     {
-        list<Input>
-        pending_inputs(unsigned now)
+        void
+        dispatch_pending_events(unsigned now)
         {
-            return kernel->pending_inputs(now);
+            auto events = kernel->pending_events(now);
+
+ //           for (auto event : events)
+//                printf("event on %u\n", event->timestamp());
         }
     }
 }

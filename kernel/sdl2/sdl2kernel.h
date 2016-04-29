@@ -12,7 +12,7 @@ public:
     
     Window * create_window(const string& title, int w, int h);
 
-    list<Input> pending_inputs(unsigned now);
+    list<Event *> pending_events(unsigned now);
 };
 
 #endif

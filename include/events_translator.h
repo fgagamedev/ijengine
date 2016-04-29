@@ -1,6 +1,7 @@
-#ifndef IJENGINE_INPUTS_TRANSLATOR_H
-#define IJENGINE_INPUTS_TRANSLATOR_H
+#ifndef IJENGINE_EVENTS_TRANSLATOR_H
+#define IJENGINE_EVENTS_TRANSLATOR_H
 
+/*
 #include "input.h"
 #include "game_event.h"
 
@@ -12,10 +13,10 @@ using std::list;
 
 namespace ijengine
 {
-    class InputTranslator
+    class InputsTranslator
     {
     public:
-        list<GameEvent> translate(list<Input>& inputs) const;
+        list<event_t> translate(list<input_t>& inputs) const;
 
         void add_input(const Input& input, const GameEvent& event);
 
@@ -23,5 +24,6 @@ namespace ijengine
         map<Input, GameEvent> m_inputs;
     };
 }
+*/
 
 #endif

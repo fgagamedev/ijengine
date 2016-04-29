@@ -7,18 +7,17 @@
 using std::list;
 using std::string;
 
-#include "input.h"
-
 namespace ijengine {
 
     class Window;
+    class Event;
     
     class Kernel {
     public:
         virtual ~Kernel() {}
         virtual Window * create_window(const string& title, int w, int h) = 0;
 
-        virtual list<Input> pending_inputs(unsigned now) = 0;
+        virtual list<Event *> pending_events(unsigned now) = 0;
     };
 }
 
