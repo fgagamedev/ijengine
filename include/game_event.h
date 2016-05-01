@@ -1,6 +1,7 @@
 #ifndef IJENGINE_GAME_EVENT_H
 #define IJENGINE_GAME_EVENT_H
 
+#include "event.h"
 #include "exception.h"
 
 #include <map>
@@ -15,10 +16,13 @@ using std::ostringstream;
 
 namespace ijengine
 {
-    class GameEvent
+    #define GAME_EVENT_QUIT     0x01
+    #define GAME_EVENT_PAUSE    0x02
+
+    class GameEvent : public Event
     {
     public:
-        GameEvent(unsigned type = 0);
+        GameEvent(unsigned type, unsigned timestamp = 0);
 
         unsigned type() const;
 
@@ -45,6 +49,9 @@ namespace ijengine
             return value;
         }
 
+        string serialize() const;
+        static GameEvent deserialize(const string& data, unsigned timestamp);
+
     private:
         unsigned m_type;
         map<string, string> m_properties;
@@ -52,7 +59,7 @@ namespace ijengine
         bool validate(unsigned type);
     };
 
-    using event_t = pair<unsigned, GameEvent>;
+    using game_event_t = pair<unsigned, GameEvent>;
 }
 
 #endif

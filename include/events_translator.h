@@ -1,29 +1,31 @@
 #ifndef IJENGINE_EVENTS_TRANSLATOR_H
 #define IJENGINE_EVENTS_TRANSLATOR_H
 
-/*
-#include "input.h"
+#include "event.h"
 #include "game_event.h"
 
 #include <map>
 #include <list>
+#include <string>
+#include <utility>
 
 using std::map;
 using std::list;
+using std::pair;
+using std::string;
 
 namespace ijengine
 {
-    class InputsTranslator
+    class EventsTranslator
     {
     public:
-        list<event_t> translate(list<input_t>& inputs) const;
+        list<game_event_t> translate(list<event_t>& events) const;
 
-        void add_input(const Input& input, const GameEvent& event);
+        void add_translation(const Event& event, const GameEvent& gevent);
 
     private:
-        map<Input, GameEvent> m_inputs;
+        map<string, string> m_translations;
     };
 }
-*/
 
 #endif

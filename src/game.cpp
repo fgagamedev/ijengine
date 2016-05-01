@@ -3,6 +3,9 @@
 #include "window.h"
 #include "canvas.h"
 #include "engine.h"
+#include "game_event.h"
+#include "system_event.h"
+#include "events_translator.h"
 
 #include <SDL2/SDL.h>
 #include <memory>
@@ -29,6 +32,11 @@ namespace ijengine {
         Canvas *canvas = window->canvas();
         Level *level = Level::load(level_id);
         Uint32 last = SDL_GetTicks();
+
+        EventsTranslator translator;
+        translator.add_translation(SystemEvent(0, SystemEvent::QUIT),
+            GameEvent(GAME_EVENT_QUIT));
+        event::register_translator(&translator);
 
         while (level)
         {

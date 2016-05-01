@@ -11,6 +11,7 @@ namespace ijengine {
     
     class Lib;
     class Window;
+    class EventsTranslator;
     
     class Engine {
     public:
@@ -27,6 +28,8 @@ namespace ijengine {
 
     namespace event {
         void dispatch_pending_events(unsigned now);
+        void register_translator(const EventsTranslator *translator);
+        void unregister_translator(const EventsTranslator *translator);
     }
 }
 

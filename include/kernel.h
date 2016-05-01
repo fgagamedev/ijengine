@@ -1,6 +1,8 @@
 #ifndef IJENGINE_KERNEL_H
 #define IJENGINE_KERNEL_H
 
+#include "event.h"
+
 #include <string>
 #include <list>
 
@@ -17,7 +19,7 @@ namespace ijengine {
         virtual ~Kernel() {}
         virtual Window * create_window(const string& title, int w, int h) = 0;
 
-        virtual list<Event *> pending_events(unsigned now) = 0;
+        virtual list<event_t> pending_events(unsigned now) = 0;
     };
 }
 

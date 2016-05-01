@@ -2,7 +2,9 @@
 #define IJENGINE_EVENT_H
 
 #include <string>
+#include <utility>
 
+using std::pair;
 using std::string;
 
 namespace ijengine {
@@ -15,9 +17,13 @@ namespace ijengine {
         unsigned timestamp() const { return m_timestamp; }
         virtual string serialize() const = 0;
 
+        void set_timestamp(unsigned t) { m_timestamp = t; }
+
     private:
         unsigned m_timestamp;
     };
+
+    using event_t = pair<unsigned, string>;
 }
 
 #endif

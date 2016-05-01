@@ -39,11 +39,11 @@ SDL2Kernel::create_window(const string& title, int w, int h)
     return new SDL2Window(window, renderer);
 }
 
-list<Event *>
+list<event_t>
 SDL2Kernel::pending_events(unsigned now)
 {
     SDL_Event event;
-    list<Event *> events;
+    list<event_t> events;
 
     SDL_PumpEvents();
 
@@ -59,13 +59,9 @@ SDL2Kernel::pending_events(unsigned now)
         switch (event.type) {
         case SDL_QUIT:
             {
-                auto p = new SystemEvent(timestamp, SystemEvent::Action::QUIT);
-
-                if (p)
-                {
-                    events.push_back(p);
+                auto p = SystemEvent(timestamp, SystemEvent::Action::QUIT);
+                events.push_back(event_t(timestamp, p.serialize()));
 printf("SystemEvent added on %u\n", timestamp);
-                }
             }
 
             break;
@@ -73,16 +69,13 @@ printf("SystemEvent added on %u\n", timestamp);
         case SDL_KEYDOWN:
         case SDL_KEYUP:
             {
-                auto p = new KeyboardEvent(timestamp,
+                auto p = KeyboardEvent(timestamp,
                     KeyboardEvent::State::PRESSED,
                     KeyboardEvent::Key::ESCAPE,
                     KeyboardEvent::Modifier::NONE);
 
-                if (p)
-                {
-                    events.push_back(p);
+                events.push_back(event_t(timestamp, p.serialize()));
 printf("KeyboardEvent added on %u\n", timestamp);
-                }
             }
             break;
 
@@ -95,4 +88,3 @@ printf("KeyboardEvent added on %u\n", timestamp);
 
     return events;
 }
-
