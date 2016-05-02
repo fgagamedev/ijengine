@@ -17,6 +17,7 @@ public:
         unsigned char a);
 
     void drawRect(Rectangle rectangle, int r, int g, int b);
+    void drawPoint(Point point, int r, int g, int b);
 
     void clear();
     void update();

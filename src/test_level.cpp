@@ -40,5 +40,11 @@ namespace ijengine {
     {
         Rectangle rectangle(100, 100, 200, 200);
         canvas->drawRect(rectangle, m_r, m_g, m_b);
+
+        // Drawing many points so they can be visible on the scren...
+        for(int i = 0; i < 100; i++) {
+            Point point(300 + i, 300);
+            canvas->drawPoint(point, m_r, m_g, m_b);
+        }
     }
 }
