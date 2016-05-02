@@ -1,5 +1,5 @@
-#ifndef IJENGINE_WINDOW_H
-#define IJENGINE_WINDOW_H
+#ifndef IJENGINE_POINT_H
+#define IJENGINE_POINT_H
 
 namespace ijengine
 {
