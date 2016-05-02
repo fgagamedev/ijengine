@@ -3,8 +3,17 @@
 #include "kernel.h"
 #include "lib.h"
 #include "os.h"
+#include "event.h"
+#include "game_event.h"
+#include "events_translator.h"
+#include "game_events_listener.h"
 
 #include <stdio.h>
+#include <list>
+#include <utility>
+
+using std::pair;
+using std::list;
 
 namespace ijengine 
 {
@@ -66,12 +75,62 @@ namespace ijengine
         }
     }
 
-    namespace input
+    namespace event
     {
-        list<Input>
-        pending_inputs(unsigned now)
+        static list<const EventsTranslator *> translators;
+        static list<GameEventsListener *> listeners;
+
+        void
+        dispatch_pending_events(unsigned now)
         {
-            return kernel->pending_inputs(now);
+            auto events = kernel->pending_events(now);
+
+            if (events.empty())
+                return;
+
+            list<game_event_t> game_events;
+
+            for (auto translator : translators)
+            {
+                auto more = translator->translate(events);
+                game_events.merge(more);
+
+                if (events.empty())
+                    break;
+            }
+
+            for (auto event : game_events)
+            {
+                GameEvent game_event = GameEvent::deserialize(event.second,
+                    event.first);
+
+                for (auto listener : listeners)
+                    if (listener->on_event(game_event))
+                        break;
+            }
+        }
+
+        void
+        register_translator(const EventsTranslator *translator)
+        {
+            if (translator) translators.push_back(translator);
+        }
+
+        void
+        unregister_translator(const EventsTranslator *translator)
+        {
+            if (translator) translators.remove(translator);
+        }
+
+        void
+        register_listener(GameEventsListener *listener)
+        {
+            if (listener) listeners.push_back(listener);
+        }
+
+        void unregister_listener(GameEventsListener *listener)
+        {
+            if (listener) listeners.remove(listener);
         }
     }
 }

@@ -1,9 +1,11 @@
 #include "game.h"
 #include "level.h"
-#include "input.h"
 #include "window.h"
 #include "canvas.h"
 #include "engine.h"
+#include "game_event.h"
+#include "system_event.h"
+#include "events_translator.h"
 
 #include <SDL2/SDL.h>
 #include <memory>
@@ -14,7 +16,7 @@ using namespace ijengine;
 namespace ijengine {
 
     Game::Game(const string& title, int w, int h)
-        : m_title(title), m_w(w), m_h(h)
+        : m_title(title), m_w(w), m_h(h), m_state(PAUSED)
     {
     }
 
@@ -31,17 +33,19 @@ namespace ijengine {
         Level *level = Level::load(level_id);
         Uint32 last = SDL_GetTicks();
 
-        while (level)
+        EventsTranslator translator;
+        translator.add_translation(SystemEvent(0, SystemEvent::QUIT),
+            GameEvent(GAME_EVENT_QUIT));
+        event::register_translator(&translator);
+
+        event::register_listener(this);
+ 
+        m_state = RUNNING;
+
+        while (m_state != QUIT)
         {
             Uint32 now = SDL_GetTicks();
-
-            auto inputs = input::pending_inputs(now);
-
-            for (auto i : inputs)
-                if (i.type == SYSTEM_INPUT)
-                    printf("system input on %u\n", i.timestamp);
-                else if (i.type == KEYBOARD_INPUT)
-                    printf("keyboard input on %u\n", i.timestamp);
+            event::dispatch_pending_events(now);
 
             level->update(now, last);
 
@@ -54,11 +58,25 @@ namespace ijengine {
                 string next = level->next();
                 delete level;
                 level = Level::load(next);
+
+                if (not level) m_state = QUIT;
             }
 
             last = now;
         }
 
         return 0;
+    }
+
+    bool
+    Game::on_event(const GameEvent& event)
+    {
+        if (event.type() == GAME_EVENT_QUIT)
+        {
+            m_state = QUIT;
+            return true;
+        }
+
+        return false;
     }
 }

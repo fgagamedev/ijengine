@@ -1,20 +1,18 @@
 #ifndef IJENGINE_ENGINE_H
 #define IJENGINE_ENGINE_H
 
-#include <list>
 #include <string>
 #include <memory>
 
-using std::list;
 using std::string;
 using std::unique_ptr;
-
-#include "input.h"
 
 namespace ijengine {
     
     class Lib;
     class Window;
+    class EventsTranslator;
+    class GameEventsListener;
     
     class Engine {
     public:
@@ -29,8 +27,12 @@ namespace ijengine {
         Window * create_window(const string& title, int w, int h);
     }
 
-    namespace input {
-        list<Input> pending_inputs(unsigned now);
+    namespace event {
+        void dispatch_pending_events(unsigned now);
+        void register_translator(const EventsTranslator *translator);
+        void unregister_translator(const EventsTranslator *translator);
+        void register_listener(GameEventsListener *listener);
+        void unregister_listener(GameEventsListener *listener);
     }
 }
 
