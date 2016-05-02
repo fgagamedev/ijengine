@@ -61,7 +61,6 @@ SDL2Kernel::pending_events(unsigned now)
             {
                 auto p = SystemEvent(timestamp, SystemEvent::Action::QUIT);
                 events.push_back(event_t(timestamp, p.serialize()));
-printf("SystemEvent added on %u\n", timestamp);
             }
 
             break;
@@ -75,7 +74,6 @@ printf("SystemEvent added on %u\n", timestamp);
                     KeyboardEvent::Modifier::NONE);
 
                 events.push_back(event_t(timestamp, p.serialize()));
-printf("KeyboardEvent added on %u\n", timestamp);
             }
             break;
 

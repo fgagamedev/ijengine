@@ -3,6 +3,7 @@
 
 #include "event.h"
 #include "exception.h"
+#include "game_events_listener.h"
 
 #include <map>
 #include <string>
@@ -59,7 +60,7 @@ namespace ijengine
         bool validate(unsigned type);
     };
 
-    using game_event_t = pair<unsigned, GameEvent>;
+    using game_event_t = pair<unsigned, string>;
 }
 
 #endif

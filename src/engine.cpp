@@ -6,6 +6,7 @@
 #include "event.h"
 #include "game_event.h"
 #include "events_translator.h"
+#include "game_events_listener.h"
 
 #include <stdio.h>
 #include <list>
@@ -77,6 +78,7 @@ namespace ijengine
     namespace event
     {
         static list<const EventsTranslator *> translators;
+        static list<GameEventsListener *> listeners;
 
         void
         dispatch_pending_events(unsigned now)
@@ -86,27 +88,26 @@ namespace ijengine
             if (events.empty())
                 return;
 
-            for (auto event : events)
-                printf("event on %u: [%s]\n", event.first, event.second.c_str());
-
             list<game_event_t> game_events;
 
             for (auto translator : translators)
             {
-printf("Translating...\n");
                 auto more = translator->translate(events);
-
-            for (auto ge : more)
-                printf("more event on %u: [%s]\n", ge.first, ge.second.serialize().c_str());
-                game_events.splice(game_events.end(), more);
+                game_events.merge(more);
 
                 if (events.empty())
                     break;
             }
 
-            for (auto ge : game_events)
-                printf("event on %u: [%s]\n", ge.first, ge.second.serialize().c_str());
-                
+            for (auto event : game_events)
+            {
+                GameEvent game_event = GameEvent::deserialize(event.second,
+                    event.first);
+
+                for (auto listener : listeners)
+                    if (listener->on_event(game_event))
+                        break;
+            }
         }
 
         void
@@ -119,6 +120,17 @@ printf("Translating...\n");
         unregister_translator(const EventsTranslator *translator)
         {
             if (translator) translators.remove(translator);
+        }
+
+        void
+        register_listener(GameEventsListener *listener)
+        {
+            if (listener) listeners.push_back(listener);
+        }
+
+        void unregister_listener(GameEventsListener *listener)
+        {
+            if (listener) listeners.remove(listener);
         }
     }
 }

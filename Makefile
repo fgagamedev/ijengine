@@ -1,5 +1,5 @@
 NAME = ijengine
-VERSION = 0.1.0
+VERSION = 0.2.0
 
 SRC_DIR = src
 INC_DIR = include
@@ -39,6 +39,7 @@ OBJ = ${addprefix $(OBJ_DIR)/, ${notdir ${SRC:.cpp=.o}}}
 
 all:
 	@mkdir -p $(OBJ_DIR) $(LIB_DIR)
+	@cd kernel/sdl2 && make
 	$(MAKE) $(TARGET)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
@@ -66,7 +67,8 @@ clean:
 
 dist:
 	@rm -rf *~
-	@tar czf $(PACKAGE) include src Makefile
+	@tar czf $(PACKAGE) include src kernel Makefile
+	@cd kernel/sdl2 && make dist-clean
 
 dist-clean: clean
 	@find . -name *.a -exec rm {} \;

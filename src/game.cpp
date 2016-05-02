@@ -16,7 +16,7 @@ using namespace ijengine;
 namespace ijengine {
 
     Game::Game(const string& title, int w, int h)
-        : m_title(title), m_w(w), m_h(h)
+        : m_title(title), m_w(w), m_h(h), m_state(PAUSED)
     {
     }
 
@@ -38,7 +38,11 @@ namespace ijengine {
             GameEvent(GAME_EVENT_QUIT));
         event::register_translator(&translator);
 
-        while (level)
+        event::register_listener(this);
+ 
+        m_state = RUNNING;
+
+        while (m_state != QUIT)
         {
             Uint32 now = SDL_GetTicks();
             event::dispatch_pending_events(now);
@@ -54,11 +58,25 @@ namespace ijengine {
                 string next = level->next();
                 delete level;
                 level = Level::load(next);
+
+                if (not level) m_state = QUIT;
             }
 
             last = now;
         }
 
         return 0;
+    }
+
+    bool
+    Game::on_event(const GameEvent& event)
+    {
+        if (event.type() == GAME_EVENT_QUIT)
+        {
+            m_state = QUIT;
+            return true;
+        }
+
+        return false;
     }
 }
