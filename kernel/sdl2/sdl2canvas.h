@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include "canvas.h"
+#include "rectangle.h"
 
 using namespace ijengine;
 
