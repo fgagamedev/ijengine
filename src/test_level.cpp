@@ -1,6 +1,11 @@
 #include "test_level.h"
 #include "canvas.h"
 
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
 namespace ijengine {
 
     TestLevel::TestLevel(int r, int g, int b, const string& next_level)
@@ -33,6 +38,7 @@ namespace ijengine {
     void
     TestLevel::draw(Canvas *canvas, int, int)
     {
-        canvas->drawRect(0, 0, 200, 200, m_r, m_g, m_b);
+        Rectangle rectangle(100, 100, 200, 200);
+        canvas->drawRect(rectangle, m_r, m_g, m_b);
     }
 }

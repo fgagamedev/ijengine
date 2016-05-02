@@ -16,7 +16,7 @@ public:
     void set_color(unsigned char r, unsigned char g, unsigned char b,
         unsigned char a);
 
-    void drawRect(int x, int y, int w, int h, int r, int g, int b);
+    void drawRect(Rectangle rectangle, int r, int g, int b);
 
     void clear();
     void update();

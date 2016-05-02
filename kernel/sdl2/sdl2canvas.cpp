@@ -4,6 +4,8 @@
 
 #include <SDL2/SDL_image.h>
 
+using std::cout;
+using std::endl;
 
 SDL2Canvas::SDL2Canvas(SDL_Renderer *r)
     : m_renderer(r)
@@ -59,9 +61,14 @@ SDL2Canvas::update()
 }
 
 void
-SDL2Canvas::drawRect(int x, int y, int w, int h, int r, int g, int b)
+SDL2Canvas::drawRect(Rectangle rectangle, int r, int g, int b)
 {
-    SDL_Rect rect { x, y, w, h };
+    // Rectangle's (x, y) represents the center of the rectangle.
+    // Thus, we find the leftmost (and uppermost) point to be used as "origin" in order to adapt it to SDL requirements.
+    int leftmost_x = rectangle.x() - rectangle.w() / 2;
+    int uppermost_y = rectangle.y() - rectangle.h() / 2;
+
+    SDL_Rect rect {leftmost_x, uppermost_y, rectangle.w(), rectangle.h()};
     SDL_SetRenderDrawColor(m_renderer, r, g, b, 255);
     SDL_RenderFillRect(m_renderer, &rect);
 }
