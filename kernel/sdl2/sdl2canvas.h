@@ -19,6 +19,7 @@ public:
 
     void drawRect(Rectangle rectangle, int r, int g, int b);
     void drawPoint(Point point, int r, int g, int b);
+    void drawLine(Line line, int r, int g, int b);
 
     void clear();
     void update();

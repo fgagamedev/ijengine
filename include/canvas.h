@@ -3,6 +3,7 @@
 
 #include "rectangle.h"
 #include "point.h"
+#include "line.h"
 
 namespace ijengine {
 
@@ -14,6 +15,7 @@ namespace ijengine {
         virtual void draw(const Texture *texture, int x, int y) = 0;
         virtual void drawRect(Rectangle rectangle, int r, int g, int b) = 0;
         virtual void drawPoint(Point point, int r, int g, int b) = 0;
+        virtual void drawLine(Line line, int r, int g, int b) = 0;
         virtual void update() = 0;
         virtual void clear() = 0;
     };

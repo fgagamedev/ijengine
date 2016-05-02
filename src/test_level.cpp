@@ -46,5 +46,9 @@ namespace ijengine {
             Point point(300 + i, 300);
             canvas->drawPoint(point, m_r, m_g, m_b);
         }
+
+        // Drawing test line
+        Line line(100, 300, 100, 400);
+        canvas->drawLine(line, m_r, m_g, m_b);
     }
 }
