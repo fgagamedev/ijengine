@@ -34,6 +34,12 @@ namespace ijengine {
         void register_listener(GameEventsListener *listener);
         void unregister_listener(GameEventsListener *listener);
     }
+
+    namespace time {
+        unsigned time_elapsed();
+        void pause();
+        void resume();
+    }
 }
 
 #endif
