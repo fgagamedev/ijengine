@@ -9,6 +9,7 @@
 
 #include <SDL2/SDL.h>
 #include <memory>
+#include <cstdio>
 
 using std::unique_ptr;
 using namespace ijengine;
@@ -42,10 +43,20 @@ namespace ijengine {
  
         m_state = RUNNING;
 
+        int cnt = 0;
         while (m_state != QUIT)
         {
-            Uint32 now = SDL_GetTicks();
+            if(cnt == 5000) {
+                time::pause();
+            }
+            else if(cnt == 10000) {
+                time::resume();
+            }
+
+            Uint32 now = time::time_elapsed();
             event::dispatch_pending_events(now);
+
+            printf("now = %u   last = %u\n", now, last);
 
             level->update(now, last);
 
@@ -63,6 +74,7 @@ namespace ijengine {
             }
 
             last = now;
+            cnt++;
         }
 
         return 0;
