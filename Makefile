@@ -39,8 +39,8 @@ OBJ = ${addprefix $(OBJ_DIR)/, ${notdir ${SRC:.cpp=.o}}}
 
 all:
 	@mkdir -p $(OBJ_DIR) $(LIB_DIR)
-	@cd kernel/sdl2 && make
 	$(MAKE) $(TARGET)
+	@cd kernel/sdl2 && make
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@echo Building $@

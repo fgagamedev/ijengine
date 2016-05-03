@@ -1,5 +1,6 @@
 #include "sdl2kernel.h"
 #include "sdl2window.h"
+#include "sdl2time.h"
 #include "exception.h"
 #include "event.h"
 #include "system_event.h"
@@ -10,13 +11,12 @@
 
 using namespace ijengine;
 
-
 SDL2Kernel::SDL2Kernel()
 {
     int rc = SDL_Init(SDL_INIT_VIDEO);
-
     if (rc)
         throw Exception("Error on SDL2Kernel()");
+    m_timer = new SDL2Time();
 }
 
 SDL2Kernel::~SDL2Kernel()
@@ -85,4 +85,19 @@ SDL2Kernel::pending_events(unsigned now)
     }
 
     return events;
+}
+
+unsigned
+SDL2Kernel::time_elapsed() {
+    return m_timer->time_elapsed();
+}
+
+void
+SDL2Kernel::pause_timer() {
+    m_timer->pause_timer();
+}
+
+void
+SDL2Kernel::resume_timer() {
+    m_timer->resume_timer();
 }

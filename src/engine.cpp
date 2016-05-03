@@ -133,4 +133,25 @@ namespace ijengine
             if (listener) listeners.remove(listener);
         }
     }
+
+    namespace time
+    {
+        unsigned
+        time_elapsed()
+        {
+            return kernel->time_elapsed();
+        }
+
+        void
+        pause()
+        {
+            kernel->pause_timer();
+        }
+
+        void
+        resume()
+        {
+            kernel->resume_timer();
+        }
+    }
 }

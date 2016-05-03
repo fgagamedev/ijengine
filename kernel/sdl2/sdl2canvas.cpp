@@ -72,3 +72,17 @@ SDL2Canvas::drawRect(Rectangle rectangle, int r, int g, int b)
     SDL_SetRenderDrawColor(m_renderer, r, g, b, 255);
     SDL_RenderFillRect(m_renderer, &rect);
 }
+
+void
+SDL2Canvas::drawPoint(Point point, int r, int g, int b)
+{
+    SDL_SetRenderDrawColor(m_renderer, r, g, b, 255);
+    SDL_RenderDrawPoint(m_renderer, point.x(), point.y());
+}
+
+void
+SDL2Canvas::drawLine(Line line, int r, int g, int b)
+{
+    SDL_SetRenderDrawColor(m_renderer, r, g, b, 255);
+    SDL_RenderDrawLine(m_renderer, line.x1(), line.y1(), line.x2(), line.y2());
+}
