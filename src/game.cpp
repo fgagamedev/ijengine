@@ -44,9 +44,8 @@ namespace ijengine {
             event::dispatch_pending_events(now);
 
             current_level->update(now, last);
-
-            canvas->clear();
             current_level->draw(canvas, now, last);
+
             canvas->update();
 
             if (current_level->done())

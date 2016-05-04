@@ -20,15 +20,17 @@ namespace ijengine {
         double x() const;
         double y() const;
 
-        virtual void update(int now, int last) {}
-        // View
-        virtual void draw(Canvas *canvas, int now, int last) {}
+        void update(unsigned now, unsigned last);
+        void draw(Canvas *canvas, unsigned now, unsigned last);
 
     protected:
         GameObject *m_parent;
         list<GameObject *> m_children;
 
         double m_x, m_y;
+
+        virtual void update_self(unsigned now, unsigned last) = 0;
+        virtual void draw_self(Canvas *canvas, unsigned now, unsigned last) = 0;
     };
 
 }

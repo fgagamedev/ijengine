@@ -15,8 +15,6 @@ namespace ijengine {
 
         virtual bool done() const = 0;
         virtual string next() const = 0;
-
-        static Level * load(const string& level);
     };
 
 }

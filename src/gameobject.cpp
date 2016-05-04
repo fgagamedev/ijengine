@@ -37,4 +37,22 @@ namespace ijengine {
     {
         return m_y + (m_parent ? m_parent->y() : 0);
     }
+
+    void
+    GameObject::update(unsigned now, unsigned last)
+    {
+        for (auto child : m_children)
+            child->update(now, last);
+
+        update_self(now, last);
+    }
+
+    void
+    GameObject::draw(Canvas *canvas, unsigned now, unsigned last)
+    {
+        draw_self(canvas, now, last);
+
+        for (auto child : m_children)
+            child->draw(canvas, now, last);
+    }
 } 

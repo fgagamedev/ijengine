@@ -15,8 +15,9 @@ public:
     bool done() const;
     string next() const;
 
-    void update(int now, int last);
-    void draw(Canvas *canvas, int now, int last);
+protected:
+    void update_self(unsigned now, unsigned last);
+    void draw_self(Canvas *canvas, unsigned now, unsigned last);
 
 private:
     int m_r, m_g, m_b;

@@ -13,6 +13,8 @@ namespace ijengine
         int w() const;
         int h() const;
 
+        void set_position(int new_x, int new_y) { m_x = new_x; m_y = new_y; }
+
     private:
         int m_x; // coordinate x of the rectangle's CENTER
         int m_y; // coordinate y of the rectangle's CENTER
