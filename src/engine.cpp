@@ -5,6 +5,7 @@
 #include "os.h"
 #include "event.h"
 #include "game_event.h"
+#include "level_factory.h"
 #include "events_translator.h"
 #include "game_events_listener.h"
 
@@ -152,6 +153,35 @@ namespace ijengine
         resume()
         {
             kernel->resume_timer();
+        }
+    }
+
+    namespace level
+    {
+        static LevelFactory *level_factory = nullptr;
+
+        void
+        register_factory(LevelFactory *factory)
+        {
+            level_factory = factory;
+        }
+
+        void unregister_factory()
+        {
+            level_factory = nullptr;
+        }
+
+        Level *
+        make(const string& level_id)
+        {
+            return level_factory ? level_factory->make_level(level_id) : nullptr;
+        }
+
+        void
+        release(Level *level)
+        {
+            if (level_factory)
+                level_factory->release(level);
         }
     }
 }

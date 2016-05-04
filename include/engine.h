@@ -10,7 +10,9 @@ using std::unique_ptr;
 namespace ijengine {
     
     class Lib;
+    class Level;
     class Window;
+    class LevelFactory;
     class EventsTranslator;
     class GameEventsListener;
     
@@ -39,6 +41,13 @@ namespace ijengine {
         unsigned time_elapsed();
         void pause();
         void resume();
+    }
+
+    namespace level {
+        void register_factory(LevelFactory *factory);
+        void unregister_factory();
+        Level * make(const string& level_id);
+        void release(Level *level);
     }
 }
 

@@ -18,6 +18,11 @@ namespace ijengine {
         event::register_listener(this);
     }
 
+    Game::~Game()
+    {
+        event::unregister_listener(this);
+    }
+
     int
     Game::run(const string& level_id)
     {
@@ -28,29 +33,29 @@ namespace ijengine {
             return -1;
 
         Canvas *canvas = window->canvas();
-        Level *level = Level::load(level_id);
+        Level *current_level = level::make(level_id);
         unsigned last = time::time_elapsed();
 
-        m_state = RUNNING;
+        m_state = current_level ? RUNNING : QUIT;
 
         while (m_state != QUIT)
         {
             unsigned now = time::time_elapsed();
             event::dispatch_pending_events(now);
 
-            level->update(now, last);
+            current_level->update(now, last);
 
             canvas->clear();
-            level->draw(canvas, now, last);
+            current_level->draw(canvas, now, last);
             canvas->update();
 
-            if (level->done())
+            if (current_level->done())
             {
-                string next = level->next();
-                delete level;
-                level = Level::load(next);
+                string next = current_level->next();
+                level::release(current_level);
+                current_level = level::make(next);
 
-                if (not level) m_state = QUIT;
+                if (not current_level) m_state = QUIT;
             }
 
             last = now;
