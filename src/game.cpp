@@ -4,12 +4,8 @@
 #include "canvas.h"
 #include "engine.h"
 #include "game_event.h"
-#include "system_event.h"
-#include "events_translator.h"
 
-#include <SDL2/SDL.h>
 #include <memory>
-#include <cstdio>
 
 using std::unique_ptr;
 using namespace ijengine;
@@ -19,6 +15,7 @@ namespace ijengine {
     Game::Game(const string& title, int w, int h)
         : m_title(title), m_w(w), m_h(h), m_state(PAUSED)
     {
+        event::register_listener(this);
     }
 
     int
@@ -32,31 +29,14 @@ namespace ijengine {
 
         Canvas *canvas = window->canvas();
         Level *level = Level::load(level_id);
-        Uint32 last = SDL_GetTicks();
+        unsigned last = time::time_elapsed();
 
-        EventsTranslator translator;
-        translator.add_translation(SystemEvent(0, SystemEvent::QUIT),
-            GameEvent(GAME_EVENT_QUIT));
-        event::register_translator(&translator);
-
-        event::register_listener(this);
- 
         m_state = RUNNING;
 
-        int cnt = 0;
         while (m_state != QUIT)
         {
-            if(cnt == 5000) {
-                time::pause();
-            }
-            else if(cnt == 10000) {
-                time::resume();
-            }
-
-            Uint32 now = time::time_elapsed();
+            unsigned now = time::time_elapsed();
             event::dispatch_pending_events(now);
-
-            printf("now = %u   last = %u\n", now, last);
 
             level->update(now, last);
 
@@ -74,7 +54,6 @@ namespace ijengine {
             }
 
             last = now;
-            cnt++;
         }
 
         return 0;

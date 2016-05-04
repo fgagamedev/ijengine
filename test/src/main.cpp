@@ -1,7 +1,5 @@
 #include <ijengine/exception.h>
-#include <ijengine/engine.h>
-#include <ijengine/game.h>
-
+#include "test_game.h"
 #include <iostream>
 
 using namespace ijengine;
@@ -13,10 +11,7 @@ int main()
 
     try
     {
-        Engine engine;
-
-        Game game("Teste", 640, 480);
-
+        TestGame game("Teste", 640, 480);
         rc = game.run("red");
     } catch (Exception& ex)
     {

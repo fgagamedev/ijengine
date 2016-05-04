@@ -33,7 +33,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 $(TARGET): $(OBJ)
 	@echo Building $@
-	$(CC) $(CFLAGS) $(INCLUDES) $< -o $@ $(LIBS)
+	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) -o $@ $(LIBS)
 	@echo Done.
 
 clean:
