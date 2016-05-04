@@ -1,6 +1,6 @@
-#include "exception.h"
-#include "engine.h"
-#include "game.h"
+#include <ijengine/exception.h>
+#include <ijengine/engine.h>
+#include <ijengine/game.h>
 
 #include <iostream>
 
