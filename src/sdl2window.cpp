@@ -1,11 +1,12 @@
 #include "sdl2window.h"
 #include "sdl2canvas.h"
+#include "glrenderer3d.h"
 #include <SDL2/SDL.h>
 
 namespace ijengine {
 
     SDL2Window::SDL2Window(SDL_Window *new_window, SDL_Renderer *actual_renderer) :
-        m_window(new_window), m_renderer(actual_renderer), m_canvas(new SDL2Canvas(actual_renderer)), m_w(0), m_h(0)
+        m_window(new_window), m_renderer(actual_renderer), m_canvas(new SDL2Canvas(actual_renderer)), m_w(0), m_h(0), m_renderer3d(new GLrenderer3d(new_window))
     {
         if (m_window)
         {
@@ -39,6 +40,12 @@ namespace ijengine {
     Canvas *
     SDL2Window::canvas() const
     {
+        printf("canvas initi\n");
         return m_canvas;
+    }
+     Renderer3d *
+    SDL2Window::renderer3d() const
+    {
+       return m_renderer3d;
     }
 }

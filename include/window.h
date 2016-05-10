@@ -4,7 +4,8 @@
 namespace ijengine {
 
     class Canvas;
-
+    class Renderer3d;
+    
     class Window {
     public:
         virtual ~Window() = default;
@@ -13,6 +14,7 @@ namespace ijengine {
         virtual int h() const = 0;
 
         virtual Canvas * canvas() const = 0;
+        virtual Renderer3d * renderer3d() const = 0;
     };
 }
 
