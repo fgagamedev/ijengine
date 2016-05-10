@@ -1,4 +1,0 @@
-<map id="ijengine::Video" name="ijengine::Video">
-<area shape="rect" id="node2" href="$classijengine_1_1SDL2DVideo.html" title="{ijengine::SDL2DVideo\n||+ SDL2DVideo()\l+ ~SDL2DVideo()\l+ create_window()\l}" alt="" coords="5,147,155,253"/>
-<area shape="rect" id="node3" href="$classijengine_1_1SDL3DVideo.html" title="{ijengine::SDL3DVideo\n||+ SDL3DVideo()\l+ ~SDL3DVideo()\l+ create_window()\l}" alt="" coords="179,147,329,253"/>
-</map>
