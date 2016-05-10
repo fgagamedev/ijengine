@@ -1,0 +1,7 @@
+<map id="ijengine::SDL2Game::SDL2Game" name="ijengine::SDL2Game::SDL2Game">
+<area shape="rect" id="node2" href="$classijengine_1_1SDL2Texture.html#a2685a9df8d7152bc132990dea3ffe813" title="ijengine::SDL2Texture\l::load_texture_from_path" alt="" coords="198,89,365,130"/>
+<area shape="rect" id="node3" href="$classijengine_1_1SDL2Canvas.html#a4c5237e37a864ede4242751732c4bc0b" title="ijengine::SDL2Canvas\l::renderer" alt="" coords="423,5,575,46"/>
+<area shape="rect" id="node4" href="$classijengine_1_1SDL2Texture.html#a94b43ffad7f1ea5ac74165e59085ffce" title="ijengine::SDL2Texture::w" alt="" coords="414,71,583,97"/>
+<area shape="rect" id="node5" href="$classijengine_1_1SDL2Texture.html#a5202ccb0ca2cd152fd3597b45235556e" title="ijengine::SDL2Texture::h" alt="" coords="415,121,582,148"/>
+<area shape="rect" id="node6" href="$classijengine_1_1SDL2Texture.html#a4eb052ac3a431cc81cd2feba6aa65e67" title="ijengine::SDL2Texture\l::SDL2Texture" alt="" coords="423,173,574,214"/>
+</map>
