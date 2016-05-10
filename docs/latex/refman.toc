@@ -1,0 +1,134 @@
+\contentsline {chapter}{\numberline {1}Namespace Index}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Namespace List}{1}{section.1.1}
+\contentsline {chapter}{\numberline {2}Hierarchical Index}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Class Hierarchy}{3}{section.2.1}
+\contentsline {chapter}{\numberline {3}Class Index}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}Class List}{5}{section.3.1}
+\contentsline {chapter}{\numberline {4}File Index}{7}{chapter.4}
+\contentsline {section}{\numberline {4.1}File List}{7}{section.4.1}
+\contentsline {chapter}{\numberline {5}Namespace Documentation}{9}{chapter.5}
+\contentsline {section}{\numberline {5.1}ijengine Namespace Reference}{9}{section.5.1}
+\contentsline {chapter}{\numberline {6}Class Documentation}{11}{chapter.6}
+\contentsline {section}{\numberline {6.1}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:Canvas Class Reference}{11}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Constructor \& Destructor Documentation}{12}{subsection.6.1.1}
+\contentsline {subsubsection}{\numberline {6.1.1.1}$\sim $\discretionary {-}{}{}Canvas}{12}{subsubsection.6.1.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Member Function Documentation}{12}{subsection.6.1.2}
+\contentsline {subsubsection}{\numberline {6.1.2.1}draw}{12}{subsubsection.6.1.2.1}
+\contentsline {subsubsection}{\numberline {6.1.2.2}update}{12}{subsubsection.6.1.2.2}
+\contentsline {section}{\numberline {6.2}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:Game Class Reference}{12}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Constructor \& Destructor Documentation}{13}{subsection.6.2.1}
+\contentsline {subsubsection}{\numberline {6.2.1.1}Game}{13}{subsubsection.6.2.1.1}
+\contentsline {subsubsection}{\numberline {6.2.1.2}$\sim $\discretionary {-}{}{}Game}{13}{subsubsection.6.2.1.2}
+\contentsline {subsection}{\numberline {6.2.2}Member Function Documentation}{13}{subsection.6.2.2}
+\contentsline {subsubsection}{\numberline {6.2.2.1}run}{14}{subsubsection.6.2.2.1}
+\contentsline {section}{\numberline {6.3}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:Lib Class Reference}{14}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Constructor \& Destructor Documentation}{15}{subsection.6.3.1}
+\contentsline {subsubsection}{\numberline {6.3.1.1}$\sim $\discretionary {-}{}{}Lib}{15}{subsubsection.6.3.1.1}
+\contentsline {subsection}{\numberline {6.3.2}Member Function Documentation}{15}{subsection.6.3.2}
+\contentsline {subsubsection}{\numberline {6.3.2.1}config}{15}{subsubsection.6.3.2.1}
+\contentsline {subsubsection}{\numberline {6.3.2.2}init}{15}{subsubsection.6.3.2.2}
+\contentsline {subsubsection}{\numberline {6.3.2.3}name}{15}{subsubsection.6.3.2.3}
+\contentsline {subsubsection}{\numberline {6.3.2.4}version}{15}{subsubsection.6.3.2.4}
+\contentsline {section}{\numberline {6.4}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:Lib\discretionary {-}{}{}G\discretionary {-}{}{}L Class Reference}{16}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Constructor \& Destructor Documentation}{17}{subsection.6.4.1}
+\contentsline {subsubsection}{\numberline {6.4.1.1}$\sim $\discretionary {-}{}{}Lib\discretionary {-}{}{}G\discretionary {-}{}{}L}{17}{subsubsection.6.4.1.1}
+\contentsline {subsection}{\numberline {6.4.2}Member Function Documentation}{17}{subsection.6.4.2}
+\contentsline {subsubsection}{\numberline {6.4.2.1}config}{17}{subsubsection.6.4.2.1}
+\contentsline {subsubsection}{\numberline {6.4.2.2}init}{17}{subsubsection.6.4.2.2}
+\contentsline {subsubsection}{\numberline {6.4.2.3}name}{18}{subsubsection.6.4.2.3}
+\contentsline {subsubsection}{\numberline {6.4.2.4}version}{18}{subsubsection.6.4.2.4}
+\contentsline {section}{\numberline {6.5}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:Lib\discretionary {-}{}{}S\discretionary {-}{}{}D\discretionary {-}{}{}L2 Class Reference}{18}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Constructor \& Destructor Documentation}{19}{subsection.6.5.1}
+\contentsline {subsubsection}{\numberline {6.5.1.1}$\sim $\discretionary {-}{}{}Lib\discretionary {-}{}{}S\discretionary {-}{}{}D\discretionary {-}{}{}L2}{19}{subsubsection.6.5.1.1}
+\contentsline {subsection}{\numberline {6.5.2}Member Function Documentation}{19}{subsection.6.5.2}
+\contentsline {subsubsection}{\numberline {6.5.2.1}config}{19}{subsubsection.6.5.2.1}
+\contentsline {subsubsection}{\numberline {6.5.2.2}init}{19}{subsubsection.6.5.2.2}
+\contentsline {subsubsection}{\numberline {6.5.2.3}name}{20}{subsubsection.6.5.2.3}
+\contentsline {subsubsection}{\numberline {6.5.2.4}version}{20}{subsubsection.6.5.2.4}
+\contentsline {section}{\numberline {6.6}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:S\discretionary {-}{}{}D\discretionary {-}{}{}L2\discretionary {-}{}{}Canvas Class Reference}{20}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Constructor \& Destructor Documentation}{21}{subsection.6.6.1}
+\contentsline {subsubsection}{\numberline {6.6.1.1}S\discretionary {-}{}{}D\discretionary {-}{}{}L2\discretionary {-}{}{}Canvas}{21}{subsubsection.6.6.1.1}
+\contentsline {subsection}{\numberline {6.6.2}Member Function Documentation}{21}{subsection.6.6.2}
+\contentsline {subsubsection}{\numberline {6.6.2.1}draw}{21}{subsubsection.6.6.2.1}
+\contentsline {subsubsection}{\numberline {6.6.2.2}renderer}{22}{subsubsection.6.6.2.2}
+\contentsline {subsubsection}{\numberline {6.6.2.3}update}{22}{subsubsection.6.6.2.3}
+\contentsline {section}{\numberline {6.7}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:S\discretionary {-}{}{}D\discretionary {-}{}{}L2\discretionary {-}{}{}D\discretionary {-}{}{}Video Class Reference}{22}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}Constructor \& Destructor Documentation}{24}{subsection.6.7.1}
+\contentsline {subsubsection}{\numberline {6.7.1.1}S\discretionary {-}{}{}D\discretionary {-}{}{}L2\discretionary {-}{}{}D\discretionary {-}{}{}Video}{24}{subsubsection.6.7.1.1}
+\contentsline {subsubsection}{\numberline {6.7.1.2}$\sim $\discretionary {-}{}{}S\discretionary {-}{}{}D\discretionary {-}{}{}L2\discretionary {-}{}{}D\discretionary {-}{}{}Video}{24}{subsubsection.6.7.1.2}
+\contentsline {subsection}{\numberline {6.7.2}Member Function Documentation}{24}{subsection.6.7.2}
+\contentsline {subsubsection}{\numberline {6.7.2.1}create\discretionary {-}{}{}\_\discretionary {-}{}{}window}{24}{subsubsection.6.7.2.1}
+\contentsline {section}{\numberline {6.8}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:S\discretionary {-}{}{}D\discretionary {-}{}{}L2\discretionary {-}{}{}Game Class Reference}{24}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}Constructor \& Destructor Documentation}{25}{subsection.6.8.1}
+\contentsline {subsubsection}{\numberline {6.8.1.1}S\discretionary {-}{}{}D\discretionary {-}{}{}L2\discretionary {-}{}{}Game}{25}{subsubsection.6.8.1.1}
+\contentsline {section}{\numberline {6.9}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:S\discretionary {-}{}{}D\discretionary {-}{}{}L2\discretionary {-}{}{}Texture Class Reference}{26}{section.6.9}
+\contentsline {subsection}{\numberline {6.9.1}Constructor \& Destructor Documentation}{27}{subsection.6.9.1}
+\contentsline {subsubsection}{\numberline {6.9.1.1}S\discretionary {-}{}{}D\discretionary {-}{}{}L2\discretionary {-}{}{}Texture}{27}{subsubsection.6.9.1.1}
+\contentsline {subsubsection}{\numberline {6.9.1.2}$\sim $\discretionary {-}{}{}S\discretionary {-}{}{}D\discretionary {-}{}{}L2\discretionary {-}{}{}Texture}{27}{subsubsection.6.9.1.2}
+\contentsline {subsection}{\numberline {6.9.2}Member Function Documentation}{27}{subsection.6.9.2}
+\contentsline {subsubsection}{\numberline {6.9.2.1}h}{27}{subsubsection.6.9.2.1}
+\contentsline {subsubsection}{\numberline {6.9.2.2}load\discretionary {-}{}{}\_\discretionary {-}{}{}texture\discretionary {-}{}{}\_\discretionary {-}{}{}from\discretionary {-}{}{}\_\discretionary {-}{}{}path}{28}{subsubsection.6.9.2.2}
+\contentsline {subsubsection}{\numberline {6.9.2.3}texture}{28}{subsubsection.6.9.2.3}
+\contentsline {subsubsection}{\numberline {6.9.2.4}w}{28}{subsubsection.6.9.2.4}
+\contentsline {section}{\numberline {6.10}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:S\discretionary {-}{}{}D\discretionary {-}{}{}L2\discretionary {-}{}{}Window Class Reference}{28}{section.6.10}
+\contentsline {subsection}{\numberline {6.10.1}Constructor \& Destructor Documentation}{30}{subsection.6.10.1}
+\contentsline {subsubsection}{\numberline {6.10.1.1}S\discretionary {-}{}{}D\discretionary {-}{}{}L2\discretionary {-}{}{}Window}{30}{subsubsection.6.10.1.1}
+\contentsline {subsubsection}{\numberline {6.10.1.2}$\sim $\discretionary {-}{}{}S\discretionary {-}{}{}D\discretionary {-}{}{}L2\discretionary {-}{}{}Window}{30}{subsubsection.6.10.1.2}
+\contentsline {subsection}{\numberline {6.10.2}Member Function Documentation}{30}{subsection.6.10.2}
+\contentsline {subsubsection}{\numberline {6.10.2.1}canvas}{30}{subsubsection.6.10.2.1}
+\contentsline {subsubsection}{\numberline {6.10.2.2}h}{30}{subsubsection.6.10.2.2}
+\contentsline {subsubsection}{\numberline {6.10.2.3}w}{31}{subsubsection.6.10.2.3}
+\contentsline {section}{\numberline {6.11}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:S\discretionary {-}{}{}D\discretionary {-}{}{}L3\discretionary {-}{}{}D\discretionary {-}{}{}Video Class Reference}{31}{section.6.11}
+\contentsline {subsection}{\numberline {6.11.1}Constructor \& Destructor Documentation}{32}{subsection.6.11.1}
+\contentsline {subsubsection}{\numberline {6.11.1.1}S\discretionary {-}{}{}D\discretionary {-}{}{}L3\discretionary {-}{}{}D\discretionary {-}{}{}Video}{32}{subsubsection.6.11.1.1}
+\contentsline {subsubsection}{\numberline {6.11.1.2}$\sim $\discretionary {-}{}{}S\discretionary {-}{}{}D\discretionary {-}{}{}L3\discretionary {-}{}{}D\discretionary {-}{}{}Video}{32}{subsubsection.6.11.1.2}
+\contentsline {subsection}{\numberline {6.11.2}Member Function Documentation}{32}{subsection.6.11.2}
+\contentsline {subsubsection}{\numberline {6.11.2.1}create\discretionary {-}{}{}\_\discretionary {-}{}{}window}{32}{subsubsection.6.11.2.1}
+\contentsline {section}{\numberline {6.12}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:S\discretionary {-}{}{}D\discretionary {-}{}{}L\discretionary {-}{}{}G\discretionary {-}{}{}L\discretionary {-}{}{}Game Class Reference}{32}{section.6.12}
+\contentsline {subsection}{\numberline {6.12.1}Constructor \& Destructor Documentation}{33}{subsection.6.12.1}
+\contentsline {subsubsection}{\numberline {6.12.1.1}S\discretionary {-}{}{}D\discretionary {-}{}{}L\discretionary {-}{}{}G\discretionary {-}{}{}L\discretionary {-}{}{}Game}{34}{subsubsection.6.12.1.1}
+\contentsline {section}{\numberline {6.13}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:Texture Class Reference}{34}{section.6.13}
+\contentsline {subsection}{\numberline {6.13.1}Constructor \& Destructor Documentation}{35}{subsection.6.13.1}
+\contentsline {subsubsection}{\numberline {6.13.1.1}$\sim $\discretionary {-}{}{}Texture}{35}{subsubsection.6.13.1.1}
+\contentsline {subsection}{\numberline {6.13.2}Member Function Documentation}{35}{subsection.6.13.2}
+\contentsline {subsubsection}{\numberline {6.13.2.1}h}{35}{subsubsection.6.13.2.1}
+\contentsline {subsubsection}{\numberline {6.13.2.2}w}{35}{subsubsection.6.13.2.2}
+\contentsline {section}{\numberline {6.14}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:Video Class Reference}{35}{section.6.14}
+\contentsline {subsection}{\numberline {6.14.1}Constructor \& Destructor Documentation}{36}{subsection.6.14.1}
+\contentsline {subsubsection}{\numberline {6.14.1.1}$\sim $\discretionary {-}{}{}Video}{36}{subsubsection.6.14.1.1}
+\contentsline {subsection}{\numberline {6.14.2}Member Function Documentation}{36}{subsection.6.14.2}
+\contentsline {subsubsection}{\numberline {6.14.2.1}create\discretionary {-}{}{}\_\discretionary {-}{}{}window}{36}{subsubsection.6.14.2.1}
+\contentsline {section}{\numberline {6.15}ijengine\discretionary {-}{}{}:\discretionary {-}{}{}:Window Class Reference}{36}{section.6.15}
+\contentsline {subsection}{\numberline {6.15.1}Constructor \& Destructor Documentation}{37}{subsection.6.15.1}
+\contentsline {subsubsection}{\numberline {6.15.1.1}$\sim $\discretionary {-}{}{}Window}{38}{subsubsection.6.15.1.1}
+\contentsline {subsection}{\numberline {6.15.2}Member Function Documentation}{38}{subsection.6.15.2}
+\contentsline {subsubsection}{\numberline {6.15.2.1}canvas}{38}{subsubsection.6.15.2.1}
+\contentsline {subsubsection}{\numberline {6.15.2.2}h}{38}{subsubsection.6.15.2.2}
+\contentsline {subsubsection}{\numberline {6.15.2.3}w}{38}{subsubsection.6.15.2.3}
+\contentsline {chapter}{\numberline {7}File Documentation}{39}{chapter.7}
+\contentsline {section}{\numberline {7.1}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/canvas.h File Reference}{39}{section.7.1}
+\contentsline {section}{\numberline {7.2}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/game.h File Reference}{40}{section.7.2}
+\contentsline {section}{\numberline {7.3}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/libgl.h File Reference}{40}{section.7.3}
+\contentsline {section}{\numberline {7.4}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/libs.h File Reference}{41}{section.7.4}
+\contentsline {section}{\numberline {7.5}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/sdl2.h File Reference}{42}{section.7.5}
+\contentsline {section}{\numberline {7.6}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/sdl2canvas.h File Reference}{43}{section.7.6}
+\contentsline {section}{\numberline {7.7}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/sdl2\discretionary {-}{}{}Dvideo.h File Reference}{44}{section.7.7}
+\contentsline {section}{\numberline {7.8}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/sdl2game.h File Reference}{45}{section.7.8}
+\contentsline {section}{\numberline {7.9}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/sdl2texture.h File Reference}{46}{section.7.9}
+\contentsline {section}{\numberline {7.10}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/sdl2window.h File Reference}{47}{section.7.10}
+\contentsline {section}{\numberline {7.11}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/sdl3\discretionary {-}{}{}Dvideo.h File Reference}{48}{section.7.11}
+\contentsline {section}{\numberline {7.12}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/sdlglgame.h File Reference}{49}{section.7.12}
+\contentsline {section}{\numberline {7.13}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/texture.h File Reference}{51}{section.7.13}
+\contentsline {section}{\numberline {7.14}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/video.h File Reference}{51}{section.7.14}
+\contentsline {section}{\numberline {7.15}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/include/window.h File Reference}{52}{section.7.15}
+\contentsline {section}{\numberline {7.16}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/src/game.cpp File Reference}{52}{section.7.16}
+\contentsline {section}{\numberline {7.17}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/src/libgl.cpp File Reference}{53}{section.7.17}
+\contentsline {section}{\numberline {7.18}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/src/sdl2.cpp File Reference}{53}{section.7.18}
+\contentsline {section}{\numberline {7.19}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/src/sdl2canvas.cpp File Reference}{54}{section.7.19}
+\contentsline {section}{\numberline {7.20}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/src/sdl2\discretionary {-}{}{}Dvideo.cpp File Reference}{55}{section.7.20}
+\contentsline {section}{\numberline {7.21}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/src/sdl2game.cpp File Reference}{55}{section.7.21}
+\contentsline {section}{\numberline {7.22}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/src/sdl2texture.cpp File Reference}{56}{section.7.22}
+\contentsline {section}{\numberline {7.23}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/src/sdl2window.cpp File Reference}{56}{section.7.23}
+\contentsline {section}{\numberline {7.24}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/src/sdl3\discretionary {-}{}{}Dvideo.cpp File Reference}{57}{section.7.24}
+\contentsline {section}{\numberline {7.25}/home/carla/git/ijengine-\/\discretionary {-}{}{}I\discretionary {-}{}{}C\discretionary {-}{}{}G\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}G\discretionary {-}{}{}L/src/sdlglgame.cpp File Reference}{58}{section.7.25}
+\contentsline {chapter}{Index}{59}{section*.59}
