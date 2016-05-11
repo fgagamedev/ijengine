@@ -8,7 +8,6 @@
 #include <memory>
 
 using std::unique_ptr;
-using namespace ijengine;
 
 namespace ijengine {
 

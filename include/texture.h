@@ -5,7 +5,7 @@ namespace ijengine {
 
     class Texture {
     public:
-        virtual ~Texture() { printf("Texture destructor\n"); }
+        virtual ~Texture() = default;
         virtual int w() const = 0;
         virtual int h() const = 0;
     };

@@ -39,7 +39,6 @@ namespace ijengine {
 
     SDL2Texture::~SDL2Texture()
     {
-printf("Destroying texture...\n");
         if (m_texture)
             SDL_DestroyTexture(m_texture);
     }
