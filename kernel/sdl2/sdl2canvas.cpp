@@ -15,24 +15,13 @@ SDL2Canvas::SDL2Canvas(SDL_Renderer *r)
 void
 SDL2Canvas::draw(const Texture *texture, int x, int y)
 {
-}
-/*    const SDL2Texture *text = dynamic_cast<const SDL2Texture *>(texture);
+    const SDL2Texture *text = dynamic_cast<const SDL2Texture *>(texture);
 
     SDL_Rect source {x, y, texture->w(), texture->h() };
 
     SDL_RenderCopy(m_renderer, text->texture(), nullptr, &source);
     SDL_RenderPresent(m_renderer);
 }
-
-void
-SDL2Canvas::draw_from_rectangle(const Texture *texture, SDL_Rect source, SDL_Rect destiny)
-{
-    const SDL2Texture *text = dynamic_cast<const SDL2Texture *>(texture);
-
-    SDL_RenderCopy(m_renderer, text->texture(), &source, &destiny);
-    SDL_RenderPresent(m_renderer);
-}
-*/
 
 void
 SDL2Canvas::clear()
