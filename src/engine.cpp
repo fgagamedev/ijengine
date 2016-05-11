@@ -4,6 +4,7 @@
 #include "lib.h"
 #include "os.h"
 #include "event.h"
+#include "texture.h"
 #include "game_event.h"
 #include "level_factory.h"
 #include "events_translator.h"
@@ -12,9 +13,9 @@
 #include <stdio.h>
 #include <list>
 #include <utility>
+#include <memory>
 
-using std::pair;
-using std::list;
+using namespace std;
 
 namespace ijengine 
 {
@@ -182,6 +183,36 @@ namespace ijengine
         {
             if (level_factory)
                 level_factory->release(level);
+        }
+    }
+
+    namespace resources {
+        static string textures_dir_path { "." };
+        static map<string, shared_ptr<Texture> > textures;
+
+        void
+        set_textures_dir(const string& dir_path)
+        {
+            textures_dir_path = dir_path;
+        }
+
+        shared_ptr<Texture>
+        get_texture(const Canvas *canvas, const string& name)
+        {
+            auto it = textures.find(name);
+
+            if (it != textures.end())
+                return it->second;
+
+            string filepath = textures_dir_path + "/" + name;
+            Texture *texture = kernel->load_texture(canvas, filepath);
+
+            if (not texture)
+                throw Exception("Can't load texture " + filepath);
+
+            textures[name] = shared_ptr<Texture>(texture);
+
+            return textures[name];
         }
     }
 }

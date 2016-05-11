@@ -1,6 +1,8 @@
 #include "sdl2kernel.h"
 #include "sdl2window.h"
 #include "sdl2time.h"
+#include "sdl2texture.h"
+#include "sdl2canvas.h"
 #include "exception.h"
 #include "event.h"
 #include "system_event.h"
@@ -101,3 +103,22 @@ void
 SDL2Kernel::resume_timer() {
     m_timer->resume_timer();
 }
+
+Texture *
+SDL2Kernel::load_texture(const Canvas* c, const string& filepath)
+{
+    const SDL2Canvas *canvas = dynamic_cast<const SDL2Canvas *>(c);
+    SDL_Renderer *renderer = canvas->renderer();
+
+    SDL_Texture *texture = IMG_LoadTexture(renderer, filepath.c_str());
+    int w, h;
+
+    int rc = SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
+
+    if (rc)
+        throw Exception(SDL_GetError());
+
+    SDL2Texture *t = new SDL2Texture(texture, w, h);
+    return t;
+}
+

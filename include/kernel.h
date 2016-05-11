@@ -11,8 +11,10 @@ using std::string;
 
 namespace ijengine {
 
-    class Window;
     class Event;
+    class Window;
+    class Canvas;
+    class Texture;
     
     class Kernel {
     public:
@@ -25,6 +27,8 @@ namespace ijengine {
         virtual unsigned time_elapsed() = 0;
         virtual void pause_timer() = 0;
         virtual void resume_timer() = 0;
+
+        virtual Texture * load_texture(const Canvas* canvas, const string& filepath) = 0;
     };
 }
 

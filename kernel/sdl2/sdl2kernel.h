@@ -19,6 +19,8 @@ public:
     void pause_timer();
     void resume_timer();
 
+    Texture * load_texture(const Canvas* canvas, const string& filepath);
+
 protected:
     Time *m_timer;
 };

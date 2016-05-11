@@ -1,4 +1,4 @@
-/*#ifndef SDL2_TEXTURE_H
+#ifndef SDL2_TEXTURE_H
 #define SDL2_TEXTURE_H
 
 #include <SDL2/SDL.h>
@@ -30,4 +30,4 @@ namespace ijengine {
     };
 }
 
-#endif */
+#endif

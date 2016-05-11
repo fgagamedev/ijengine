@@ -6,12 +6,15 @@
 
 using std::string;
 using std::unique_ptr;
+using std::shared_ptr;
 
 namespace ijengine {
     
     class Lib;
     class Level;
     class Window;
+    class Canvas;
+    class Texture;
     class LevelFactory;
     class EventsTranslator;
     class GameEventsListener;
@@ -48,6 +51,11 @@ namespace ijengine {
         void unregister_factory();
         Level * make(const string& level_id);
         void release(Level *level);
+    }
+
+    namespace resources {
+        void set_textures_dir(const string& dir_path);
+        shared_ptr<Texture> get_texture(const Canvas *canvas, const string& name);
     }
 }
 
