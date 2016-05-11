@@ -189,6 +189,7 @@ namespace ijengine
     namespace resources {
         static string textures_dir_path { "." };
         static map<string, shared_ptr<Texture> > textures;
+        static Canvas *canvas = nullptr;
 
         void
         set_textures_dir(const string& dir_path)
@@ -196,9 +197,18 @@ namespace ijengine
             textures_dir_path = dir_path;
         }
 
-        shared_ptr<Texture>
-        get_texture(const Canvas *canvas, const string& name)
+        void
+        set_canvas(Canvas *c)
         {
+            canvas = c;
+        }
+
+        shared_ptr<Texture>
+        get_texture(const string& name)
+        {
+            if (not canvas)
+                throw Exception("Can't load textures with a null canvas\n");
+
             auto it = textures.find(name);
 
             if (it != textures.end())

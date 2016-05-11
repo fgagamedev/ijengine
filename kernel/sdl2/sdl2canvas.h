@@ -13,6 +13,8 @@ public:
     SDL2Canvas(SDL_Renderer *renderer);
 
     void draw(const Texture *texture, int x, int y);
+    void draw(const Texture *texture, const Rectangle& section, int x, int y);
+
     void set_color(unsigned char r, unsigned char g, unsigned char b,
         unsigned char a);
 

@@ -72,7 +72,7 @@ SDL2Kernel::pending_events(unsigned now)
             {
                 auto p = KeyboardEvent(timestamp,
                     KeyboardEvent::State::PRESSED,
-                    KeyboardEvent::Key::ESCAPE,
+                    KeyboardEvent::Key::SPACE,
                     KeyboardEvent::Modifier::NONE);
 
                 events.push_back(event_t(timestamp, p.serialize()));

@@ -55,7 +55,8 @@ namespace ijengine {
 
     namespace resources {
         void set_textures_dir(const string& dir_path);
-        shared_ptr<Texture> get_texture(const Canvas *canvas, const string& name);
+        void set_canvas(Canvas *canvas);
+        shared_ptr<Texture> get_texture(const string& name);
     }
 }
 

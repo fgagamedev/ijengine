@@ -33,6 +33,8 @@ namespace ijengine {
             return -1;
 
         Canvas *canvas = window->canvas();
+        resources::set_canvas(canvas);
+
         Level *current_level = level::make(level_id);
         unsigned last = time::time_elapsed();
 

@@ -16,11 +16,18 @@ void
 SDL2Canvas::draw(const Texture *texture, int x, int y)
 {
     const SDL2Texture *text = dynamic_cast<const SDL2Texture *>(texture);
+    SDL_Rect dest {x, y, texture->w(), texture->h() };
+    SDL_RenderCopy(m_renderer, text->texture(), nullptr, &dest);
+}
 
-    SDL_Rect source {x, y, texture->w(), texture->h() };
+void
+SDL2Canvas::draw(const Texture *texture, const Rectangle& section, int x, int y)
+{
+    const SDL2Texture *text = dynamic_cast<const SDL2Texture *>(texture);
+    SDL_Rect source { section.x(), section.y(), section.w(), section.h() };
+    SDL_Rect dest {x, y, section.w(), section.h() };
 
-    SDL_RenderCopy(m_renderer, text->texture(), nullptr, &source);
-    SDL_RenderPresent(m_renderer);
+    SDL_RenderCopy(m_renderer, text->texture(), &source, &dest);
 }
 
 void
