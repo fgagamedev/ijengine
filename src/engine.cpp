@@ -57,6 +57,8 @@ namespace ijengine
     
     Engine::~Engine()
     {
+        resources::release_all();
+
         auto sym = m_kernel_lib->symbol("destroy_kernel");
                           
         if (not sym)
@@ -223,6 +225,12 @@ namespace ijengine
             textures[name] = shared_ptr<Texture>(texture);
 
             return textures[name];
+        }
+
+        void
+        release_all()
+        {
+            textures.clear();
         }
     }
 }

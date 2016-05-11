@@ -57,6 +57,7 @@ namespace ijengine {
         void set_textures_dir(const string& dir_path);
         void set_canvas(Canvas *canvas);
         shared_ptr<Texture> get_texture(const string& name);
+        void release_all();
     }
 }
 
