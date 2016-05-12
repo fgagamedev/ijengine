@@ -3,32 +3,34 @@
 
 #include <SDL2/SDL.h>
 #include "canvas.h"
-#include "rectangle.h"
 
 using namespace ijengine;
 
-
 class SDL2Canvas : public Canvas {
 public:
-    SDL2Canvas(SDL_Renderer *renderer);
+    SDL2Canvas(SDL_Renderer *renderer, int width, int height);
 
+    void draw(const Line& line);
+    void draw(const Point& point);
+    void draw(const Rectangle& rectangle);
     void draw(const Texture *texture, int x, int y);
     void draw(const Texture *texture, const Rectangle& section, int x, int y);
-
-    void set_color(unsigned char r, unsigned char g, unsigned char b,
-        unsigned char a);
-
-    void drawRect(Rectangle rectangle, int r, int g, int b);
-    void drawPoint(Point point, int r, int g, int b);
-    void drawLine(Line line, int r, int g, int b);
 
     void clear();
     void update();
 
     SDL_Renderer * renderer() const;
 
+    int w() const { return m_w; }
+    int h() const { return m_h; }
+
+    void set_draw_color(const Color& color) { m_draw_color = color; }
+    void set_clear_color(const Color& color) { m_clear_color = color; }
+
 private:
     SDL_Renderer *m_renderer;
+    int m_w, m_h;
+    Color m_draw_color, m_clear_color;
 };
 
 #endif

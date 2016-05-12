@@ -5,17 +5,20 @@
 
 
 SDL2Window::SDL2Window(SDL_Window *window, SDL_Renderer *renderer) :
-    m_window(window), m_renderer(renderer),
-    m_canvas(new SDL2Canvas(renderer)), m_w(0), m_h(0)
+    m_window(window), m_renderer(renderer), m_canvas(nullptr)
 {
     if (m_window)
     {
         SDL_GetWindowSize(m_window, &m_w, &m_h);
+        m_canvas = new SDL2Canvas(renderer, m_w, m_h);
     }
 }
 
 SDL2Window::~SDL2Window()
 {
+    if (m_canvas)
+        delete m_canvas;
+
     if (m_renderer)
         SDL_DestroyRenderer(m_renderer);
 

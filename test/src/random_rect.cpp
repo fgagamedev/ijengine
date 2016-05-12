@@ -9,7 +9,7 @@ RandomRect::RandomRect(int r, int g, int b, int max_w, int max_h)
 }
 
 void
-RandomRect::update_self(unsigned now, unsigned last)
+RandomRect::update_self(unsigned, unsigned)
 {
     int dx = (rand() % 11) - 5;
     int dy = (rand() % 11) - 5;
@@ -20,5 +20,6 @@ RandomRect::update_self(unsigned now, unsigned last)
 void
 RandomRect::draw_self(Canvas *canvas, unsigned, unsigned)
 {
-    canvas->drawRect(m_rectangle, m_r, m_g, m_b);
+    canvas->set_draw_color(Color(m_r, m_g, m_b));
+    canvas->draw(m_rectangle);
 }

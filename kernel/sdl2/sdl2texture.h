@@ -16,8 +16,6 @@ namespace ijengine {
         SDL2Texture(SDL_Texture *texture, int w, int h);
         ~SDL2Texture();
 
-        static SDL2Texture * load_texture_from_path(const string& path, const Canvas *c);
-
         SDL_Texture * texture() const;
 
         int w() const { return m_w; }

@@ -9,11 +9,8 @@ using namespace ijengine;
 TestLevel::TestLevel(int r, int g, int b, const string& next_level)
     : m_r(r), m_g(g), m_b(b), m_done(false), m_next(next_level), m_start(-1)
 {
-    RandomRect *rect1 = new RandomRect(r, g, b, 200, 200);
-    RandomRect *rect2 = new RandomRect(0, 0, 0, 100, 100);
-    
-    rect1->add_children(rect2); 
-    add_children(rect1); 
+    RandomRect *rect = new RandomRect(r, g, b, 200, 200);
+    add_children(rect); 
 }
 
 bool
