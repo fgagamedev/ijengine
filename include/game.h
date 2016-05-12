@@ -12,7 +12,7 @@ namespace ijengine {
 
     class Game : public GameEventsListener {
     public:
-        Game(const string& title, int w = 800, int h = 600);
+        Game(const string& title, const string& audio_path, int w = 800, int h = 600);
         ~Game();
 
         int run(const string& level_id);
@@ -22,7 +22,7 @@ namespace ijengine {
     private:
         typedef enum { PAUSED, RUNNING, QUIT } State;
 
-        string m_title;
+        string m_title, m_audio_path;
         int m_w, m_h;
         State m_state;
     };

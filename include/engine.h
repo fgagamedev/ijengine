@@ -33,6 +33,10 @@ namespace ijengine {
         Window * create_window(const string& title, int w, int h);
     }
 
+    namespace audio {
+        void play_audio_from_path(const string& path);
+    }
+
     namespace event {
         void dispatch_pending_events(unsigned now);
         void register_translator(const EventsTranslator *translator);
