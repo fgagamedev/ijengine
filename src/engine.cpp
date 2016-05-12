@@ -79,6 +79,15 @@ namespace ijengine
         }
     }
 
+    namespace audio
+    {
+        void
+        play_audio_from_path(const string& path)
+        {
+            return kernel->play_audio_from_path(path);
+        }
+    }
+
     namespace event
     {
         static list<const EventsTranslator *> translators;

@@ -11,7 +11,7 @@ using namespace ijengine;
 
 class TestGame {
 public:
-    TestGame(const string& title, int w, int h);
+    TestGame(const string& title, const string& audio_path, int w, int h);
     ~TestGame();
 
     int run(const string& level_id);

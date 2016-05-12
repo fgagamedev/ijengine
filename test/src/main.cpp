@@ -11,7 +11,7 @@ int main()
 
     try
     {
-        TestGame game("Teste", 640, 480);
+        TestGame game("Teste", "res/beat.wav", 640, 480);
         rc = game.run("red");
     } catch (Exception& ex)
     {

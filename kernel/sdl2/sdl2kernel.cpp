@@ -10,6 +10,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 
 using namespace ijengine;
 
@@ -39,6 +40,27 @@ SDL2Kernel::create_window(const string& title, int w, int h)
     SDL_SetWindowTitle(window, title.c_str());
 
     return new SDL2Window(window, renderer);
+}
+
+void
+SDL2Kernel::play_audio_from_path(const string& path)
+{
+    int init_audio = Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+
+    if(init_audio < 0)
+        printf("Audio not initialized\n");
+
+    Mix_Music *audio;
+
+    printf("audio path: [%s]\n", path.c_str());
+    audio = Mix_LoadMUS(path.c_str());
+
+    if(not audio){
+        printf("Failed to load audio\n");
+        printf("error: %s\n", Mix_GetError());
+    }
+
+    Mix_PlayMusic(audio, -1);
 }
 
 list<event_t>
