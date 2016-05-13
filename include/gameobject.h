@@ -20,6 +20,10 @@ namespace ijengine {
         double x() const;
         double y() const;
 
+        void set_x(double value) { m_x = value; }
+        void set_y(double value) { m_y = value; }
+        void set_position(double xv, double yv) { m_x = xv; m_y = yv; }
+        
         void update(unsigned now, unsigned last);
         void draw(Canvas *canvas, unsigned now, unsigned last);
 
