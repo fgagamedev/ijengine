@@ -1,19 +1,20 @@
-#include "exception.h"
-#include "engine.h"
-#include "kernel.h"
-#include "lib.h"
 #include "os.h"
+#include "lib.h"
 #include "event.h"
+#include "kernel.h"
+#include "engine.h"
 #include "texture.h"
+#include "rectangle.h"
+#include "exception.h"
+#include "collidable.h"
 #include "game_event.h"
 #include "level_factory.h"
 #include "events_translator.h"
 #include "game_events_listener.h"
 
-#include <stdio.h>
 #include <list>
-#include <utility>
 #include <memory>
+#include <utility>
 
 using namespace std;
 
@@ -231,6 +232,110 @@ namespace ijengine
         release_all()
         {
             textures.clear();
+        }
+    }
+
+    namespace physics {
+        static Collidable *target = nullptr;
+        static list<Collidable *> objects;
+        static Mode collisions_mode = ALL_TO_ALL;
+
+        Rectangle collision(Collidable *a, Collidable *b);
+
+        void
+        register_object(Collidable *c)
+        {
+            if (c)
+                objects.push_back(c);
+        }
+
+        void
+        unregister_object(Collidable *c)
+        {
+            objects.remove(c);
+
+            if (target == c)
+                target = nullptr;
+        }
+        
+        Rectangle
+        collision(Collidable *a, Collidable *b)
+        {
+            auto bbA = a->bounding_box();
+            auto bbB = b->bounding_box();
+
+            auto r = bbA.intersection(bbB);
+
+            if (r.area() == 0)
+                return r;
+
+            for (auto hbA : a->hit_boxes())
+            {
+                for (auto hbB : b->hit_boxes())
+                {
+                    auto t = hbA.intersection(hbB);
+
+                    if (t.area() > 0)
+                        return t;
+                }
+            }
+
+            return Rectangle(0, 0, 0, 0);
+        }
+
+        void
+        do_collisions()
+        {
+            switch (collisions_mode) {
+            case ONE_TO_ALL:
+                for (auto obj : objects)
+                {
+                    if (obj == target)
+                        continue;
+
+                    auto r = collision(target, obj);
+
+                    if (r.area() > 0)
+                    {
+                        target->on_collision(obj, r);
+                        obj->on_collision(target, r);
+                    }
+                }
+
+                break;
+
+            case ALL_TO_ALL:
+                for (auto a : objects)
+                {
+                    for (auto b : objects)
+                    {
+                        if (a == b)
+                            continue;
+
+                        auto r = collision(a, b);
+
+                        if (r.area() > 0)
+                        {
+                            a->on_collision(b, r);
+                            b->on_collision(a, r);
+                        }
+                    }
+                }
+
+                break;
+
+            default:
+                break;
+            }
+        }
+
+        void
+        set_colision_mode(Mode mode, Collidable *c)
+        {
+            collisions_mode = mode;
+
+            if (c and mode == ONE_TO_ALL)
+                target = c;
         }
     }
 }

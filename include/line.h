@@ -6,18 +6,18 @@ namespace ijengine
     class Line {
     public:
         virtual ~Line() = default;
-        Line(int x1, int y1, int x2, int y2);
+        Line(double x1, double y1, double x2, double y2);
 
-        int x1() const;
-        int y1() const;
-        int x2() const;
-        int y2() const;
+        double x1() const;
+        double y1() const;
+        double x2() const;
+        double y2() const;
 
     private:
-        int m_x1;
-        int m_y1;
-        int m_x2;
-        int m_y2;
+        double m_x1;
+        double m_y1;
+        double m_x2;
+        double m_y2;
     };
 }
 

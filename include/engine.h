@@ -15,6 +15,7 @@ namespace ijengine {
     class Window;
     class Canvas;
     class Texture;
+    class Collidable;
     class LevelFactory;
     class EventsTranslator;
     class GameEventsListener;
@@ -58,6 +59,15 @@ namespace ijengine {
         void set_canvas(Canvas *canvas);
         shared_ptr<Texture> get_texture(const string& name);
         void release_all();
+    }
+
+    namespace physics {
+        typedef enum { ONE_TO_ALL, ALL_TO_ALL, NONE } Mode;
+
+        void register_object(Collidable *c);
+        void unregister_object(Collidable *c);
+        void do_collisions();
+        void set_colision_mode(Mode mode, Collidable *c);
     }
 }
 

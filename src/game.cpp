@@ -45,8 +45,10 @@ namespace ijengine {
             event::dispatch_pending_events(now);
 
             current_level->update(now, last);
-            current_level->draw(canvas, now, last);
 
+            physics::do_collisions();
+
+            current_level->draw(canvas, now, last);
             canvas->update();
 
             if (current_level->done())
