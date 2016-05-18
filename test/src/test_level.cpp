@@ -10,7 +10,7 @@ TestLevel::TestLevel(int r, int g, int b, const string& next_level, const string
     : m_r(r), m_g(g), m_b(b), m_done(false), m_next(next_level), m_audio_path(audio_path), m_start(-1)
 {
     RandomRect *rect = new RandomRect(r, g, b, 200, 200);
-    add_children(rect); 
+    add_child(rect);
 }
 
 bool

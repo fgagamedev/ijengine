@@ -14,8 +14,8 @@ int main()
 
     auto r = A.intersection(B);
 
-    printf("R = (%.2lf, %.2lf), dims = (%.2lf, %.2lf)\n", r.x(), r.y(), r.w(), r.h());
-/*    int rc;
+//    printf("R = (%.2lf, %.2lf), dims = (%.2lf, %.2lf)\n", r.x(), r.y(), r.w(), r.h());
+    int rc;
 
     try
     {
@@ -26,6 +26,5 @@ int main()
         cout << ex.what() << endl;
     } 
 
-    return rc;*/
-    return 0;
+    return rc;
 }

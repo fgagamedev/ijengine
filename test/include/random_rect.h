@@ -2,7 +2,7 @@
 #define RANDOM_RECT_H
 
 #include <ijengine/rectangle.h>
-#include <ijengine/gameobject.h>
+#include <ijengine/game_object.h>
 
 using namespace ijengine;
 
