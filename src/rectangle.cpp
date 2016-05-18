@@ -56,7 +56,7 @@ namespace ijengine
 
         double xpos = 0, wv = 0;
 
-        if ((xa < xc and xb > xc) or (xc < xa and xd < xa))
+        if ((xa <= xc and xb >= xc) or (xc <= xa and xd >= xa))
         {
             double left = max(xa, xc);
             double right = min(xb, xd);
@@ -73,7 +73,7 @@ namespace ijengine
 
         double ypos = 0, hv = 0;
 
-        if ((ya < yc and yb > yc) or (yc < ya and yd < ya))
+        if ((ya <= yc and yb >= yc) or (yc <= ya and yd >= ya))
         {
             double down = max(ya, yc);
             double up = min(yb, yd);

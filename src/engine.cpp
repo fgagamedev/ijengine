@@ -241,6 +241,7 @@ namespace ijengine
         static Mode collisions_mode = ALL_TO_ALL;
 
         Rectangle collision(Collidable *a, Collidable *b);
+        void set_colision_mode(Mode mode, Collidable *c);
 
         void
         register_object(Collidable *c)

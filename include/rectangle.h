@@ -6,7 +6,7 @@ namespace ijengine
     class Rectangle {
     public:
         virtual ~Rectangle() = default;
-        Rectangle(double x, double y, double w, double h);
+        Rectangle(double x = 0.0, double y = 0.0, double w = 1.0, double h = 1.0);
 
         double x() const;
         double y() const;
