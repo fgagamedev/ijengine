@@ -34,6 +34,7 @@ namespace ijengine {
 
     namespace audio {
         void play_audio_from_path(const string& path);
+        void stop_audio();
     }
 
     namespace event {

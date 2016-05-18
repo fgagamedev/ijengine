@@ -45,6 +45,9 @@ SDL2Kernel::create_window(const string& title, int w, int h)
 void
 SDL2Kernel::play_audio_from_path(const string& path)
 {
+    if(path.empty())
+        printf("Empty audio path\n");
+
     int init_audio = Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
     if(init_audio < 0)
@@ -60,7 +63,18 @@ SDL2Kernel::play_audio_from_path(const string& path)
         printf("error: %s\n", Mix_GetError());
     }
 
-    Mix_PlayMusic(audio, -1);
+    if(Mix_PlayingMusic() == 0)
+    {
+        printf("Sem musica no momento\n");
+        Mix_PlayMusic(audio, 1);
+        printf("%s\n", (Mix_PlayingMusic() == 0) ? "Ainda sem musica" : path.c_str());
+    }
+}
+
+void
+SDL2Kernel::stop_audio()
+{
+    Mix_HaltMusic();
 }
 
 list<event_t>
@@ -79,30 +93,30 @@ SDL2Kernel::pending_events(unsigned now)
             break;
 
         SDL_PollEvent(&event);
-        
+
         switch (event.type) {
-        case SDL_QUIT:
-            {
-                auto p = SystemEvent(timestamp, SystemEvent::Action::QUIT);
-                events.push_back(event_t(timestamp, p.serialize()));
-            }
+            case SDL_QUIT:
+                {
+                    auto p = SystemEvent(timestamp, SystemEvent::Action::QUIT);
+                    events.push_back(event_t(timestamp, p.serialize()));
+                }
 
-            break;
+                break;
 
-        case SDL_KEYDOWN:
-        case SDL_KEYUP:
-            {
-                auto p = KeyboardEvent(timestamp,
-                    KeyboardEvent::State::PRESSED,
-                    KeyboardEvent::Key::SPACE,
-                    KeyboardEvent::Modifier::NONE);
+            case SDL_KEYDOWN:
+            case SDL_KEYUP:
+                {
+                    auto p = KeyboardEvent(timestamp,
+                            KeyboardEvent::State::PRESSED,
+                            KeyboardEvent::Key::SPACE,
+                            KeyboardEvent::Modifier::NONE);
 
-                events.push_back(event_t(timestamp, p.serialize()));
-            }
-            break;
+                    events.push_back(event_t(timestamp, p.serialize()));
+                }
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
 
         SDL_PumpEvents();

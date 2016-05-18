@@ -11,8 +11,8 @@ using std::unique_ptr;
 
 namespace ijengine {
 
-    Game::Game(const string& title, const string& audio_path, int w, int h)
-        : m_title(title), m_audio_path(audio_path), m_w(w), m_h(h), m_state(PAUSED)
+    Game::Game(const string& title, int w, int h)
+        : m_title(title), m_w(w), m_h(h), m_state(PAUSED)
     {
         event::register_listener(this);
     }
@@ -26,7 +26,6 @@ namespace ijengine {
     Game::run(const string& level_id)
     {
         auto test = video::create_window(m_title, m_w, m_h);
-        audio::play_audio_from_path(m_audio_path);
         auto window = unique_ptr<Window>(test);
         
         if (not window)
@@ -47,11 +46,14 @@ namespace ijengine {
 
             current_level->update(now, last);
             current_level->draw(canvas, now, last);
+            printf("audio: [%s]\n",current_level->audio().c_str());
+            audio::play_audio_from_path(current_level->audio());
 
             canvas->update();
 
             if (current_level->done())
             {
+                audio::stop_audio();
                 string next = current_level->next();
                 level::release(current_level);
                 current_level = level::make(next);

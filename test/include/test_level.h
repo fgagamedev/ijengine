@@ -10,10 +10,11 @@ using ijengine::Canvas;
 
 class TestLevel : public Level {
 public:
-    TestLevel(int r, int g, int b, const string& next = "");
+    TestLevel(int r, int g, int b, const string& next = "", const string& audio_path = "");
 
     bool done() const;
     string next() const;
+	string audio() const;
 
 protected:
     void update_self(unsigned now, unsigned last);
@@ -22,7 +23,7 @@ protected:
 private:
     int m_r, m_g, m_b;
     bool m_done;
-    string m_next;
+    string m_next, m_audio_path;
     int m_start;
 };
 
