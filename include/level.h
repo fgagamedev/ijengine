@@ -15,6 +15,7 @@ namespace ijengine {
 
         virtual bool done() const = 0;
         virtual string next() const = 0;
+        virtual string audio() const = 0;
     };
 
 }

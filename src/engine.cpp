@@ -85,7 +85,13 @@ namespace ijengine
         void
         play_audio_from_path(const string& path)
         {
-            return kernel->play_audio_from_path(path);
+            kernel->play_audio_from_path(path);
+        }
+
+        void
+        stop_audio()
+        {
+           kernel->stop_audio();
         }
     }
 

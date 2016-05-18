@@ -181,6 +181,9 @@ button_state(int button_mask, int button_id)
 void
 SDL2Kernel::play_audio_from_path(const string& path)
 {
+    if(path.empty())
+        printf("Empty audio path\n");
+
     int init_audio = Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
     if(init_audio < 0)
@@ -196,7 +199,18 @@ SDL2Kernel::play_audio_from_path(const string& path)
         printf("error: %s\n", Mix_GetError());
     }
 
-    Mix_PlayMusic(audio, -1);
+    if(Mix_PlayingMusic() == 0)
+    {
+        printf("Sem musica no momento\n");
+        Mix_PlayMusic(audio, 1);
+        printf("%s\n", (Mix_PlayingMusic() == 0) ? "Ainda sem musica" : path.c_str());
+    }
+}
+
+void
+SDL2Kernel::stop_audio()
+{
+    Mix_HaltMusic();
 }
 
 list<event_t>
@@ -221,16 +235,8 @@ SDL2Kernel::pending_events(unsigned now)
             break;
 
         SDL_PollEvent(&event);
-        
+
         switch (event.type) {
-        case SDL_QUIT:
-            {
-                auto p = SystemEvent(timestamp, SystemEvent::Action::QUIT);
-                events.push_back(event_t(timestamp, p.serialize()));
-            }
-
-            break;
-
         case SDL_KEYDOWN:
             {
                 auto p = KeyboardEvent(timestamp,
@@ -294,7 +300,7 @@ SDL2Kernel::pending_events(unsigned now)
 
         default:
             break;
-        }
+       }
 
         SDL_PumpEvents();
     }
