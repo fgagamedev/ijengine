@@ -1,7 +1,7 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 
-#include "gameobject.h"
+#include "game_object.h"
 
 #include <string>
 
