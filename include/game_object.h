@@ -19,7 +19,7 @@ namespace ijengine {
 
         virtual ~GameObject();
 
-        bool operator<(const GameObject& obj);
+        bool operator<(const GameObject *obj);
 
         void add_child(GameObject *obj);
         void remove_child(GameObject *obj);
@@ -34,6 +34,8 @@ namespace ijengine {
  
         void update(unsigned now, unsigned last);
         void draw(Canvas *canvas, unsigned now, unsigned last);
+
+        int priority() const { return m_priority; }
 
     protected:
         GameObject *m_parent;

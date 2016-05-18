@@ -7,9 +7,11 @@ using std::stable_sort;
 namespace ijengine {
 
     GameObject::GameObject(GameObject *parent, double xpos, double ypos,
-        Priority priority) : m_parent(parent), m_x(xpos), m_y(ypos),
-        m_priority(priority)
+        Priority p) : m_parent(parent), m_x(xpos), m_y(ypos),
+        m_priority(p)
     {
+        if (m_parent)
+            m_parent->update_priorities();
     }
 
     GameObject::~GameObject()
@@ -19,10 +21,11 @@ namespace ijengine {
     }
 
     bool
-    GameObject::operator<(const GameObject& obj)
+    GameObject::operator<(const GameObject *obj)
     {
-        return m_priority < obj.m_priority;
+        return m_priority < obj->m_priority;
     }
+
 
     void
     GameObject::add_child(GameObject *obj)
@@ -47,11 +50,11 @@ namespace ijengine {
     }
 
     void
-    GameObject::set_priority(int priority)
+    GameObject::set_priority(int p)
     {
-        if (priority != m_priority)
+        if (p != m_priority)
         {
-            m_priority = priority;
+            m_priority = p;
 
             if (m_parent)
                 m_parent->update_priorities();
