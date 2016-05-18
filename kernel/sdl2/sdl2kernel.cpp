@@ -7,6 +7,7 @@
 #include "event.h"
 #include "system_event.h"
 #include "keyboard_event.h"
+#include "mouse_event.h"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -17,6 +18,7 @@ using std::map;
 using namespace ijengine;
 
 void init_table();
+MouseEvent::State button_state(int button_mask, int button_id);
 
 SDL2Kernel::SDL2Kernel()
 {
@@ -169,6 +171,12 @@ void init_table()
     m_key_table[SDLK_F12] = KeyboardEvent::F12;
 }
 
+MouseEvent::State
+button_state(int button_mask, int button_id)
+{
+    return (button_mask & button_id) == button_id ? MouseEvent::PRESSED :
+        MouseEvent::RELEASED;
+}
 
 list<event_t>
 SDL2Kernel::pending_events(unsigned now)
@@ -219,6 +227,44 @@ SDL2Kernel::pending_events(unsigned now)
                     KeyboardEvent::State::RELEASED,
                     m_key_table[event.key.keysym.sym],   
                     key_modifier(event.key.keysym.mod));
+
+                events.push_back(event_t(timestamp, p.serialize()));
+            }
+            break;
+
+        case SDL_MOUSEBUTTONDOWN:
+            {
+                auto p = MouseEvent(timestamp, MouseEvent::PRESSED,
+                    button_state(event.button.button, SDL_BUTTON_LEFT),
+                    button_state(event.button.button, SDL_BUTTON_MIDDLE),
+                    button_state(event.button.button, SDL_BUTTON_RIGHT),
+                    event.button.x, event.button.y, 0, 0);
+
+                events.push_back(event_t(timestamp, p.serialize()));
+            }
+            break;
+
+        case SDL_MOUSEBUTTONUP:
+            {
+
+                auto p = MouseEvent(timestamp, MouseEvent::RELEASED,
+                    button_state(event.button.button, SDL_BUTTON_LEFT),
+                    button_state(event.button.button, SDL_BUTTON_MIDDLE),
+                    button_state(event.button.button, SDL_BUTTON_RIGHT),
+                    event.button.x, event.button.y, 0, 0);
+
+                events.push_back(event_t(timestamp, p.serialize()));
+            }
+            break;
+
+        case SDL_MOUSEMOTION:
+            {
+                auto p = MouseEvent(timestamp, MouseEvent::MOTION,
+                    button_state(event.button.button, SDL_BUTTON_LEFT),
+                    button_state(event.button.button, SDL_BUTTON_MIDDLE),
+                    button_state(event.button.button, SDL_BUTTON_RIGHT),
+                    event.button.x, event.button.y, event.motion.xrel, 
+                    event.motion.yrel);
 
                 events.push_back(event_t(timestamp, p.serialize()));
             }

@@ -30,7 +30,7 @@ namespace ijengine {
         void set_x(double value) { m_x = value; }
         void set_y(double value) { m_y = value; }
         void set_position(double xv, double yv) { m_x = xv; m_y = yv; }
-        void set_priority(Priority priority);
+        void set_priority(int priority);
  
         void update(unsigned now, unsigned last);
         void draw(Canvas *canvas, unsigned now, unsigned last);
@@ -39,7 +39,7 @@ namespace ijengine {
         GameObject *m_parent;
         vector<GameObject *> m_children;
         double m_x, m_y;
-        Priority m_priority;
+        int m_priority;
 
         virtual void update_self(unsigned now, unsigned last) = 0;
         virtual void draw_self(Canvas *canvas, unsigned now, unsigned last) = 0;

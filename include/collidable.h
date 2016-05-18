@@ -3,8 +3,10 @@
 
 
 #include <list>
+#include <utility>
 
 using std::list;
+using std::pair;
 
 namespace ijengine
 {
@@ -15,6 +17,8 @@ namespace ijengine
         virtual ~Collidable() = default;
 
         virtual bool active() const = 0;
+        virtual pair<double, double> direction() const = 0;
+
         virtual const Rectangle& bounding_box() const = 0;
         virtual const list<Rectangle>& hit_boxes() const = 0;
 

@@ -47,7 +47,7 @@ namespace ijengine {
     }
 
     void
-    GameObject::set_priority(Priority priority)
+    GameObject::set_priority(int priority)
     {
         if (priority != m_priority)
         {

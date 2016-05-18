@@ -291,7 +291,7 @@ namespace ijengine
             case ONE_TO_ALL:
                 for (auto obj : objects)
                 {
-                    if (obj == target)
+                    if (obj == target or not target->active())
                         continue;
 
                     auto r = collision(target, obj);
@@ -308,9 +308,12 @@ namespace ijengine
             case ALL_TO_ALL:
                 for (auto a : objects)
                 {
+                    if (not a->active())
+                        continue;
+
                     for (auto b : objects)
                     {
-                        if (a == b)
+                        if (a == b or not b->active())
                             continue;
 
                         auto r = collision(a, b);
