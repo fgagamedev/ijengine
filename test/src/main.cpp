@@ -2,20 +2,57 @@
 #include "test_game.h"
 #include <iostream>
 
-#include <ijengine/rectangle.h>
+#include <ijengine/game_object.h>
 
 using namespace ijengine;
 using namespace std;
 
+class Test : public GameObject
+{
+public:
+    Test(int p = 0) : GameObject(nullptr, 0, 0, p) {}
+
+    void add()
+    {
+        printf("before:");
+
+        for (auto c : m_children)
+        {
+            printf(" (%p, %d)", (void *) c, c->priority());
+        }
+        
+        printf("\n");
+
+        int p = rand() % 1000;
+
+        add_child(new Test(p));
+
+        printf("after:");
+
+        for (auto c : m_children)
+        {
+            printf(" (%p, %d)", (void *) c, c->priority());
+        }
+        
+        printf("\n");
+    }
+
+protected:
+        void update_self(unsigned now, unsigned last) {}
+        void draw_self(Canvas *canvas, unsigned now, unsigned last) {}
+};
+
 int main()
 {
-    Rectangle A(0, 0, 10, 10);
-    Rectangle B(5, 0, 10, 10);
+    Test test;
 
-    auto r = A.intersection(B);
+    test.add();
+    test.add();
+    test.add();
+    test.add();
+    test.add();
 
-    printf("R = (%.2lf, %.2lf), dims = (%.2lf, %.2lf)\n", r.x(), r.y(), r.w(), r.h());
-/*    int rc;
+    /*int rc;
 
     try
     {

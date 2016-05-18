@@ -15,11 +15,9 @@ namespace ijengine {
             HIGH = 40000, HIGHEST = 50000 } Priority;
 
         GameObject(GameObject *parent = nullptr, double x = 0.0, double y = 0.0,
-            Priority priority = NORMAL);
+            int priority = NORMAL);
 
         virtual ~GameObject();
-
-        bool operator<(const GameObject *obj);
 
         void add_child(GameObject *obj);
         void remove_child(GameObject *obj);
@@ -46,6 +44,7 @@ namespace ijengine {
 
         virtual void update_self(unsigned now, unsigned last) = 0;
         virtual void draw_self(Canvas *canvas, unsigned now, unsigned last) = 0;
+
         void update_priorities();
     };
 
