@@ -6,15 +6,14 @@ namespace ijengine
 
     class Point {
     public:
-        virtual ~Point() = default;
-        Point(int x, int y);   
+        Point(double x, double y);   
 
-        int x() const;
-        int y() const;
+        double x() const;
+        double y() const;
 
     private:
-        int m_x;
-        int m_y;
+        double m_x;
+        double m_y;
     };
 }
 

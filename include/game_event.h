@@ -56,8 +56,6 @@ namespace ijengine
     private:
         unsigned m_type;
         map<string, string> m_properties;
-
-        bool validate(unsigned type);
     };
 
     using game_event_t = pair<unsigned, string>;

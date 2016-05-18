@@ -49,6 +49,9 @@ namespace ijengine {
             printf("audio: [%s]\n",current_level->audio().c_str());
             audio::play_audio_from_path(current_level->audio());
 
+            physics::do_collisions();
+
+            current_level->draw(canvas, now, last);
             canvas->update();
 
             if (current_level->done())

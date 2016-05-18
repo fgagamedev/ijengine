@@ -6,20 +6,22 @@ namespace ijengine
     class Rectangle {
     public:
         virtual ~Rectangle() = default;
-        Rectangle(int x, int y, int w, int h);
+        Rectangle(double x = 0.0, double y = 0.0, double w = 1.0, double h = 1.0);
 
-        int x() const;
-        int y() const;
-        int w() const;
-        int h() const;
+        double x() const;
+        double y() const;
+        double w() const;
+        double h() const;
+        double area() const;
 
-        void set_position(int new_x, int new_y) { m_x = new_x; m_y = new_y; }
+        void set_position(double new_x, double new_y);
+        Rectangle intersection(const Rectangle& r) const;
 
     private:
-        int m_x; // coordinate x of the rectangle's CENTER
-        int m_y; // coordinate y of the rectangle's CENTER
-        int m_w; // width of the rectangle
-        int m_h; // height of the rectangle
+        double m_x; // coordinate x of the rectangle's CENTER
+        double m_y; // coordinate y of the rectangle's CENTER
+        double m_w; // width of the rectangle
+        double m_h; // height of the rectangle
     };
 }
 

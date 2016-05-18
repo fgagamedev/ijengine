@@ -25,8 +25,9 @@ void
 SDL2Canvas::draw(const Texture *texture, const Rectangle& section, int x, int y)
 {
     const SDL2Texture *text = dynamic_cast<const SDL2Texture *>(texture);
-    SDL_Rect src { section.x(), section.y(), section.w(), section.h() };
-    SDL_Rect dest {x, y, section.w(), section.h() };
+    SDL_Rect src { int(section.x()), int(section.y()), int(section.w()),
+        int(section.h()) };
+    SDL_Rect dest {x, y, int(section.w()), int(section.h()) };
 
     SDL_RenderCopy(m_renderer, text->texture(), &src, &dest);
 }
@@ -64,7 +65,7 @@ SDL2Canvas::draw(const Rectangle& rectangle)
     int leftmost_x = rectangle.x() - rectangle.w() / 2;
     int uppermost_y = rectangle.y() - rectangle.h() / 2;
 
-    SDL_Rect rect { leftmost_x, uppermost_y, rectangle.w(), rectangle.h() };
+    SDL_Rect rect { leftmost_x, uppermost_y, int(rectangle.w()), int(rectangle.h()) };
     SDL_RenderFillRect(m_renderer, &rect);
 }
 

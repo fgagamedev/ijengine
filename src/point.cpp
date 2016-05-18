@@ -2,17 +2,17 @@
 
 namespace ijengine
 {
-    Point::Point(int x, int y) :
-        m_x(x), m_y(y)
+    Point::Point(double xv, double yv) :
+        m_x(xv), m_y(yv)
     {
     }
 
-    int
+    double
     Point::x() const {
         return m_x;
     }
 
-    int
+    double
     Point::y() const {
         return m_y;
     }
