@@ -6,8 +6,9 @@
 //ContextInfo.h
 namespace ijengine{
  
-  struct FramebufferInfo{
+  class FramebufferInfo{
  
+  public:
     unsigned int flags;
     int rbuffer = 5;
     int gbuffer = 5;
@@ -33,7 +34,7 @@ namespace ijengine{
       bbuffer = b_buffer_size;
    	  depthsize = depth_size;
       doublebuffersize = double_buffer_size;
-  }
+    }
  
    //(optional)implement copy constructor and assignment operator
  };
