@@ -22,6 +22,9 @@ namespace ijengine {
         
         virtual Window * create_window(const string& title, int w, int h) = 0;
 
+        virtual void play_audio_from_path(const string& title) = 0;
+        virtual void stop_audio() = 0;
+
         virtual list<event_t> pending_events(unsigned now) = 0;
 
         virtual unsigned time_elapsed() = 0;
