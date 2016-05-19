@@ -11,6 +11,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 
 #include <map>
 
@@ -47,7 +48,6 @@ SDL2Kernel::create_window(const string& title, int w, int h)
 
     return new SDL2Window(window, renderer);
 }
-
 
 static bool was_init = false;
 static map<int, KeyboardEvent::Key> m_key_table;
@@ -178,6 +178,41 @@ button_state(int button_mask, int button_id)
         MouseEvent::RELEASED;
 }
 
+void
+SDL2Kernel::play_audio_from_path(const string& path)
+{
+    if(path.empty())
+        printf("Empty audio path\n");
+
+    int init_audio = Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+
+    if(init_audio < 0)
+        printf("Audio not initialized\n");
+
+    Mix_Music *audio;
+
+    printf("audio path: [%s]\n", path.c_str());
+    audio = Mix_LoadMUS(path.c_str());
+
+    if(not audio){
+        printf("Failed to load audio\n");
+        printf("error: %s\n", Mix_GetError());
+    }
+
+    if(Mix_PlayingMusic() == 0)
+    {
+        printf("Sem musica no momento\n");
+        Mix_PlayMusic(audio, 1);
+        printf("%s\n", (Mix_PlayingMusic() == 0) ? "Ainda sem musica" : path.c_str());
+    }
+}
+
+void
+SDL2Kernel::stop_audio()
+{
+    Mix_HaltMusic();
+}
+
 list<event_t>
 SDL2Kernel::pending_events(unsigned now)
 {
@@ -200,79 +235,79 @@ SDL2Kernel::pending_events(unsigned now)
             break;
 
         SDL_PollEvent(&event);
-        
+
         switch (event.type) {
-        case SDL_QUIT:
-            {
-                auto p = SystemEvent(timestamp, SystemEvent::Action::QUIT);
-                events.push_back(event_t(timestamp, p.serialize()));
-            }
+            case SDL_QUIT:
+                {
+                    auto p = SystemEvent(timestamp, SystemEvent::Action::QUIT);
+                    events.push_back(event_t(timestamp, p.serialize()));
+                }
 
-            break;
+                break;
 
-        case SDL_KEYDOWN:
-            {
-                auto p = KeyboardEvent(timestamp,
-                    KeyboardEvent::State::PRESSED,
-                    m_key_table[event.key.keysym.sym],   
-                    key_modifier(event.key.keysym.mod));
+            case SDL_KEYDOWN:
+                {
+                    auto p = KeyboardEvent(timestamp,
+                            KeyboardEvent::State::PRESSED,
+                            m_key_table[event.key.keysym.sym],   
+                            key_modifier(event.key.keysym.mod));
 
-                events.push_back(event_t(timestamp, p.serialize()));
-            }
-            break;
+                    events.push_back(event_t(timestamp, p.serialize()));
+                }
+                break;
 
-        case SDL_KEYUP:
-            {
-                auto p = KeyboardEvent(timestamp,
-                    KeyboardEvent::State::RELEASED,
-                    m_key_table[event.key.keysym.sym],   
-                    key_modifier(event.key.keysym.mod));
+            case SDL_KEYUP:
+                {
+                    auto p = KeyboardEvent(timestamp,
+                            KeyboardEvent::State::RELEASED,
+                            m_key_table[event.key.keysym.sym],   
+                            key_modifier(event.key.keysym.mod));
 
-                events.push_back(event_t(timestamp, p.serialize()));
-            }
-            break;
+                    events.push_back(event_t(timestamp, p.serialize()));
+                }
+                break;
 
-        case SDL_MOUSEBUTTONDOWN:
-            {
-                auto p = MouseEvent(timestamp, MouseEvent::PRESSED,
-                    button_state(event.button.button, SDL_BUTTON_LEFT),
-                    button_state(event.button.button, SDL_BUTTON_MIDDLE),
-                    button_state(event.button.button, SDL_BUTTON_RIGHT),
-                    event.button.x, event.button.y, 0, 0);
+            case SDL_MOUSEBUTTONDOWN:
+                {
+                    auto p = MouseEvent(timestamp, MouseEvent::PRESSED,
+                            button_state(event.button.button, SDL_BUTTON_LEFT),
+                            button_state(event.button.button, SDL_BUTTON_MIDDLE),
+                            button_state(event.button.button, SDL_BUTTON_RIGHT),
+                            event.button.x, event.button.y, 0, 0);
 
-                events.push_back(event_t(timestamp, p.serialize()));
-            }
-            break;
+                    events.push_back(event_t(timestamp, p.serialize()));
+                }
+                break;
 
-        case SDL_MOUSEBUTTONUP:
-            {
+            case SDL_MOUSEBUTTONUP:
+                {
 
-                auto p = MouseEvent(timestamp, MouseEvent::RELEASED,
-                    button_state(event.button.button, SDL_BUTTON_LEFT),
-                    button_state(event.button.button, SDL_BUTTON_MIDDLE),
-                    button_state(event.button.button, SDL_BUTTON_RIGHT),
-                    event.button.x, event.button.y, 0, 0);
+                    auto p = MouseEvent(timestamp, MouseEvent::RELEASED,
+                            button_state(event.button.button, SDL_BUTTON_LEFT),
+                            button_state(event.button.button, SDL_BUTTON_MIDDLE),
+                            button_state(event.button.button, SDL_BUTTON_RIGHT),
+                            event.button.x, event.button.y, 0, 0);
 
-                events.push_back(event_t(timestamp, p.serialize()));
-            }
-            break;
+                    events.push_back(event_t(timestamp, p.serialize()));
+                }
+                break;
 
-        case SDL_MOUSEMOTION:
-            {
-                auto p = MouseEvent(timestamp, MouseEvent::MOTION,
-                    button_state(event.button.button, SDL_BUTTON_LEFT),
-                    button_state(event.button.button, SDL_BUTTON_MIDDLE),
-                    button_state(event.button.button, SDL_BUTTON_RIGHT),
-                    event.button.x, event.button.y, event.motion.xrel, 
-                    event.motion.yrel);
+            case SDL_MOUSEMOTION:
+                {
+                    auto p = MouseEvent(timestamp, MouseEvent::MOTION,
+                            button_state(event.button.button, SDL_BUTTON_LEFT),
+                            button_state(event.button.button, SDL_BUTTON_MIDDLE),
+                            button_state(event.button.button, SDL_BUTTON_RIGHT),
+                            event.button.x, event.button.y, event.motion.xrel, 
+                            event.motion.yrel);
 
-                events.push_back(event_t(timestamp, p.serialize()));
-            }
-            break;
+                    events.push_back(event_t(timestamp, p.serialize()));
+                }
+                break;
 
 
-        default:
-            break;
+            default:
+                break;
         }
 
         SDL_PumpEvents();

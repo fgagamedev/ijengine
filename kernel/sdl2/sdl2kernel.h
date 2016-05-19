@@ -13,6 +13,9 @@ public:
     
     Window * create_window(const string& title, int w, int h);
 
+    void play_audio_from_path(const string& title);
+    void stop_audio();
+
     list<event_t> pending_events(unsigned now);
 
     unsigned time_elapsed();
