@@ -44,19 +44,15 @@ protected:
 
 int main()
 {
-    Test test;
+/*    Test test;
 
     test.add();
     test.add();
     test.add();
     test.add();
-    test.add();
+    test.add(); */
 
-    /*int rc;
-=======
-//    printf("R = (%.2lf, %.2lf), dims = (%.2lf, %.2lf)\n", r.x(), r.y(), r.w(), r.h());
     int rc;
->>>>>>> 6e9dde244951a80b62955f2d43a82c615c895577
 
     try
     {
@@ -66,6 +62,6 @@ int main()
     {
         cout << ex.what() << endl;
     } 
-
-    return rc;
+    
+    return rc; 
 }
