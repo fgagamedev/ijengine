@@ -178,32 +178,39 @@ button_state(int button_mask, int button_id)
         MouseEvent::RELEASED;
 }
 
+static string audio_dir_path { "." };
+
+void
+SDL2Kernel::set_audio_dir(const string& dir_path)
+{
+    audio_dir_path = dir_path;
+}
+
 void
 SDL2Kernel::play_audio_from_path(const string& path)
 {
-    if(path.empty())
-        printf("Empty audio path\n");
-
-    int init_audio = Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
-
-    if(init_audio < 0)
-        printf("Audio not initialized\n");
-
-    Mix_Music *audio;
-
-    printf("audio path: [%s]\n", path.c_str());
-    audio = Mix_LoadMUS(path.c_str());
-
-    if(not audio){
-        printf("Failed to load audio\n");
-        printf("error: %s\n", Mix_GetError());
-    }
-
     if(Mix_PlayingMusic() == 0)
     {
-        printf("Sem musica no momento\n");
-        Mix_PlayMusic(audio, 1);
-        printf("%s\n", (Mix_PlayingMusic() == 0) ? "Ainda sem musica" : path.c_str());
+        if(path.empty())
+            printf("Empty audio path\n");
+
+        int init_audio = Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+
+        if(init_audio < 0)
+            printf("Audio not initialized\n");
+
+        Mix_Music *audio;
+
+        string audio_path = audio_dir_path + "/" + path;
+
+        audio = Mix_LoadMUS(audio_path.c_str());
+
+        if(not audio){
+            printf("Failed to load audio\n");
+            printf("error: %s\n", Mix_GetError());
+        }
+
+        Mix_PlayMusic(audio, -1);
     }
 }
 

@@ -22,6 +22,7 @@ namespace ijengine {
         
         virtual Window * create_window(const string& title, int w, int h) = 0;
 
+        virtual void set_audio_dir(const string& dir_path);
         virtual void play_audio_from_path(const string& title) = 0;
         virtual void stop_audio() = 0;
 
