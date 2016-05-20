@@ -10,6 +10,7 @@ namespace ijengine {
     public:
         SDL3DVideo();
         ~SDL3DVideo();
+        void setAttribute();
 
         Window * create_window(int w, int h);
     };
