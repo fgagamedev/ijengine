@@ -39,6 +39,7 @@ namespace ijengine {
 
         m_state = current_level ? RUNNING : QUIT;
 
+
         while (m_state != QUIT)
         {
             unsigned now = time::time_elapsed();
@@ -46,7 +47,7 @@ namespace ijengine {
 
             current_level->update(now, last);
             current_level->draw(canvas, now, last);
-            printf("audio: [%s]\n",current_level->audio().c_str());
+
             audio::play_audio_from_path(current_level->audio());
 
             physics::do_collisions();

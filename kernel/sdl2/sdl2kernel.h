@@ -13,6 +13,7 @@ public:
     
     Window * create_window(const string& title, int w, int h);
 
+    void set_audio_dir(const string& dir_path);
     void play_audio_from_path(const string& title);
     void stop_audio();
 

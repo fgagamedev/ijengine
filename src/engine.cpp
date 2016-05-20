@@ -83,6 +83,12 @@ namespace ijengine
     namespace audio
     {
         void
+        set_audio_dir(const string& dir_path)
+        {
+            kernel->set_audio_dir(dir_path);
+        }
+
+        void
         play_audio_from_path(const string& path)
         {
             kernel->play_audio_from_path(path);
