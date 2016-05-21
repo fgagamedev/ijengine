@@ -3,6 +3,7 @@
 
 #include "event.h"
 #include "system_event.h"
+#include "keyboard_event.h"
 
 #include <string>
 #include <list>
@@ -28,6 +29,7 @@ namespace ijengine {
         virtual void stop_audio() = 0;
 
         virtual list<SystemEvent> pending_system_events(unsigned now) = 0;
+        virtual list<KeyboardEvent> pending_keyboard_events(unsigned now) = 0;
 
         virtual unsigned time_elapsed() = 0;
         virtual void pause_timer() = 0;

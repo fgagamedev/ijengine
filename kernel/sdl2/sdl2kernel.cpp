@@ -13,21 +13,22 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 
-#include <map>
-
-using std::map;
 using namespace ijengine;
 
-void init_table();
 MouseEvent::State button_state(int button_mask, int button_id);
+static KeyboardEvent::Modifier key_modifier(Uint16 modifier);
 
 SDL2Kernel::SDL2Kernel()
 {
     int rc = SDL_Init(SDL_INIT_VIDEO);
+
     if (rc)
         throw Exception("Error on SDL2Kernel()");
+
     m_timer = new SDL2Time();
     m_last_update = 0;
+
+    init_table();
 }
 
 SDL2Kernel::~SDL2Kernel()
@@ -49,9 +50,6 @@ SDL2Kernel::create_window(const string& title, int w, int h)
 
     return new SDL2Window(window, renderer);
 }
-
-static bool was_init = false;
-static map<int, KeyboardEvent::Key> m_key_table;
 
 static KeyboardEvent::Modifier
 key_modifier(Uint16 modifier)
@@ -75,7 +73,8 @@ key_modifier(Uint16 modifier)
     }
 }
 
-void init_table()
+void
+SDL2Kernel::init_table()
 {
     m_key_table[SDLK_BACKSPACE] = KeyboardEvent::BACKSPACE;
     m_key_table[SDLK_TAB] = KeyboardEvent::TAB;
@@ -232,7 +231,8 @@ SDL2Kernel::update_pending_events(unsigned now)
 
     SDL_Event event;
 
-    while (SDL_PeepEvents(&event, 1, SDL_PEEKEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT) > 0)
+    while (SDL_PeepEvents(&event, 1, SDL_PEEKEVENT, SDL_FIRSTEVENT,
+        SDL_LASTEVENT) > 0)
     {
         unsigned timestamp = event.quit.timestamp;
 
@@ -248,47 +248,42 @@ SDL2Kernel::update_pending_events(unsigned now)
     m_last_update = now;
 }
 
-/*
-    if (not was_init)
+list<KeyboardEvent>
+SDL2Kernel::pending_keyboard_events(unsigned now)
+{
+    update_pending_events(now);
+    auto it = m_events.begin();
+
+    list<KeyboardEvent> events;
+
+    while (it != m_events.end())
     {
-        init_table();
-        was_init = true;
+        unsigned timestamp = it->quit.timestamp;
+
+        if (it->type == SDL_KEYDOWN) {
+            auto event = KeyboardEvent(timestamp,
+                KeyboardEvent::State::PRESSED,
+                m_key_table[it->key.keysym.sym],   
+                key_modifier(it->key.keysym.mod));
+
+                events.push_back(event);
+                it = m_events.erase(it);
+        } else if (it->type == SDL_KEYUP)
+        {
+            auto event = KeyboardEvent(timestamp,
+                KeyboardEvent::State::RELEASED,
+                m_key_table[it->key.keysym.sym],   
+                key_modifier(it->key.keysym.mod));
+
+                events.push_back(event);
+                it = m_events.erase(it);
+        } else
+            ++it;
     }
-
-
-        SDL_PollEvent(&event);
-        i
-        switch (event.type) {
-            case SDL_QUIT:
-                {
-                    auto p = SystemEvent(timestamp, SystemEvent::Action::QUIT);
-                    events.push_back(event_t(timestamp, p.serialize()));
-                }
-
-                break;
-
-            case SDL_KEYDOWN:
-                {
-                    auto p = KeyboardEvent(timestamp,
-                            KeyboardEvent::State::PRESSED,
-                            m_key_table[event.key.keysym.sym],   
-                            key_modifier(event.key.keysym.mod));
-
-                    events.push_back(event_t(timestamp, p.serialize()));
-                }
-                break;
-
-            case SDL_KEYUP:
-                {
-                    auto p = KeyboardEvent(timestamp,
-                            KeyboardEvent::State::RELEASED,
-                            m_key_table[event.key.keysym.sym],   
-                            key_modifier(event.key.keysym.mod));
-
-                    events.push_back(event_t(timestamp, p.serialize()));
-                }
-                break;
-
+ 
+    return events;
+}
+/*
             case SDL_MOUSEBUTTONDOWN:
                 {
                     auto p = MouseEvent(timestamp, MouseEvent::PRESSED,
@@ -334,9 +329,9 @@ SDL2Kernel::update_pending_events(unsigned now)
 
         SDL_PumpEvents();
     }
-
     return events;
 }
+
 */
 
 list<SystemEvent>

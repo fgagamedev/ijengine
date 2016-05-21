@@ -114,6 +114,12 @@ namespace ijengine
             auto events = kernel->pending_system_events(now);
             auto game_events = translate<SystemEvent>(events, translators);
 
+            auto keyboard_events = kernel->pending_keyboard_events(now);
+            game_events.merge(translate<KeyboardEvent>(keyboard_events,
+                translators));
+
+if (game_events.size() > 0)
+printf("%lu events found\n", game_events.size());
 /*
             list<game_event_t> game_events;
 
@@ -126,8 +132,18 @@ namespace ijengine
                     break;
             }
 */
+            game_events.sort();
+
             for (auto event : game_events)
             {
+printf("Event %u found on %u\n", event.id(), event.timestamp());
+
+try {
+    string value = event.get_property<string>("direction");
+    printf("prop: [%s] = [%s]\n", "direction", value.c_str());
+} catch (Exception e)
+{
+}
                 for (auto listener : listeners)
                     if (listener->on_event(event))
                         break;

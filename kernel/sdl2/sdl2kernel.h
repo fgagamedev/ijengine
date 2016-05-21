@@ -5,8 +5,10 @@
 #include "kernel.h"
 
 #include <SDL2/SDL.h>
+#include <map>
 
 using namespace ijengine;
+using std::map;
 
 class SDL2Kernel : public Kernel {
 public:
@@ -20,7 +22,7 @@ public:
     void stop_audio();
 
     list<SystemEvent> pending_system_events(unsigned now);
-//    list<event_t> pending_events(unsigned now);
+    list<KeyboardEvent> pending_keyboard_events(unsigned now);
 
     unsigned time_elapsed();
     void pause_timer();
@@ -32,7 +34,9 @@ private:
     Time *m_timer;
     unsigned m_last_update;
     list<SDL_Event> m_events;
+    map<unsigned, KeyboardEvent::Key> m_key_table;
 
+    void init_table();
     void update_pending_events(unsigned now);
 };
 

@@ -4,11 +4,20 @@
 #include <ijengine/game.h>
 #include <ijengine/engine.h>
 #include <ijengine/system_event.h>
+#include <ijengine/keyboard_event.h>
 #include <ijengine/events_translator.h>
 
 #include "test_level_factory.h"
 
 using namespace ijengine;
+
+namespace ijengine
+{
+    namespace game_event
+    {
+        const unsigned MOVEMENT = GameEvent::assign_id();
+    }
+}
 
 class TestGame {
 public:
@@ -38,7 +47,36 @@ private:
         }
 
         virtual bool
-        translate(GameEvent& to, const KeyboardEvent& from) { return false; }
+        translate(GameEvent& to, const KeyboardEvent& from)
+        {
+            to.set_timestamp(from.timestamp());
+
+            bool done = true;
+            int id = 0;
+
+            switch (from.key()) {
+            case KeyboardEvent::ESCAPE:
+                id = game_event::QUIT;
+                break;
+    
+            case KeyboardEvent::UP:
+                id = game_event::MOVEMENT;
+                to.set_property<string>("direction", "up");
+                break;
+
+            case KeyboardEvent::DOWN:
+                id = game_event::MOVEMENT;
+                to.set_property<string>("direction", "down");
+                break;
+
+            default:
+                done = false;
+            }
+
+            to.set_id(id);
+
+            return done;
+        }
     };
 
     Game m_game;

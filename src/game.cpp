@@ -43,6 +43,7 @@ namespace ijengine {
         while (m_state != QUIT)
         {
             unsigned now = time::time_elapsed();
+
             event::dispatch_pending_events(now);
 
             current_level->update(now, last);
