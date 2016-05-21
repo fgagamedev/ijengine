@@ -36,6 +36,7 @@ namespace ijengine {
         {
             obj->set_parent(nullptr);
             m_children.erase(remove(m_children.begin(), m_children.end(), obj));
+            update_priorities();
         }
     }
 

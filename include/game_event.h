@@ -3,7 +3,6 @@
 
 #include "event.h"
 #include "exception.h"
-#include "game_events_listener.h"
 
 #include <map>
 #include <string>
@@ -17,15 +16,12 @@ using std::ostringstream;
 
 namespace ijengine
 {
-    #define GAME_EVENT_QUIT     0x01
-    #define GAME_EVENT_PAUSE    0x02
-
     class GameEvent : public Event
     {
     public:
-        GameEvent(unsigned type, unsigned timestamp = 0);
+        GameEvent(unsigned i = 0, unsigned ts = 0) : Event(ts), m_id(i) {}
 
-        unsigned type() const;
+        unsigned id() const { return m_id; }
 
         template<typename T>
         void set_property(const string& property, const T& value)
@@ -50,15 +46,30 @@ namespace ijengine
             return value;
         }
 
-        string serialize() const;
-        static GameEvent deserialize(const string& data, unsigned timestamp);
+        void set_id(int i) { m_id = i; }
+
+        static unsigned assign_id()
+        {
+            static unsigned next = 1;
+
+            return next++;
+        }
+
+        bool operator<(const GameEvent& e) const
+        {
+            return timestamp() < e.timestamp();
+        }
 
     private:
-        unsigned m_type;
+        unsigned m_id;
         map<string, string> m_properties;
     };
 
-    using game_event_t = pair<unsigned, string>;
+    namespace game_event
+    {
+        extern const unsigned QUIT;
+        extern const unsigned PAUSE;
+    }
 }
 
 #endif

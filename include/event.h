@@ -15,15 +15,11 @@ namespace ijengine {
         virtual ~Event() = default;
 
         unsigned timestamp() const { return m_timestamp; }
-        virtual string serialize() const = 0;
-
         void set_timestamp(unsigned t) { m_timestamp = t; }
 
     private:
         unsigned m_timestamp;
     };
-
-    using event_t = pair<unsigned, string>;
 }
 
 #endif

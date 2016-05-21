@@ -5,9 +5,11 @@
 #include "engine.h"
 #include "texture.h"
 #include "rectangle.h"
+#include "templates.h"
 #include "exception.h"
 #include "collidable.h"
 #include "game_event.h"
+#include "system_event.h"
 #include "level_factory.h"
 #include "events_translator.h"
 #include "game_events_listener.h"
@@ -103,17 +105,16 @@ namespace ijengine
 
     namespace event
     {
-        static list<const EventsTranslator *> translators;
+        static list<EventsTranslator *> translators;
         static list<GameEventsListener *> listeners;
 
         void
         dispatch_pending_events(unsigned now)
         {
-            auto events = kernel->pending_events(now);
+            auto events = kernel->pending_system_events(now);
+            auto game_events = translate<SystemEvent>(events, translators);
 
-            if (events.empty())
-                return;
-
+/*
             list<game_event_t> game_events;
 
             for (auto translator : translators)
@@ -124,26 +125,23 @@ namespace ijengine
                 if (events.empty())
                     break;
             }
-
+*/
             for (auto event : game_events)
             {
-                GameEvent game_event = GameEvent::deserialize(event.second,
-                    event.first);
-
                 for (auto listener : listeners)
-                    if (listener->on_event(game_event))
+                    if (listener->on_event(event))
                         break;
             }
         }
 
         void
-        register_translator(const EventsTranslator *translator)
+        register_translator(EventsTranslator *translator)
         {
             if (translator) translators.push_back(translator);
         }
 
         void
-        unregister_translator(const EventsTranslator *translator)
+        unregister_translator(EventsTranslator *translator)
         {
             if (translator) translators.remove(translator);
         }

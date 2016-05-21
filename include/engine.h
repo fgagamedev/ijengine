@@ -41,8 +41,8 @@ namespace ijengine {
 
     namespace event {
         void dispatch_pending_events(unsigned now);
-        void register_translator(const EventsTranslator *translator);
-        void unregister_translator(const EventsTranslator *translator);
+        void register_translator(EventsTranslator *translator);
+        void unregister_translator(EventsTranslator *translator);
         void register_listener(GameEventsListener *listener);
         void unregister_listener(GameEventsListener *listener);
     }

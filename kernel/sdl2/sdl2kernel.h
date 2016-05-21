@@ -1,8 +1,10 @@
 #ifndef IJENGINE_SDL2_KERNEL_H
 #define IJENGINE_SDL2_KERNEL_H
 
-#include "kernel.h"
 #include "time.h"
+#include "kernel.h"
+
+#include <SDL2/SDL.h>
 
 using namespace ijengine;
 
@@ -17,7 +19,8 @@ public:
     void play_audio_from_path(const string& title);
     void stop_audio();
 
-    list<event_t> pending_events(unsigned now);
+    list<SystemEvent> pending_system_events(unsigned now);
+//    list<event_t> pending_events(unsigned now);
 
     unsigned time_elapsed();
     void pause_timer();
@@ -25,8 +28,12 @@ public:
 
     Texture * load_texture(const Canvas* canvas, const string& filepath);
 
-protected:
+private:
     Time *m_timer;
+    unsigned m_last_update;
+    list<SDL_Event> m_events;
+
+    void update_pending_events(unsigned now);
 };
 
 #endif

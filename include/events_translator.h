@@ -1,7 +1,6 @@
 #ifndef IJENGINE_EVENTS_TRANSLATOR_H
 #define IJENGINE_EVENTS_TRANSLATOR_H
 
-#include "event.h"
 #include "game_event.h"
 
 #include <map>
@@ -16,15 +15,18 @@ using std::string;
 
 namespace ijengine
 {
+    class MouseEvent;
+    class SystemEvent;
+    class KeyboardEvent;
+
     class EventsTranslator
     {
     public:
-        list<game_event_t> translate(list<event_t>& events) const;
+        virtual ~EventsTranslator() = default;
 
-        void add_translation(const Event& event, const GameEvent& gevent);
-
-    private:
-        map<string, string> m_translations;
+        virtual bool translate(GameEvent& to, const MouseEvent& from) = 0;
+        virtual bool translate(GameEvent& to, const SystemEvent& from) = 0;
+        virtual bool translate(GameEvent& to, const KeyboardEvent& from) = 0;
     };
 }
 

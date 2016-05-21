@@ -27,6 +27,7 @@ SDL2Kernel::SDL2Kernel()
     if (rc)
         throw Exception("Error on SDL2Kernel()");
     m_timer = new SDL2Time();
+    m_last_update = 0;
 }
 
 SDL2Kernel::~SDL2Kernel()
@@ -220,19 +221,16 @@ SDL2Kernel::stop_audio()
     Mix_HaltMusic();
 }
 
-list<event_t>
-SDL2Kernel::pending_events(unsigned now)
+void
+SDL2Kernel::update_pending_events(unsigned now)
 {
-    if (not was_init)
-    {
-        init_table();
-        was_init = true;
-    }
+    if (m_last_update == now)
+        return;
+
+    m_events.clear();
+    SDL_PumpEvents();
 
     SDL_Event event;
-    list<event_t> events;
-
-    SDL_PumpEvents();
 
     while (SDL_PeepEvents(&event, 1, SDL_PEEKEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT) > 0)
     {
@@ -242,7 +240,24 @@ SDL2Kernel::pending_events(unsigned now)
             break;
 
         SDL_PollEvent(&event);
+        m_events.push_back(event);
 
+        SDL_PumpEvents();
+    }
+
+    m_last_update = now;
+}
+
+/*
+    if (not was_init)
+    {
+        init_table();
+        was_init = true;
+    }
+
+
+        SDL_PollEvent(&event);
+        i
         switch (event.type) {
             case SDL_QUIT:
                 {
@@ -318,6 +333,30 @@ SDL2Kernel::pending_events(unsigned now)
         }
 
         SDL_PumpEvents();
+    }
+
+    return events;
+}
+*/
+
+list<SystemEvent>
+SDL2Kernel::pending_system_events(unsigned now)
+{
+    update_pending_events(now);
+    auto it = m_events.begin();
+
+    list<SystemEvent> events;
+
+    while (it != m_events.end())
+    {
+        if (it->type == SDL_QUIT)
+        {
+            unsigned timestamp = it->quit.timestamp;
+            auto event = SystemEvent(timestamp, SystemEvent::Action::QUIT);
+            events.push_back(event);
+            it = m_events.erase(it);
+        } else
+            ++it;
     }
 
     return events;
