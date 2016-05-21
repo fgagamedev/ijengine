@@ -118,20 +118,13 @@ namespace ijengine
             game_events.merge(translate<KeyboardEvent>(keyboard_events,
                 translators));
 
+            auto mouse_events = kernel->pending_mouse_events(now);
+            game_events.merge(translate<MouseEvent>(mouse_events,
+                translators));
+
 if (game_events.size() > 0)
 printf("%lu events found\n", game_events.size());
-/*
-            list<game_event_t> game_events;
 
-            for (auto translator : translators)
-            {
-                auto more = translator->translate(events);
-                game_events.merge(more);
-
-                if (events.empty())
-                    break;
-            }
-*/
             game_events.sort();
 
             for (auto event : game_events)
@@ -144,6 +137,14 @@ try {
 } catch (Exception e)
 {
 }
+try {
+    auto x = event.get_property<double>("x");
+    auto y = event.get_property<double>("y");
+    printf("prop: [%s] = (%.2f, %2.f)\n", "position", x, y);
+} catch (Exception e)
+{
+}
+ 
                 for (auto listener : listeners)
                     if (listener->on_event(event))
                         break;

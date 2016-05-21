@@ -21,6 +21,7 @@ public:
     void play_audio_from_path(const string& title);
     void stop_audio();
 
+    list<MouseEvent> pending_mouse_events(unsigned now);
     list<SystemEvent> pending_system_events(unsigned now);
     list<KeyboardEvent> pending_keyboard_events(unsigned now);
 

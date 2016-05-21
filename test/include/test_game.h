@@ -3,6 +3,7 @@
 
 #include <ijengine/game.h>
 #include <ijengine/engine.h>
+#include <ijengine/mouse_event.h>
 #include <ijengine/system_event.h>
 #include <ijengine/keyboard_event.h>
 #include <ijengine/events_translator.h>
@@ -16,6 +17,8 @@ namespace ijengine
     namespace game_event
     {
         const unsigned MOVEMENT = GameEvent::assign_id();
+        const unsigned MOTION = GameEvent::assign_id();
+        const unsigned CLICK = GameEvent::assign_id();
     }
 }
 
@@ -30,7 +33,19 @@ private:
     class Translator : public EventsTranslator
     {
         bool
-        translate(GameEvent& to, const MouseEvent& from) { return false; }
+        translate(GameEvent& to, const MouseEvent& from)
+        {
+            to.set_timestamp(from.timestamp());
+            to.set_property<double>("x", from.x());
+            to.set_property<double>("y", from.y());
+
+            if (from.state() == MouseEvent::MOTION)
+                to.set_id(game_event::MOTION);
+            else
+                to.set_id(game_event::CLICK);
+
+            return true;
+        }
 
         bool
         translate(GameEvent& to, const SystemEvent& from)
