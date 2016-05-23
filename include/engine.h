@@ -11,6 +11,7 @@ using std::shared_ptr;
 namespace ijengine {
     
     class Lib;
+    class Font;
     class Level;
     class Window;
     class Canvas;
@@ -62,8 +63,12 @@ namespace ijengine {
 
     namespace resources {
         void set_textures_dir(const string& dir_path);
+        void set_fonts_dir(const string& dir_path);
         void set_canvas(Canvas *canvas);
+
         shared_ptr<Texture> get_texture(const string& name);
+        shared_ptr<Font> get_font(const string& name, unsigned size);
+
         void release_all();
     }
 

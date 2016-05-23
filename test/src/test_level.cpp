@@ -2,6 +2,7 @@
 #include "random_rect.h"
 
 #include <ijengine/canvas.h>
+#include <ijengine/engine.h>
 
 using namespace std;
 using namespace ijengine;
@@ -45,5 +46,9 @@ TestLevel::update_self(unsigned now, unsigned)
 void
 TestLevel::draw_self(Canvas *canvas, unsigned, unsigned)
 {
+    auto font = resources::get_font("Forelle.ttf", 60);
+    canvas->set_font(font);
+
     canvas->clear();
+    canvas->draw("Teste de fonte", 300, 200);
 }

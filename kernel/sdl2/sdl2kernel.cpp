@@ -1,5 +1,6 @@
 #include "sdl2kernel.h"
 #include "sdl2window.h"
+#include "sdl2font.h"
 #include "sdl2time.h"
 #include "sdl2texture.h"
 #include "sdl2canvas.h"
@@ -12,6 +13,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL_ttf.h>
 
 using namespace ijengine;
 
@@ -23,7 +25,12 @@ SDL2Kernel::SDL2Kernel()
     int rc = SDL_Init(SDL_INIT_VIDEO);
 
     if (rc)
-        throw Exception("Error on SDL2Kernel()");
+        throw Exception("Error on SDL2 initialization");
+
+    rc = TTF_Init();
+
+    if (rc)
+        throw Exception("Error on SDL2_ttf initialization");
 
     m_timer = new SDL2Time();
     m_last_update = 0;
@@ -33,6 +40,9 @@ SDL2Kernel::SDL2Kernel()
 
 SDL2Kernel::~SDL2Kernel()
 {
+    if (TTF_WasInit())
+        TTF_Quit();
+
     if (SDL_WasInit(SDL_INIT_VIDEO))
         SDL_Quit();
 }
@@ -379,6 +389,10 @@ SDL2Kernel::load_texture(const Canvas* c, const string& filepath)
     SDL_Renderer *renderer = canvas->renderer();
 
     SDL_Texture *texture = IMG_LoadTexture(renderer, filepath.c_str());
+
+    if (not texture)
+        throw Exception(SDL_GetError());
+
     int w, h;
 
     int rc = SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
@@ -390,3 +404,14 @@ SDL2Kernel::load_texture(const Canvas* c, const string& filepath)
     return t;
 }
 
+Font *
+SDL2Kernel::load_font(const string& filepath, unsigned size)
+{
+    TTF_Font *font = TTF_OpenFont(filepath.c_str(), size);
+
+    if (not font)
+        throw Exception(TTF_GetError());
+
+    SDL2Font *f = new SDL2Font(filepath, size, font);
+    return f;
+}

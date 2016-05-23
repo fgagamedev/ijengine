@@ -14,6 +14,7 @@ using std::string;
 
 namespace ijengine {
 
+    class Font;
     class Event;
     class Window;
     class Canvas;
@@ -38,6 +39,7 @@ namespace ijengine {
         virtual void resume_timer() = 0;
 
         virtual Texture * load_texture(const Canvas* canvas, const string& filepath) = 0;
+        virtual Font * load_font(const string& filepath, unsigned size) = 0;
     };
 }
 

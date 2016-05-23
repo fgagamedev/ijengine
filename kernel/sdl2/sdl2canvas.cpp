@@ -1,4 +1,5 @@
 #include "color.h"
+#include "sdl2font.h"
 #include "sdl2canvas.h"
 #include "sdl2texture.h"
 #include <SDL2/SDL_image.h>
@@ -7,7 +8,7 @@ using namespace ijengine;
 
 SDL2Canvas::SDL2Canvas(SDL_Renderer *r, int width, int height)
     : m_renderer(r), m_w(width), m_h(height), m_draw_color(Color::WHITE),
-    m_clear_color(Color::BLACK)
+    m_clear_color(Color::BLACK), m_font(nullptr)
 {
     SDL_SetRenderDrawColor(m_renderer, m_draw_color.r(), m_draw_color.g(),
         m_draw_color.b(), m_draw_color.a());
@@ -79,4 +80,30 @@ void
 SDL2Canvas::draw(const Line& line)
 {
     SDL_RenderDrawLine(m_renderer, line.x1(), line.y1(), line.x2(), line.y2());
+}
+
+void
+SDL2Canvas::draw(const string& text, int x, int y)
+{
+    if (not m_font)
+        return;
+
+    SDL2Font *font = dynamic_cast<SDL2Font *>(m_font.get());
+    SDL_Color color { m_draw_color.r(), m_draw_color.g(), m_draw_color.b(), m_draw_color.a() };
+    SDL_Surface *surface = TTF_RenderUTF8_Blended(font->font(), text.c_str(), color);
+
+    if (not surface)
+        return;
+
+    SDL_Texture *texture = SDL_CreateTextureFromSurface(m_renderer, surface);
+    int tw = surface->w;
+    int th = surface->h;
+    SDL_FreeSurface(surface);
+
+    if (not texture)
+        return;
+
+    SDL_Rect dest { x, y, tw, th };
+    SDL_RenderCopy(m_renderer, texture, nullptr, &dest);
+    SDL_DestroyTexture(texture);
 }

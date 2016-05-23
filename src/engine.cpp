@@ -1,5 +1,6 @@
 #include "os.h"
 #include "lib.h"
+#include "font.h"
 #include "event.h"
 #include "kernel.h"
 #include "engine.h"
@@ -226,8 +227,13 @@ try {
     }
 
     namespace resources {
+
         static string textures_dir_path { "." };
+        static string fonts_dir_path { "." };
+
         static map<string, shared_ptr<Texture> > textures;
+        static map<pair<string, unsigned>, shared_ptr<Font> > fonts;
+
         static Canvas *canvas = nullptr;
 
         void
@@ -237,9 +243,35 @@ try {
         }
 
         void
+        set_fonts_dir(const string& dir_path)
+        {
+            fonts_dir_path = dir_path;
+        }
+
+        void
         set_canvas(Canvas *c)
         {
             canvas = c;
+        }
+
+        shared_ptr<Font>
+        get_font(const string& name, unsigned size)
+        {
+            auto p = make_pair(name, size);
+            auto it = fonts.find(p);
+
+            if (it != fonts.end())
+                return it->second;
+
+            string filepath = fonts_dir_path + "/" + name;
+            Font *font = kernel->load_font(filepath, size);
+
+            if (not font)
+                throw Exception("Can't load font " + filepath);
+
+            fonts[p] = shared_ptr<Font>(font);
+
+            return fonts[p];
         }
 
         shared_ptr<Texture>
@@ -268,6 +300,7 @@ try {
         release_all()
         {
             textures.clear();
+            fonts.clear();
         }
     }
 
