@@ -310,7 +310,6 @@ try {
         static Mode collisions_mode = ALL_TO_ALL;
 
         Rectangle collision(Collidable *a, Collidable *b);
-        void set_colision_mode(Mode mode, Collidable *c);
 
         void
         register_object(Collidable *c)
@@ -403,7 +402,7 @@ try {
         }
 
         void
-        set_colision_mode(Mode mode, Collidable *c)
+        set_collision_mode(Mode mode, Collidable *c)
         {
             collisions_mode = mode;
 
