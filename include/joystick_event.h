@@ -13,7 +13,7 @@ namespace ijengine {
 
     class JoystickEvent : public Event {
     public:
-        typedef enum {PRESSED, RELEASED} State;
+        typedef enum {BUTTON_PRESSED, BUTTON_RELEASED, AXIS_MOTION} State;
 
         typedef
         enum {
@@ -28,21 +28,12 @@ namespace ijengine {
 	    TRIGGERLEFT, TRIGGERRIGHT, AXIS_MAX
 	     } Axis;
 
-        JoystickEvent(unsigned t, State s, Button b) :
-            Event(t), m_state(s), m_button(b) {}
+        JoystickEvent(unsigned t, State s, Button b, Axis a) :
+            Event(t), m_state(s), m_button(b), m_axis(a) {}
 
         State state() const { return m_state; }
         Button button() const { return m_button; }
 	Axis axis() const { return m_axis; }
-
-        string serialize() const 
-        {
-            ostringstream os;
-            os << JOYSTICK_EVENT_ID << "," << (int) m_state << ","
-                << (int) m_button;
-
-            return os.str();
-        }
 
     private:
         State m_state;
