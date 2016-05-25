@@ -24,6 +24,7 @@ public:
     list<MouseEvent> pending_mouse_events(unsigned now);
     list<SystemEvent> pending_system_events(unsigned now);
     list<KeyboardEvent> pending_keyboard_events(unsigned now);
+    list<JoystickEvent> pending_joystick_events(unsigned now);
 
     unsigned time_elapsed();
     void pause_timer();
@@ -37,6 +38,8 @@ private:
     unsigned m_last_update;
     list<SDL_Event> m_events;
     map<unsigned, KeyboardEvent::Key> m_key_table;
+    map<unsigned, JoystickEvent::Button> m_button_table;
+    map<unsigned, JoystickEvent::Axis> m_axis_table;
 
     void init_table();
     void update_pending_events(unsigned now);

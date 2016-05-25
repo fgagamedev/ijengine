@@ -5,6 +5,7 @@
 #include "mouse_event.h"
 #include "system_event.h"
 #include "keyboard_event.h"
+#include "joystick_event.h"
 
 #include <string>
 #include <list>
@@ -30,9 +31,10 @@ namespace ijengine {
         virtual void play_audio_from_path(const string& title) = 0;
         virtual void stop_audio() = 0;
 
-        virtual list<MouseEvent> pending_mouse_events(unsigned now) = 0;
-        virtual list<SystemEvent> pending_system_events(unsigned now) = 0;
-        virtual list<KeyboardEvent> pending_keyboard_events(unsigned now) = 0;
+	virtual list<MouseEvent> pending_mouse_events(unsigned now) = 0;
+	virtual list<SystemEvent> pending_system_events(unsigned now) = 0;
+	virtual list<KeyboardEvent> pending_keyboard_events(unsigned now) = 0;
+	virtual list<JoystickEvent> pending_joystick_events(unsigned now) = 0;
 
         virtual unsigned time_elapsed() = 0;
         virtual void pause_timer() = 0;

@@ -8,6 +8,7 @@
 #include "event.h"
 #include "system_event.h"
 #include "keyboard_event.h"
+#include "joystick_event.h"
 #include "mouse_event.h"
 
 #include <SDL2/SDL.h>
@@ -179,6 +180,42 @@ SDL2Kernel::init_table()
     m_key_table[SDLK_F10] = KeyboardEvent::F10;
     m_key_table[SDLK_F11] = KeyboardEvent::F11;
     m_key_table[SDLK_F12] = KeyboardEvent::F12;
+
+    m_button_table[SDL_CONTROLLER_BUTTON_INVALID] = JoystickEvent::BUTTON_INVALID;
+
+    m_button_table[SDL_CONTROLLER_BUTTON_A] = JoystickEvent::A;
+    m_button_table[SDL_CONTROLLER_BUTTON_B] = JoystickEvent::B;
+    m_button_table[SDL_CONTROLLER_BUTTON_X] = JoystickEvent::X;
+    m_button_table[SDL_CONTROLLER_BUTTON_Y] = JoystickEvent::Y;
+
+    m_button_table[SDL_CONTROLLER_BUTTON_BACK] = JoystickEvent::BACK;
+    m_button_table[SDL_CONTROLLER_BUTTON_GUIDE] = JoystickEvent::GUIDE;
+    m_button_table[SDL_CONTROLLER_BUTTON_START] = JoystickEvent::START;
+
+    m_button_table[SDL_CONTROLLER_BUTTON_LEFTSTICK] = JoystickEvent::LEFTSTICK;
+    m_button_table[SDL_CONTROLLER_BUTTON_RIGHTSTICK] = JoystickEvent::RIGHTSTICK;
+
+    m_button_table[SDL_CONTROLLER_BUTTON_LEFTSHOULDER] = JoystickEvent::LEFTSHOULDER;
+    m_button_table[SDL_CONTROLLER_BUTTON_RIGHTSHOULDER] = JoystickEvent::RIGHTSHOULDER;
+
+    m_button_table[SDL_CONTROLLER_BUTTON_DPAD_UP] = JoystickEvent::DPAD_UP;
+    m_button_table[SDL_CONTROLLER_BUTTON_DPAD_DOWN] = JoystickEvent::DPAD_DOWN;
+    m_button_table[SDL_CONTROLLER_BUTTON_DPAD_LEFT] = JoystickEvent::DPAD_LEFT;
+    m_button_table[SDL_CONTROLLER_BUTTON_DPAD_RIGHT] = JoystickEvent::DPAD_RIGHT;
+
+    m_button_table[SDL_CONTROLLER_BUTTON_MAX] = JoystickEvent::BUTTON_MAX;
+
+    m_axis_table[SDL_CONTROLLER_AXIS_INVALID] = JoystickEvent::AXIS_INVALID;
+
+    m_axis_table[SDL_CONTROLLER_AXIS_LEFTX] = JoystickEvent::LEFTX;
+    m_axis_table[SDL_CONTROLLER_AXIS_LEFTY] = JoystickEvent::LEFTY;
+    m_axis_table[SDL_CONTROLLER_AXIS_RIGHTX] = JoystickEvent::RIGHTX;
+    m_axis_table[SDL_CONTROLLER_AXIS_RIGHTY] = JoystickEvent::RIGHTY;
+
+    m_axis_table[SDL_CONTROLLER_AXIS_TRIGGERLEFT] = JoystickEvent::TRIGGERLEFT;
+    m_axis_table[SDL_CONTROLLER_AXIS_TRIGGERRIGHT] = JoystickEvent::TRIGGERRIGHT;
+
+    m_axis_table[SDL_CONTROLLER_AXIS_MAX] = JoystickEvent::AXIS_MAX;
 }
 
 MouseEvent::State
@@ -258,9 +295,43 @@ SDL2Kernel::update_pending_events(unsigned now)
     m_last_update = now;
 }
 
-list<KeyboardEvent>
-SDL2Kernel::pending_keyboard_events(unsigned now)
+list<JoystickEvent>
+SDL2Kernel::pending_joystick_events(unsigned now)
 {
+    update_pending_events(now);
+    auto it = m_events.begin();
+
+    list<JoystickEvent> events;
+
+    while (it != m_events.end())
+    {
+        unsigned timestamp = it->quit.timestamp;
+
+        if (it->type == SDL_JOYBUTTONDOWN)
+        {
+            auto event = JoystickEvent(timestamp,
+                JoystickEvent::State::PRESSED,
+                m_button_table[it->jbutton.button]);
+
+                events.push_back(event);
+                it = m_events.erase(it);
+        } else if (it->type == SDL_JOYBUTTONUP)
+        {
+            auto event = JoystickEvent(timestamp,
+                JoystickEvent::State::RELEASED,
+                m_button_table[it->jbutton.button]);
+
+            events.push_back(event);
+            it = m_events.erase(it);
+        } else
+            ++it;
+    }
+
+    return events;
+}
+
+list<KeyboardEvent>
+SDL2Kernel::pending_keyboard_events(unsigned now) {
     update_pending_events(now);
     auto it = m_events.begin();
 
@@ -292,7 +363,7 @@ SDL2Kernel::pending_keyboard_events(unsigned now)
     }
  
     return events;
-}
+} 
 
 list<MouseEvent>
 SDL2Kernel::pending_mouse_events(unsigned now)
