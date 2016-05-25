@@ -18,6 +18,7 @@ namespace ijengine
     class MouseEvent;
     class SystemEvent;
     class KeyboardEvent;
+    class JoystickEvent;
 
     class EventsTranslator
     {
@@ -27,6 +28,7 @@ namespace ijengine
         virtual bool translate(GameEvent& to, const MouseEvent& from) = 0;
         virtual bool translate(GameEvent& to, const SystemEvent& from) = 0;
         virtual bool translate(GameEvent& to, const KeyboardEvent& from) = 0;
+        virtual bool translate(GameEvent& to, const JoystickEvent& from) = 0;
     };
 }
 
