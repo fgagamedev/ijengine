@@ -32,6 +32,13 @@ public:
 private:
     class Translator : public EventsTranslator
     {
+
+        bool
+        translate(GameEvent&, const JoystickEvent&)
+        {
+            return false;
+        }
+
         bool
         translate(GameEvent& to, const MouseEvent& from)
         {

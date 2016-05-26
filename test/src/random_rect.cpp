@@ -25,6 +25,6 @@ RandomRect::draw_self(Canvas *canvas, unsigned, unsigned)
 }
 
 void
-RandomRect::draw_self_after(Canvas *c, unsigned, unsigned)
+RandomRect::draw_self_after(Canvas *, unsigned, unsigned)
 {
 }

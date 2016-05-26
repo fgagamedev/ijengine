@@ -217,7 +217,7 @@ SDL2Kernel::init_table()
 
     m_axis_table[SDL_CONTROLLER_AXIS_MAX] = JoystickEvent::AXIS_MAX;
 }
-Event
+
 MouseEvent::State
 button_state(int button_mask, int button_id)
 {
@@ -313,7 +313,7 @@ SDL2Kernel::pending_joystick_events(unsigned now)
             auto event = JoystickEvent(timestamp,
                 JoystickEvent::State::BUTTON_PRESSED,
                 m_button_table[it->jbutton.button],
-                NULL);
+                JoystickEvent::Axis::AXIS_INVALID);
 
                 events.push_back(event);
                 it = m_events.erase(it);
@@ -322,7 +322,7 @@ SDL2Kernel::pending_joystick_events(unsigned now)
             auto event = JoystickEvent(timestamp,
                 JoystickEvent::State::BUTTON_RELEASED,
                 m_button_table[it->jbutton.button],
-                NULL);
+                JoystickEvent::Axis::AXIS_INVALID);
 
             events.push_back(event);
             it = m_events.erase(it);
@@ -330,7 +330,7 @@ SDL2Kernel::pending_joystick_events(unsigned now)
         {
             auto event = JoystickEvent(timestamp,
                 JoystickEvent::State::AXIS_MOTION,
-                NULL,
+                JoystickEvent::Button::BUTTON_INVALID,
                 m_axis_table[it->jaxis.axis]);
 
             events.push_back(event);

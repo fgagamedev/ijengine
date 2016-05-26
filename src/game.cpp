@@ -77,7 +77,6 @@ namespace ijengine {
     {
         if (event.id() == game_event::QUIT)
         {
-printf("Quitting...\n");
             m_state = QUIT;
             return true;
         }
