@@ -23,3 +23,8 @@ RandomRect::draw_self(Canvas *canvas, unsigned, unsigned)
     canvas->set_draw_color(Color(m_r, m_g, m_b));
     canvas->draw(m_rectangle);
 }
+
+void
+RandomRect::draw_self_after(Canvas *c, unsigned, unsigned)
+{
+}

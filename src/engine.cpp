@@ -123,29 +123,29 @@ namespace ijengine
             game_events.merge(translate<MouseEvent>(mouse_events,
                 translators));
 
-if (game_events.size() > 0)
-printf("%lu events found\n", game_events.size());
+// if (game_events.size() > 0) { }
+// printf("%lu events found\n", game_events.size());
 
             game_events.sort();
 
             for (auto event : game_events)
             {
-printf("Event %u found on %u\n", event.id(), event.timestamp());
+                // printf("Event %u found on %u\n", event.id(), event.timestamp());
 
-try {
-    string value = event.get_property<string>("direction");
-    printf("prop: [%s] = [%s]\n", "direction", value.c_str());
-} catch (Exception e)
-{
-}
-try {
-    auto x = event.get_property<double>("x");
-    auto y = event.get_property<double>("y");
-    printf("prop: [%s] = (%.2f, %2.f)\n", "position", x, y);
-} catch (Exception e)
-{
-}
- 
+                try {
+                    string value = event.get_property<string>("direction");
+                    // printf("prop: [%s] = [%s]\n", "direction", value.c_str());
+                } catch (Exception e)
+                {
+                }
+                try {
+                    auto x = event.get_property<double>("x");
+                    auto y = event.get_property<double>("y");
+                    // printf("prop: [%s] = (%.2f, %2.f)\n", "position", x, y);
+                } catch (Exception e)
+                {
+                }
+
                 for (auto listener : listeners)
                     if (listener->on_event(event))
                         break;

@@ -13,6 +13,7 @@ public:
 protected:
     void update_self(unsigned now, unsigned last);
     void draw_self(Canvas *canvas, unsigned now, unsigned last);
+    void draw_self_after(Canvas *canvas, unsigned now, unsigned last);
 
 private:
     int m_r, m_g, m_b;

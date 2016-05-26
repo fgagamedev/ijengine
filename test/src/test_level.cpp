@@ -12,7 +12,7 @@ TestLevel::TestLevel(int r, int g, int b, const string& next_level, const string
 {
     RandomRect *rect = new RandomRect(r, g, b, 200, 200);
 
-    add_child(rect); 
+    add_child(rect);
 }
 
 bool
@@ -51,4 +51,9 @@ TestLevel::draw_self(Canvas *canvas, unsigned, unsigned)
 
     canvas->clear();
     canvas->draw("Teste de fonte", 300, 200);
+}
+
+void
+TestLevel::draw_self_after(Canvas *, unsigned, unsigned)
+{
 }

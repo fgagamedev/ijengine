@@ -201,8 +201,9 @@ SDL2Kernel::play_audio_from_path(const string& path)
 {
     if(Mix_PlayingMusic() == 0)
     {
-        if(path.empty())
-            printf("Empty audio path\n");
+        if(path.empty()) {
+        }
+            // printf("Empty audio path\n");
 
         int init_audio = Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
@@ -216,8 +217,8 @@ SDL2Kernel::play_audio_from_path(const string& path)
         audio = Mix_LoadMUS(audio_path.c_str());
 
         if(not audio){
-            printf("Failed to load audio\n");
-            printf("error: %s\n", Mix_GetError());
+            // printf("Failed to load audio\n");
+            // printf("error: %s\n", Mix_GetError());
         }
 
         Mix_PlayMusic(audio, -1);
