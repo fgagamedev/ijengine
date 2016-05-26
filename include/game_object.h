@@ -44,7 +44,7 @@ namespace ijengine {
 
         virtual void update_self(unsigned now, unsigned last) = 0;
         virtual void draw_self(Canvas *canvas, unsigned now, unsigned last) = 0;
-        virtual void draw_self_after(Canvas *canvas, unsigned now, unsigned last) = 0;
+        virtual void draw_self_after(Canvas *, unsigned, unsigned) {}
 
         void update_priorities();
     };
