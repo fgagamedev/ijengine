@@ -89,5 +89,7 @@ namespace ijengine {
 
         for (auto child : m_children)
             child->draw(canvas, now, last);
+
+        draw_self_after(canvas, now, last);
     }
-} 
+}
