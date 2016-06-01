@@ -79,7 +79,7 @@ namespace ijengine {
 
         void register_object(Collidable *c);
         void unregister_object(Collidable *c);
-        void do_collisions();
+        void do_collisions(unsigned now, unsigned last);
         void set_collision_mode(Mode mode, Collidable *c = nullptr);
     }
 }
