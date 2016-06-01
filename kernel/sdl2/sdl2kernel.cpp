@@ -498,3 +498,13 @@ SDL2Kernel::load_font(const string& filepath, unsigned size)
     SDL2Font *f = new SDL2Font(filepath, size, font);
     return f;
 }
+
+pair<int, int>
+SDL2Kernel::mouse_position()
+{
+    int x, y;
+    SDL_GetMouseState(&x, &y);
+
+    return pair<int, int>(x, y);
+}
+

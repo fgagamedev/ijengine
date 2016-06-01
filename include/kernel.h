@@ -42,6 +42,8 @@ namespace ijengine {
 
         virtual Texture * load_texture(const Canvas* canvas, const string& filepath) = 0;
         virtual Font * load_font(const string& filepath, unsigned size) = 0;
+
+        virtual pair<int, int> mouse_position() = 0;
     };
 }
 
