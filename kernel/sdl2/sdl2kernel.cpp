@@ -355,19 +355,23 @@ SDL2Kernel::pending_keyboard_events(unsigned now) {
         unsigned timestamp = it->quit.timestamp;
 
         if (it->type == SDL_KEYDOWN) {
+            bool repeated = it->key.repeat != 0;
             auto event = KeyboardEvent(timestamp,
                 KeyboardEvent::State::PRESSED,
                 m_key_table[it->key.keysym.sym],   
-                key_modifier(it->key.keysym.mod));
+                key_modifier(it->key.keysym.mod),
+                repeated);
 
                 events.push_back(event);
                 it = m_events.erase(it);
         } else if (it->type == SDL_KEYUP)
         {
+            bool repeated = it->key.repeat != 0;
             auto event = KeyboardEvent(timestamp,
                 KeyboardEvent::State::RELEASED,
                 m_key_table[it->key.keysym.sym],   
-                key_modifier(it->key.keysym.mod));
+                key_modifier(it->key.keysym.mod),
+                repeated);
 
                 events.push_back(event);
                 it = m_events.erase(it);

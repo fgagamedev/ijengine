@@ -29,12 +29,13 @@ namespace ijengine {
 
         typedef enum {NONE, SHIFT, CONTROL, ALT, CAPS} Modifier;
 
-        KeyboardEvent(unsigned t, State s, Key k, Modifier m) :
-            Event(t), m_state(s), m_key(k), m_modifier(m) {}
+        KeyboardEvent(unsigned t, State s, Key k, Modifier m, bool repeated = false) :
+            Event(t), m_state(s), m_key(k), m_modifier(m), m_repeated(repeated) {}
 
         State state() const { return m_state; }
         Key key() const { return m_key; }
         Modifier modifier() const { return m_modifier; }
+        bool repeated() const { return m_repeated; }
 
         string serialize() const 
         {
@@ -49,6 +50,7 @@ namespace ijengine {
         State m_state;
         Key m_key;
         Modifier m_modifier;
+        bool m_repeated;
     };
 }
 
