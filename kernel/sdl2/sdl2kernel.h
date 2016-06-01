@@ -15,7 +15,7 @@ public:
     SDL2Kernel();
     ~SDL2Kernel();
     
-    Window * create_window(const string& title, int w, int h);
+    Window * create_window(const string& title, int w, int h, double scale);
 
     void set_audio_dir(const string& dir_path);
     void play_audio_from_path(const string& title);

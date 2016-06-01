@@ -32,7 +32,7 @@ namespace ijengine {
     };
     
     namespace video {
-        Window * create_window(const string& title, int w, int h);
+        Window * create_window(const string& title, int w, int h, double scale);
     }
 
     namespace audio {

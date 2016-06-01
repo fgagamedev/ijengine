@@ -12,7 +12,7 @@ namespace ijengine {
 
     class Game : public GameEventsListener {
     public:
-        Game(const string& title, int w = 800, int h = 600);
+        Game(const string& title, int w = 800, int h = 600, double scale = 1.0);
         ~Game();
 
         int run(const string& level_id);
@@ -24,6 +24,7 @@ namespace ijengine {
 
         string m_title;
         int m_w, m_h;
+        double m_scale;
         State m_state;
     };
 

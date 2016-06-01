@@ -49,7 +49,7 @@ SDL2Kernel::~SDL2Kernel()
 }
 
 Window *
-SDL2Kernel::create_window(const string& title, int w, int h)
+SDL2Kernel::create_window(const string& title, int w, int h, double scale)
 {
     SDL_Window *window;
     SDL_Renderer *renderer;
@@ -58,6 +58,7 @@ SDL2Kernel::create_window(const string& title, int w, int h)
         return nullptr;
 
     SDL_SetWindowTitle(window, title.c_str());
+    SDL_RenderSetScale(renderer, scale, scale);
 
     return new SDL2Window(window, renderer);
 }
