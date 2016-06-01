@@ -22,8 +22,7 @@ namespace ijengine
         virtual const Rectangle& bounding_box() const = 0;
         virtual const list<Rectangle>& hit_boxes() const = 0;
 
-        virtual void on_collision(const Collidable *who,
-            const Rectangle& where) = 0;
+        virtual void on_collision(const Collidable *who, const Rectangle& where, const unsigned now, const unsigned last) = 0;
     };
 }
 

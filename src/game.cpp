@@ -51,7 +51,7 @@ namespace ijengine {
 
             audio::play_audio_from_path(current_level->audio());
 
-            physics::do_collisions();
+            physics::do_collisions(now, last);
 
             current_level->draw(canvas, now, last);
             canvas->update();
