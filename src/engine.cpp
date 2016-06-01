@@ -131,6 +131,13 @@ namespace ijengine
                     if (listener->on_event(event))
                         break;
             }
+
+        }
+
+        pair<int, int>
+        mouse_position()
+        {
+            return kernel->mouse_position();
         }
 
         void

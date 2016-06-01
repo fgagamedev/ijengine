@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 
+using std::pair;
 using std::string;
 using std::unique_ptr;
 using std::shared_ptr;
@@ -46,6 +47,7 @@ namespace ijengine {
         void unregister_translator(EventsTranslator *translator);
         void register_listener(GameEventsListener *listener);
         void unregister_listener(GameEventsListener *listener);
+        pair<int, int> mouse_position(); 
     }
 
     namespace time {

@@ -33,6 +33,7 @@ public:
     Texture * load_texture(const Canvas* canvas, const string& filepath);
     Font * load_font(const string& filepath, unsigned size);
 
+    pair<int, int> mouse_position();
 private:
     Time *m_timer;
     unsigned m_last_update;
