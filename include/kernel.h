@@ -25,7 +25,8 @@ namespace ijengine {
     public:
         virtual ~Kernel() {}
         
-        virtual Window * create_window(const string& title, int w, int h) = 0;
+        virtual Window * create_window(const string& title, int w, int h,
+            double scale) = 0;
 
         virtual void set_audio_dir(const string& dir_path) = 0;
         virtual void play_audio_from_path(const string& title) = 0;

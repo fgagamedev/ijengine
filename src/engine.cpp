@@ -77,9 +77,9 @@ namespace ijengine
     namespace video 
     {
         Window *
-        create_window(const string& title, int w, int h)
+        create_window(const string& title, int w, int h, double scale)
         {
-            return kernel->create_window(title, w, h);
+            return kernel->create_window(title, w, h, scale);
         }
     }
 
