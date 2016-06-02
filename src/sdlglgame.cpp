@@ -1,5 +1,6 @@
 #include "sdlglgame.h"
 
+
 using std::make_shared;
 
 namespace ijengine {
@@ -7,6 +8,7 @@ namespace ijengine {
     SDLGLGame::SDLGLGame()
         : m_lib_sdl(new LibSDL2())
     {
+        
         if (m_lib_sdl)
             m_lib_sdl->init();
 
@@ -37,6 +39,15 @@ namespace ijengine {
             m_window->renderer3d()->notifyEndFrame();
              SDL_Delay(300);
         }
-    }
 
+        Transformation transformation;
+        
+        transformation.setTranslation(3.0, 3.0, 3.0);
+        transformation.setRotationX(45);
+        transformation.setRotationY(15);
+        transformation.setRotationZ(45);
+        transformation.setScale(2.0);
+        transformation.setPerspective(3.0, 2.0, 45, 3.0, 2.0);
+
+    }
 }
