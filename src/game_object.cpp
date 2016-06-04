@@ -7,11 +7,13 @@ using std::stable_sort;
 namespace ijengine {
 
     GameObject::GameObject(GameObject *obj, double xpos, double ypos,
-        int p) : m_parent(obj), m_x(xpos), m_y(ypos),
-        m_priority(p)
+        int p) : m_parent(nullptr), m_x(xpos), m_y(ypos),
+        m_priority(p), m_valid(true)
     {
-        if (m_parent)
-            m_parent->update_priorities();
+        if (obj)
+        {
+            obj->add_child(this);
+        }
     }
 
     GameObject::~GameObject()
@@ -23,10 +25,36 @@ namespace ijengine {
     void
     GameObject::add_child(GameObject *obj)
     {
-        if (obj != this)
-            m_children.push_back(obj);
+        if (not obj)
+            return;
 
+        auto p = obj->parent();
+
+        if (p)
+        {
+            if (p != this)
+                p->remove_child(obj);
+            else
+                return;
+        }
+        
+        m_children.push_back(obj);
+        obj->set_parent(this); 
         update_priorities();
+
+printf("%p added to %p\n", (void *) obj, (void *) this);
+
+printf("children:");
+for (auto child : m_children)
+printf(" %p", (void *) child);
+printf("\n");
+    }
+
+    void
+    GameObject::destroy_child(GameObject *obj)
+    {
+        remove_child(obj);
+        delete obj;
     }
 
     void
@@ -37,6 +65,13 @@ namespace ijengine {
             obj->set_parent(nullptr);
             m_children.erase(remove(m_children.begin(), m_children.end(), obj));
             update_priorities();
+printf("%p removed from %p\n", (void *) obj, (void *) this);
+
+printf("children:");
+for (auto child : m_children)
+printf(" %p", (void *) child);
+printf("\n");
+
         }
     }
 
@@ -80,6 +115,12 @@ namespace ijengine {
             child->update(now, last);
 
         update_self(now, last);
+        
+        for (size_t i = 0; i < m_children.size(); ++i)
+            if (not m_children[i]->valid())
+            {
+                destroy_child(m_children[i]);
+            }
     }
 
     void
