@@ -60,7 +60,24 @@ SDL2Kernel::create_window(const string& title, int w, int h, double scale)
     SDL_SetWindowTitle(window, title.c_str());
     SDL_RenderSetScale(renderer, scale, scale);
 
+	m_window = window;
+
     return new SDL2Window(window, renderer);
+}
+
+void
+SDL2Kernel::set_full_screen(int mode)
+{
+	int flag;
+
+	if(mode == 0)
+		flag = 0;
+	else if(mode == 1)
+		flag = SDL_WINDOW_FULLSCREEN;
+	else
+		flag = SDL_WINDOW_FULLSCREEN_DESKTOP;
+
+	SDL_SetWindowFullscreen(m_window, flag);
 }
 
 static KeyboardEvent::Modifier

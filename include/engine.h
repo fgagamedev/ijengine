@@ -33,6 +33,7 @@ namespace ijengine {
     
     namespace video {
         Window * create_window(const string& title, int w, int h, double scale);
+		void set_full_screen(int mode);
     }
 
     namespace audio {

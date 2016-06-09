@@ -12,6 +12,11 @@ TestLevel::TestLevel(int r, int g, int b, const string& next_level, const string
 {
     RandomRect *rect = new RandomRect(r, g, b, 200, 200);
 
+	//0 for windowed mode
+	//1 for fullscreen mode
+	//2 for fullscreen-desktop mode 
+	video::set_full_screen(0);
+
     add_child(rect);
 }
 
