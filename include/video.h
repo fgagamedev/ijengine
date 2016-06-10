@@ -13,6 +13,7 @@ namespace ijengine {
     public:
         virtual ~Video() = default;
         virtual Window * create_window(const string& title, int w, int h) = 0;
+		virtual void set_full_screen(int mode) = 0;
     };
 
 }
