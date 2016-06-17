@@ -113,6 +113,18 @@ namespace ijengine
         {
             kernel->play_sound_effect(path);
         }
+
+        void
+        set_audio_volume(int volume)
+        {
+           kernel->set_audio_volume(volume); 
+        }
+
+        void
+        set_sound_effect_volume(int volume)
+        {
+            kernel->set_sound_effect_volume(volume);
+        }
     }
 
     namespace event

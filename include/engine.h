@@ -42,6 +42,9 @@ namespace ijengine {
         void stop_audio();
 
         void play_sound_effect(const string &path);
+
+        void set_audio_volume();
+        void set_sound_effect_volume();
     }
 
     namespace event {

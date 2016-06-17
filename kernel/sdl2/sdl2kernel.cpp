@@ -276,7 +276,7 @@ SDL2Kernel::play_audio_from_path(const string& path)
             // printf("error: %s\n", Mix_GetError());
         }
 
-        Mix_PlayMusic(audio, -1);
+        Mix_FadeInMusic(audio, -1, 2000);
     }
 }
 
@@ -289,11 +289,11 @@ SDL2Kernel::stop_audio()
 void
 SDL2Kernel::play_sound_effect(const string& path)
 {
-    string sound_effect_path = audio_dir_path + "/effects/" + path;
-    Mix_Chunk *effect = Mix_LoadWAV(sound_effect_path.c_str());
+    //string sound_effect_path = audio_dir_path + "/effects/" + path;
+    Mix_Chunk *effect = Mix_LoadWAV(path.c_str());
 
     if(not effect){
-        // printf("Failed to load sound effect\n");
+        printf("Failed to load sound effect\n");
     }
 
     Mix_PlayChannel(-1, effect, 0);
