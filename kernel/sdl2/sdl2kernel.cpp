@@ -287,6 +287,19 @@ SDL2Kernel::stop_audio()
 }
 
 void
+SDL2Kernel::play_sound_effect(const string& path)
+{
+    string sound_effect_path = audio_dir_path + "/effects/" + path;
+    Mix_Chunk *effect = Mix_LoadWAV(sound_effect_path.c_str());
+
+    if(not effect){
+        // printf("Failed to load sound effect\n");
+    }
+
+    Mix_PlayChannel(-1, effect, 0);
+}
+
+void
 SDL2Kernel::update_pending_events(unsigned now)
 {
     if (m_last_update == now)

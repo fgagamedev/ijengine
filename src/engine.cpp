@@ -107,6 +107,12 @@ namespace ijengine
         {
            kernel->stop_audio();
         }
+
+        void
+        play_sound_effect(const string &path)
+        {
+            kernel->play_sound_effect(path);
+        }
     }
 
     namespace event

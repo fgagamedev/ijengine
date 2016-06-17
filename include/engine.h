@@ -40,6 +40,8 @@ namespace ijengine {
         void set_audio_dir(const string& dir_path);
         void play_audio_from_path(const string& path);
         void stop_audio();
+
+        void play_sound_effect(const string &path);
     }
 
     namespace event {
