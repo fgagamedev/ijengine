@@ -29,8 +29,8 @@ namespace ijengine {
 
         typedef enum {NONE, SHIFT, CONTROL, ALT, CAPS} Modifier;
 
-        KeyboardEvent(unsigned t, State s, Key k, Modifier m, bool repeated = false) :
-            Event(t), m_state(s), m_key(k), m_modifier(m), m_repeated(repeated) {}
+        KeyboardEvent(unsigned t, State s, Key k, Modifier m, bool r = false) :
+            Event(t), m_state(s), m_key(k), m_modifier(m), m_repeated(r) {}
 
         State state() const { return m_state; }
         Key key() const { return m_key; }
