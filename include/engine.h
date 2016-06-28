@@ -43,8 +43,9 @@ namespace ijengine {
 
         void play_sound_effect(const string &path);
 
-        void set_audio_volume();
-        void set_sound_effect_volume();
+        int set_audio_volume(double percentage);
+        int set_sound_effect_volume(double percentage);
+
     }
 
     namespace event {

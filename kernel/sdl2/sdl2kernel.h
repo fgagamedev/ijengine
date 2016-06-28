@@ -23,6 +23,8 @@ public:
     void play_audio_from_path(const string& title);
     void stop_audio();
     void play_sound_effect(const string& path);
+    int set_audio_volume(double percentage);
+    int set_sound_effect_volume(double percentage);
 
     list<MouseEvent> pending_mouse_events(unsigned now);
     list<SystemEvent> pending_system_events(unsigned now);

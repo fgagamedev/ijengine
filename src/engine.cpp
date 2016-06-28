@@ -105,7 +105,7 @@ namespace ijengine
         void
         stop_audio()
         {
-           kernel->stop_audio();
+            kernel->stop_audio();
         }
 
         void
@@ -114,16 +114,16 @@ namespace ijengine
             kernel->play_sound_effect(path);
         }
 
-        void
-        set_audio_volume(int volume)
+        int
+        set_audio_volume(double percentage)
         {
-           kernel->set_audio_volume(volume); 
+            return kernel->set_audio_volume(percentage);
         }
 
-        void
-        set_sound_effect_volume(int volume)
+        int
+        set_sound_effect_volume(double percentage)
         {
-            kernel->set_sound_effect_volume(volume);
+            return kernel->set_sound_effect_volume(percentage);
         }
     }
 

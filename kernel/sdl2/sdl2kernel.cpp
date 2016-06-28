@@ -289,7 +289,6 @@ SDL2Kernel::stop_audio()
 void
 SDL2Kernel::play_sound_effect(const string& path)
 {
-    //string sound_effect_path = audio_dir_path + "/effects/" + path;
     Mix_Chunk *effect = Mix_LoadWAV(path.c_str());
 
     if(not effect){
@@ -297,6 +296,29 @@ SDL2Kernel::play_sound_effect(const string& path)
     }
 
     Mix_PlayChannel(-1, effect, 0);
+}
+
+int
+SDL2Kernel::set_audio_volume(double percentage)
+{
+    double new_volume = (MIX_MAX_VOLUME * percentage);
+
+    // Mix_VolumeMusic(int volume)
+    // if volume is -1, returns current volume
+    int d = Mix_VolumeMusic(new_volume);
+
+    return d;
+}
+
+int
+SDL2Kernel::set_sound_effect_volume(double percentage){
+    double new_volume = (MIX_MAX_VOLUME * percentage);
+
+    // Mix_Volume(channel, volume)
+    // if channel is -1, set volume to all channels
+    int d = Mix_Volume(-1, new_volume);
+
+    return d;
 }
 
 void

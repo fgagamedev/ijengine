@@ -34,6 +34,9 @@ namespace ijengine {
         virtual void stop_audio() = 0;
         virtual void play_sound_effect(const string& path) = 0;
 
+        virtual int set_audio_volume(double percentage) = 0;
+        virtual int set_sound_effect_volume(double percentage) = 0;
+
 	virtual list<MouseEvent> pending_mouse_events(unsigned now) = 0;
 	virtual list<SystemEvent> pending_system_events(unsigned now) = 0;
 	virtual list<KeyboardEvent> pending_keyboard_events(unsigned now) = 0;
