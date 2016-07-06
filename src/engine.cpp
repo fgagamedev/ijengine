@@ -105,7 +105,25 @@ namespace ijengine
         void
         stop_audio()
         {
-           kernel->stop_audio();
+            kernel->stop_audio();
+        }
+
+        void
+        play_sound_effect(const string &path)
+        {
+            kernel->play_sound_effect(path);
+        }
+
+        int
+        set_audio_volume(double percentage)
+        {
+            return kernel->set_audio_volume(percentage);
+        }
+
+        int
+        set_sound_effect_volume(double percentage)
+        {
+            return kernel->set_sound_effect_volume(percentage);
         }
     }
 
