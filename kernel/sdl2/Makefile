@@ -4,15 +4,15 @@ EXTENSION = so
 TARGET = $(NAME).$(EXTENSION).$(VERSION)
 
 CC = g++
-CFLAGS = -std=c++11 -W -Wall -Wextra -Wshadow -Wcast-align -Wcast-qual -Wctor-dtor-privacy\
+CFLAGS += -std=c++11 -W -Wall -Wextra -Wshadow -Wcast-align -Wcast-qual -Wctor-dtor-privacy\
 		 -Wdisabled-optimization -Wformat=2 -Wlogical-op -Wmissing-declarations\
 		 -Wmissing-include-dirs -Wnoexcept -Woverloaded-virtual -Wredundant-decls\
 		 -Wsign-promo -Wstrict-null-sentinel -Wswitch-default -Wundef\
 		 -Wzero-as-null-pointer-constant -Wuseless-cast -Wnon-virtual-dtor\
 		 -fPIC
 		 
-INCLUDES = -I../../include `sdl2-config --cflags`
-LIBS = -L../../lib  -lijengine `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lSDL2_mixer
+INCLUDES = -I../../include $(EXT_INCLUDES) `sdl2-config --cflags`
+LIBS = -L../../lib $(EXT_LIBS)  -lijengine `sdl2-config --libs` -lSDL2_image -lSDL2_ttf -lSDL2_mixer 
 
 
 SRC = ${wildcard *.cpp}
@@ -29,8 +29,8 @@ all:
 
 $(TARGET): $(OBJ)
 	@echo Building $@
-	@echo $(CC) -shared -rdynamic $(CFLAGS) $(INCLUDES) $(OBJ) -o $@
-	@$(CC) -shared -rdynamic $(CFLAGS) $(INCLUDES) $(OBJ) -o $@ $(LIBS)
+	#@echo $(CC) -shared -rdynamic $(CFLAGS) $(INCLUDES) $(OBJ) -o $@
+	$(CC) -shared -rdynamic $(CFLAGS) $(INCLUDES) $(OBJ) -o $@ $(LIBS)
 	@echo Done.
 
 clean:

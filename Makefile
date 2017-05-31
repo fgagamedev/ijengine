@@ -23,8 +23,12 @@ CFLAGS = -pedantic -std=c++11 -MMD -g3 -g -fPIC\
 		 -Wmissing-include-dirs -Wnoexcept -Woverloaded-virtual -Wredundant-decls\
 		 -Wsign-promo -Wstrict-null-sentinel -Wswitch-default -Wundef\
 		 -Wzero-as-null-pointer-constant -Wuseless-cast -Wnon-virtual-dtor
-INCLUDES = -Iinclude -Itest 
-LIBS = 
+
+override EXT_INCLUDES += 
+override EXT_LIBS += 
+
+INCLUDES = -Iinclude -Itest $(EXT_INCLUDES)
+LIBS = $(EXT_LIBS)
 
 TARGET = $(LIB_DIR)/lib$(NAME).a
 
@@ -39,6 +43,7 @@ OBJ = ${addprefix $(OBJ_DIR)/, ${notdir ${SRC:.cpp=.o}}}
 
 all:
 	@mkdir -p $(OBJ_DIR) $(LIB_DIR)
+	@echo $(CFLAGS)
 	$(MAKE) $(TARGET)
 	@cd kernel/sdl2 && make
 
